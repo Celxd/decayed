@@ -11,14 +11,22 @@ public class PlayerMovement : MonoBehaviour
     private Transform camTransform;
     private bool groundedPlayer;
     private bool isRunning;
+    private bool isCrouching = false;
     [SerializeField] private float playerSpeed = 2.0f;
     [SerializeField] private float jumpHeight = 1.0f;
     [SerializeField] private float gravityValue = -9.81f;
     [SerializeField] private float rotationSpeed = 5f;
+    [SerializeField] private float crouchHeight = 1f;
+    [SerializeField] private float crouchTransitionSpeed = 5f;
+    private float height;
+    private float currentSpeed;
+    private float currentHeight;
     private InputAction action_move;
     private InputAction action_jump;
     private InputAction action_run_start;
     private InputAction action_run_end;
+    private InputAction action_crouch_start;
+    private InputAction action_crouch_end;
 
     private void Start()
     {
@@ -32,22 +40,39 @@ public class PlayerMovement : MonoBehaviour
         action_jump = playerInput.actions["Jump"];
         action_run_start = playerInput.actions["RunStart"];
         action_run_end = playerInput.actions["RunEnd"];
+        action_crouch_start = playerInput.actions["CrouchStart"];
+        action_crouch_end = playerInput.actions["CrouchEnd"];
 
         action_run_start.performed += ctx => isRunning = true;
         action_run_start.canceled += ctx => isRunning = false;
+
+        action_crouch_start.performed += ctx => isCrouching = true;
+        action_crouch_start.canceled += ctx => isCrouching = false;
+
+        height = currentHeight = controller.height;
     }
 
     void Update()
     {
+        //reset velocity
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
         }
-        float currentSpeed = playerSpeed;
+        
+        //crouching
+        if (isCrouching)
+            Crouch();
+        else
+            CrouchEnd();
+
+        //set running speed
+        currentSpeed = playerSpeed;
         if (isRunning)
             currentSpeed *= 2;
 
+        //read input and do movement
         Vector2 input = action_move.ReadValue<Vector2>();
         Vector3 move = new Vector3(input.x, 0, input.y);
         move = move.x * camTransform.right.normalized + move.z * camTransform.forward.normalized;
@@ -63,7 +88,32 @@ public class PlayerMovement : MonoBehaviour
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
 
+        //rotate player to camera
         Quaternion rotation = Quaternion.Euler(0, camTransform.eulerAngles.y, 0);
         transform.rotation = rotation;
+    }
+    
+    void Crouch()
+    {
+        float crouchDelta = Time.deltaTime * crouchTransitionSpeed;
+        currentHeight = Mathf.Lerp(currentHeight, crouchHeight, crouchDelta);
+        controller.height = currentHeight;
+        currentSpeed /= 4;
+    }
+
+    void CrouchEnd()
+    {
+        float heightTarget = height;
+        Vector3 castOrigin = transform.position + new Vector3(0, height / 2, 0);
+        if (Physics.Raycast(castOrigin, Vector3.up, out RaycastHit hit, 0.2f))
+        {
+            float distanceToCeiling = hit.point.y - castOrigin.y;
+            heightTarget = Mathf.Max(currentHeight + distanceToCeiling - 0.1f, crouchHeight);
+        }
+        
+        float crouchDelta = Time.deltaTime * crouchTransitionSpeed;
+        currentHeight = Mathf.Lerp(currentHeight, heightTarget, crouchDelta);
+        controller.height = currentHeight;
+        currentSpeed = playerSpeed;
     }
 }

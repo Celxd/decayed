@@ -165,7 +165,7 @@ CharacterController:
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1003859834350707305
@@ -215,3 +215,5 @@ MonoBehaviour:
   jumpHeight: 0.5
   gravityValue: -9.81
   rotationSpeed: 1
+  crouchHeight: 1
+  crouchTransitionSpeed: 5
