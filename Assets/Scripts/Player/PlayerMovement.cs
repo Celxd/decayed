@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
-    private PlayerInput playerInput;
+    public PlayerInput playerInput;
     private Vector3 playerVelocity;
     private Transform camTransform;
     private bool groundedPlayer;
@@ -23,12 +23,11 @@ public class PlayerMovement : MonoBehaviour
     private float currentHeight;
     private InputAction action_move;
     private InputAction action_jump;
-    private InputAction action_run_start;
-    private InputAction action_run_end;
-    private InputAction action_crouch_start;
-    private InputAction action_crouch_end;
+    private InputAction action_run;
+    private InputAction action_crouch;
+    public InputAction action_shoot;
 
-    private void Start()
+    private void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;
 
@@ -38,20 +37,19 @@ public class PlayerMovement : MonoBehaviour
 
         action_move = playerInput.actions["Move"];
         action_jump = playerInput.actions["Jump"];
-        action_run_start = playerInput.actions["RunStart"];
-        action_run_end = playerInput.actions["RunEnd"];
-        action_crouch_start = playerInput.actions["CrouchStart"];
-        action_crouch_end = playerInput.actions["CrouchEnd"];
+        action_run = playerInput.actions["Run"];
+        action_crouch = playerInput.actions["Crouch"];
+        action_shoot = playerInput.actions["Shoot"];
 
-        action_run_start.performed += ctx => isRunning = true;
-        action_run_start.canceled += ctx => isRunning = false;
+        action_run.started += ctx => isRunning = true;
+        action_run.canceled += ctx => isRunning = false;
 
-        action_crouch_start.performed += ctx => isCrouching = true;
-        action_crouch_start.canceled += ctx => isCrouching = false;
+        action_crouch.started += ctx => isCrouching = true;
+        action_crouch.canceled += ctx => isCrouching = false;
 
         height = currentHeight = controller.height;
     }
-
+    
     void Update()
     {
         //reset velocity
