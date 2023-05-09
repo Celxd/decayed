@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Rendering.HighDefinition;
 
 public class DayNightCycle : MonoBehaviour
 {
@@ -11,11 +12,11 @@ public class DayNightCycle : MonoBehaviour
     public float timeMultiplier = 1f;
 
     float sunInitialIntensity;
-    Light sun;
+    HDAdditionalLightData sun;
 
     void Start()
     {
-        sun = GetComponent<Light>();
+        sun = GetComponent<HDAdditionalLightData>();
         sunInitialIntensity = sun.intensity;
     }
 
@@ -50,5 +51,6 @@ public class DayNightCycle : MonoBehaviour
         }
 
         sun.intensity = sunInitialIntensity * intensityMultiplier;
+        sun.SetIntensity(sunInitialIntensity * intensityMultiplier, LightUnit.Lux);
     }
 }
