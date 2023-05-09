@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,7 @@ public class Gun : MonoBehaviour
     [SerializeField] public GunData gunData;
     [SerializeField] public GameObject player;
     [SerializeField] GameObject point;
+    [SerializeField] TMP_Text ammo;
     Transform camPos;
     
     [Header("Settings")]
@@ -42,6 +44,8 @@ public class Gun : MonoBehaviour
         action_reload.started += ctx => StartCoroutine(Reload());
 
         gunData.currentAmmo = gunData.magSize;
+
+        ammo.text = gunData.currentAmmo.ToString();
     }
 
     public void RecoilMath()
@@ -77,6 +81,7 @@ public class Gun : MonoBehaviour
 
             RecoilMath();
             gunData.currentAmmo--;
+            ammo.text = gunData.currentAmmo.ToString();
             OnGunShot();
         }
         
@@ -85,8 +90,10 @@ public class Gun : MonoBehaviour
     IEnumerator Reload()
     {
         gunData.reloading = true;
+        ammo.text = "Reloading";
         yield return new WaitForSeconds(gunData.reloadTime);
         gunData.currentAmmo = gunData.magSize;
+        ammo.text = gunData.currentAmmo.ToString();
         gunData.reloading = false;
     }
     
