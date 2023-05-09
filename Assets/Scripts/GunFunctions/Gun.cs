@@ -30,6 +30,8 @@ public class Gun : MonoBehaviour
 
     Coroutine fireCoroutine;
 
+    public AudioSource shotsfx;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -127,6 +129,7 @@ public class Gun : MonoBehaviour
     {
         fireCoroutine = StartCoroutine(RapidFire());
         StartCoroutine(PressedTime());
+        GetComponent<AudioSource>().Play();
     }
     
     void StopFiring()

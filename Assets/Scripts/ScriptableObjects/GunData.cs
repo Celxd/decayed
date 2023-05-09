@@ -20,6 +20,10 @@ public class GunData : ScriptableObject
     [Header("Gun Effects")]
     public GameObject gunModel;
 
+    [Header("Audio Effects")]
+    public AudioClip Shooting;
+    public AudioClip Reloading;
+
     //[HideInInspector]
     public bool reloading;
 }
