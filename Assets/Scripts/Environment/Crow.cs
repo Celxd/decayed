@@ -8,6 +8,7 @@ public class Crow : MonoBehaviour
     private Vector3 initialPosition;
     private bool isFlyingAway = false;
     private float flyAwayTimer = 0f;
+    private Vector3 velocity; // New variable to store bird's velocity
     public LayerMask Player;
 
     void Start()
@@ -32,11 +33,13 @@ public class Crow : MonoBehaviour
         if (isFlyingAway)
         {
             // Move the bird towards the target position
-            transform.position = Vector3.MoveTowards(transform.position, transform.forward * flyAwaySpeed + transform.position, flyAwaySpeed * Time.deltaTime);
+            velocity = transform.forward * flyAwaySpeed;
+            transform.position += velocity * Time.deltaTime;
             if (Vector3.Distance(transform.position, initialPosition) < 0.1f)
             {
                 isFlyingAway = false;
                 flyAwayTimer = 0f;
+                transform.position = initialPosition; // Reset position to initial position
             }
             else if (flyAwayTimer > flyAwayDuration)
             {
