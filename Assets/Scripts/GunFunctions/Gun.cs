@@ -11,6 +11,7 @@ public class Gun : MonoBehaviour
     [SerializeField] public GameObject player;
     [SerializeField] GameObject point;
     [SerializeField] TMP_Text ammo;
+    [SerializeField] GameObject holePrefab;
     Transform camPos;
     
     [Header("Settings")]
@@ -75,7 +76,7 @@ public class Gun : MonoBehaviour
             if (Physics.Raycast(Camera.main.ScreenPointToRay(new Vector3(Screen.width/2, Screen.height/2, 0)), out RaycastHit hit))
             {
                 Debug.Log(hit.transform.name);
-                
+                Instantiate(holePrefab, hit.point + (hit.normal * 0.001f), Quaternion.FromToRotation(Vector3.up, hit.normal));
             }
             Debug.DrawRay(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0)), Camera.main.transform.forward * gunData.range, Color.red, gunData.range);
 
