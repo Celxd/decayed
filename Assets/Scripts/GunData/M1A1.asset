@@ -20,4 +20,4 @@ MonoBehaviour:
   currentAmmo: 30
   gunModel: {fileID: 1063816135455577480, guid: 6423a9106e633b449a5ed0688557f3a4,
     type: 3}
-  reloading: 0
+  reloading: 1

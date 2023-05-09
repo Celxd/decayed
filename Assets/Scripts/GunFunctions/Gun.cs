@@ -46,7 +46,7 @@ public class Gun : MonoBehaviour
 
         gunData.currentAmmo = gunData.magSize;
 
-        ammo.text = gunData.currentAmmo.ToString();
+        ammo.text = gunData.currentAmmo.ToString() + " / " + gunData.magSize.ToString();
     }
 
     public void RecoilMath()
@@ -82,7 +82,7 @@ public class Gun : MonoBehaviour
 
             RecoilMath();
             gunData.currentAmmo--;
-            ammo.text = gunData.currentAmmo.ToString();
+            ammo.text = gunData.currentAmmo.ToString() + " / " + gunData.magSize.ToString();
             OnGunShot();
         }
         
@@ -91,10 +91,10 @@ public class Gun : MonoBehaviour
     IEnumerator Reload()
     {
         gunData.reloading = true;
-        ammo.text = "Reloading";
+        ammo.text = "...";
         yield return new WaitForSeconds(gunData.reloadTime);
         gunData.currentAmmo = gunData.magSize;
-        ammo.text = gunData.currentAmmo.ToString();
+        ammo.text = gunData.currentAmmo.ToString() + " / " + gunData.magSize.ToString();
         gunData.reloading = false;
     }
     

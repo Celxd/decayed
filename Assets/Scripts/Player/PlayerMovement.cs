@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
-    public PlayerInput playerInput;
+    private PlayerInput playerInput;
     private Vector3 playerVelocity;
     private Transform camTransform;
     private bool groundedPlayer;
@@ -25,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
     private InputAction action_jump;
     private InputAction action_run;
     private InputAction action_crouch;
-    public InputAction action_shoot;
 
     private void Awake()
     {
@@ -39,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
         action_jump = playerInput.actions["Jump"];
         action_run = playerInput.actions["Run"];
         action_crouch = playerInput.actions["Crouch"];
-        action_shoot = playerInput.actions["Shoot"];
 
         action_run.started += ctx => isRunning = true;
         action_run.canceled += ctx => isRunning = false;
