@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Haykal.unity
     guid: 4162b634e557f824bb2d696544662905
+  - enabled: 1
+    path: Assets/Scenes/Credit.unity
+    guid: 6b491ced63c84e54f96d41c1a20b372c
   m_configObjects: {}

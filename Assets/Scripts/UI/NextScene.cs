@@ -23,6 +23,10 @@ public class NextScene : MonoBehaviour
     {
         SceneManager.LoadScene("Settings");
     }
+    public void Credit()
+    {
+        SceneManager.LoadScene("Credit");
+    }
 
     // This function quits the game
     public void QuitGame()
