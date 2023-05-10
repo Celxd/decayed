@@ -72,13 +72,23 @@ public class Gun : MonoBehaviour
 
     public void Shoot()
     {
-        if(CanShoot())
+        if (CanShoot())
         {
-            
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(new Vector3(Screen.width/2, Screen.height/2, 0)), out RaycastHit hit))
+            // Perform raycast to detect hit
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0)), out RaycastHit hit))
             {
-                Debug.Log(hit.transform.name);
-                Instantiate(holePrefab, hit.point + (hit.normal * 0.001f), Quaternion.FromToRotation(Vector3.up, hit.normal));
+                // Check if the hit object has a Bird component
+                Bird bird = hit.collider.GetComponent<Bird>();
+                if (bird != null)
+                {
+                    // Destroy the bird
+                    bird.Die();
+                }
+                else
+                {
+                    // Instantiate hole prefab at hit location
+                    Instantiate(holePrefab, hit.point + (hit.normal * 0.001f), Quaternion.FromToRotation(Vector3.up, hit.normal));
+                }
             }
             Debug.DrawRay(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0)), Camera.main.transform.forward * gunData.range, Color.red, gunData.range);
 
@@ -87,7 +97,7 @@ public class Gun : MonoBehaviour
             ammo.text = gunData.currentAmmo.ToString() + " / " + gunData.magSize.ToString();
             OnGunShot();
         }
-        
+
     }
 
     IEnumerator Reload()

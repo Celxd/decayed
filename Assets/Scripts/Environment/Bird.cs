@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class BirdController : MonoBehaviour
+public class Bird : MonoBehaviour
 {
 
     public float moveSpeed = 5f;
@@ -46,6 +46,10 @@ public class BirdController : MonoBehaviour
         float z = Random.Range(-1f, 1f);
 
         return new Vector3(x, 0, z).normalized;
+    }
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 
 }
