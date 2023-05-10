@@ -19,6 +19,10 @@ public class NextScene : MonoBehaviour
     {
         SceneManager.LoadScene("Loading Screen");
     }
+    public void Settings()
+    {
+        SceneManager.LoadScene("Settings");
+    }
 
     // This function quits the game
     public void QuitGame()
