@@ -52,7 +52,6 @@ public class CrowController : MonoBehaviour
                 transform.LookAt(player.transform);
             }
         }
-
         // If the player is within the stop distance
         if (distanceToPlayer < stopDistance)
         {
@@ -63,6 +62,19 @@ public class CrowController : MonoBehaviour
         {
             // Resume moving the crow
             speed = 5f;
+        }
+
+        // If the player is within the fly away distance, fly away
+        if (distanceToPlayer < flyAwayDistance)
+        {
+            // Calculate the direction away from the player
+            Vector3 directionAwayFromPlayer = (transform.position - player.transform.position).normalized;
+
+            // Move the crow away from the player
+            transform.Translate(directionAwayFromPlayer * speed * Time.deltaTime, Space.World);
+
+            // Rotate the crow to face away from the player
+            transform.LookAt(transform.position - directionAwayFromPlayer);
         }
     }
 }
