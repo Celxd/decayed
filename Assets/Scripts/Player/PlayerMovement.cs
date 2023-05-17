@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
@@ -25,6 +26,11 @@ public class PlayerMovement : MonoBehaviour
     private InputAction action_jump;
     private InputAction action_run;
     private InputAction action_crouch;
+    [SerializeField] private float maxStamina = 100f;
+    [SerializeField] private float staminaRegenRate = 10f;
+    [SerializeField] private float staminaDepletionRate = 20f;
+    private float currentStamina;
+
 
     private void Awake()
     {
@@ -47,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
         height = currentHeight = controller.height;
     }
-    
+
     void Update()
     {
         //reset velocity
@@ -56,17 +62,29 @@ public class PlayerMovement : MonoBehaviour
         {
             playerVelocity.y = 0f;
         }
-        
+
         //crouching
         if (isCrouching)
             Crouch();
         else
             CrouchEnd();
 
-        //set running speed
-        currentSpeed = playerSpeed;
+        //check stamina
+        if (isRunning && currentStamina <= 0f)
+        {
+            isRunning = false;
+        }
         if (isRunning)
-            currentSpeed *= 2;
+        {
+            currentStamina -= staminaDepletionRate * Time.deltaTime;
+            currentSpeed = playerSpeed * 2;
+        }
+        else
+        {
+            currentStamina += staminaRegenRate * Time.deltaTime;
+            currentSpeed = playerSpeed;
+        }
+        currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
 
         //read input and do movement
         Vector2 input = action_move.ReadValue<Vector2>();
@@ -88,7 +106,8 @@ public class PlayerMovement : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(0, camTransform.eulerAngles.y, 0);
         transform.rotation = rotation;
     }
-    
+
+
     void Crouch()
     {
         float crouchDelta = Time.deltaTime * crouchTransitionSpeed;
