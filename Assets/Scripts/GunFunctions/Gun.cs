@@ -12,7 +12,6 @@ public class Gun : MonoBehaviour
     [SerializeField] GameObject point;
     [SerializeField] TMP_Text ammo;
     [SerializeField] GameObject holePrefab;
-    Transform camPos;
     
     [Header("Settings")]
     [Range(0, 3f)] float recoilX;
@@ -36,9 +35,7 @@ public class Gun : MonoBehaviour
         action_shoot = player.GetComponent<PlayerInput>().actions["Shoot"];
         action_reload = player.GetComponent<PlayerInput>().actions["Reload"];
         mouse = player.GetComponent<PlayerInput>().actions["Look"];
-
-        camPos = Camera.main.transform;
-
+        
         action_shoot.started += ctx => StartFiring();
         action_shoot.canceled += ctx => StopFiring();
 
@@ -53,9 +50,7 @@ public class Gun : MonoBehaviour
     {
         currentRecoilX = ((Random.value - 0.5f) / 2) * recoilX;
         currentRecoilY = ((Random.value - 0.5f) / 2) * (timePressed >= maxRecoilTime ? recoilY / 4 : recoilY);
-        //camPos.Rotate(new Vector3(camPos.eulerAngles.x - Mathf.Abs(currentRecoilY), camPos.eulerAngles.y - currentRecoilX, 0));
-        camPos.localEulerAngles = new Vector3(camPos.localEulerAngles.x - Mathf.Abs(currentRecoilY), camPos.localEulerAngles.y - currentRecoilX, 0);
-
+        //TODO: Apply recoil to camera (hint: u already marked the solution in chrome in case u forgoor)
     }
 
     bool IsClipped()
@@ -76,14 +71,13 @@ public class Gun : MonoBehaviour
             if (Physics.Raycast(Camera.main.ScreenPointToRay(new Vector3(Screen.width/2, Screen.height/2, 0)), out RaycastHit hit))
             {
                 Debug.Log(hit.transform.name);
-                Instantiate(holePrefab, hit.point + (hit.normal * 0.001f), Quaternion.FromToRotation(Vector3.up, hit.normal));
+                Instantiate(holePrefab, hit.point + (hit.normal * 0.001f), Quaternion.FromToRotation(Vector3.up, hit.normal), hit.transform);
             }
             Debug.DrawRay(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0)), Camera.main.transform.forward * gunData.range, Color.red, gunData.range);
 
             RecoilMath();
             gunData.currentAmmo--;
             ammo.text = gunData.currentAmmo.ToString();
-            OnGunShot();
         }
         
     }
@@ -98,12 +92,6 @@ public class Gun : MonoBehaviour
         gunData.reloading = false;
     }
     
-    public void OnGunShot()
-    {
-        //Executes after Shoot(), take hit as parameter and damage the hit.
-        //Start damage decrease when hit object is more than gunData.range
-    }
-
     public IEnumerator RapidFire()
     {
         while(true)

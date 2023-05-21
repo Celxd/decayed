@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: M1A1
   m_EditorClassIdentifier: 
   gunName: M1A1
-  fireRate: 600
+  fireRate: 80
   range: 150
-  magSize: 30
+  magSize: 7
   reloadTime: 2.1
-  currentAmmo: 30
+  currentAmmo: 7
   gunModel: {fileID: 1063816135455577480, guid: 6423a9106e633b449a5ed0688557f3a4,
     type: 3}
   reloading: 0
