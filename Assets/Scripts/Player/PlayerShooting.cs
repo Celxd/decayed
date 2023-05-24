@@ -1,21 +1,25 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerShooting : MonoBehaviour
 {
     [Header("References")]
+    [SerializeField] CinemachineVirtualCamera vcam;
     [SerializeField] GameObject point;
     [SerializeField] TMP_Text ammo;
     [SerializeField] GameObject holePrefab;
-
+    
     [Header("Settings")]
-    [Range(0, 3f)] float recoilX;
-    [Range(0, 7f)] float recoilY;
-    [Range(0, 10f)] float maxRecoilTime;
+    [SerializeField] float recoilX;
+    [SerializeField] float recoilY;
+    [SerializeField] float maxRecoilTime;
 
+    private CinemachinePOV pov;
     private Inventory inventory;
     private EquipmentManager equipmentManager;
     private PlayerInput playerInput;
@@ -23,14 +27,16 @@ public class PlayerShooting : MonoBehaviour
     InputAction action_reload;
     InputAction mouse;
     private Weapon currentWeapon;
-    public int currentWeaponIndex = 0;
+    private int currentWeaponIndex = 0;
 
     float currentRecoilX;
     float currentRecoilY;
+    float recoilDuration = 0.1f;
+    float smoothTime = 0.1f;
+    float smoothRecoilVelX;
+    float smoothRecoilVelY;
     float timePressed;
     float totalAmmo;
-    
-    
 
     Coroutine fireCoroutine;
 
@@ -40,6 +46,7 @@ public class PlayerShooting : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         inventory = GetComponent<Inventory>();
         equipmentManager = GetComponent<EquipmentManager>();
+        pov = vcam.GetCinemachineComponent<CinemachinePOV>();
 
         action_shoot = playerInput.actions["Shoot"];
         action_reload = playerInput.actions["Reload"];
@@ -74,9 +81,17 @@ public class PlayerShooting : MonoBehaviour
     {
         currentRecoilX = ((Random.value - 0.5f) / 2) * recoilX;
         currentRecoilY = ((Random.value - 0.5f) / 2) * (timePressed >= maxRecoilTime ? recoilY / 4 : recoilY);
-        //TODO: Apply recoil to camera (hint: u already marked the solution in chrome in case u forgoor)
+
+        //float smoothedRecoilY = Mathf.Lerp(0f, Mathf.Abs(currentRecoilY), timePressed);
+        //float smoothedRecoilX = Mathf.Lerp(0f, currentRecoilX, timePressed);
+
+        float smoothedRecoilY = Mathf.SmoothDamp(0f, Mathf.Abs(currentRecoilY), ref smoothRecoilVelY, smoothTime);
+        float smoothedRecoilX = Mathf.SmoothDamp(0f, currentRecoilX, ref smoothRecoilVelX, smoothTime);
+
+        pov.m_VerticalAxis.Value -= smoothedRecoilY;
+        pov.m_HorizontalAxis.Value -= smoothedRecoilX;
     }
-    
+
     bool IsClipped()
     {
         if (Physics.Raycast(point.transform.position, point.transform.forward, 1f))
@@ -115,6 +130,7 @@ public class PlayerShooting : MonoBehaviour
             currentWeapon.reloading = true;
             ammo.text = "Reloading";
             yield return new WaitForSeconds(currentWeapon.reloadTime);
+            //TODO: Make a function in WaitForSeconds that checks if gun is swapped (If true: cancel reload)
             currentWeapon.currentAmmo = currentWeapon.magSize;
             totalAmmo -= currentWeapon.magSize;
             currentWeapon.magCount -= 1;
