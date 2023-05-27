@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 1a76678308a853844a69daf8d72ae869
+<<<<<<<< HEAD:Assets/Prefabs/Eagle.prefab.meta
+guid: 10c0da11b36659f4a8407b7b801dfffa
+========
+guid: 78591c16ad3b09b46a54c22158101001
+>>>>>>>> origin/MAP-RE:Assets/Prefabs/FPS.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: 
