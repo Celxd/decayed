@@ -1,8 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/UI Pack/EasyLoadingScreen/Prefabs/LoadingScreen.prefab.meta
+guid: 33f4a4836a480b040827880d579a3e83
+========
 guid: 794290092ef07ad41ae0028ba06f864f
+>>>>>>>> origin/MAP-RE:Assets/Prefabs/New Material.mat.meta
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 2100000
+  mainObjectFileID: 100100000
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -6,6 +6,24 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Utility/OutdoorsScene.unity
-    guid: 8124e5870f4fd4c779e7a5f994e84ad1
+    path: Assets/Scenes/UI - Master/Menu.unity
+    guid: a41d9111b1cc92b4981c664329e4bf6c
+  - enabled: 1
+    path: Assets/Scenes/UI - Master/Settings.unity
+    guid: bb292515bce708d46af97efcf13cba29
+  - enabled: 1
+    path: Assets/Scenes/UI - Master/Audio.unity
+    guid: 99b3abeffc745304faa5349475c391f4
+  - enabled: 1
+    path: Assets/Scenes/Haykal.unity
+    guid: 4162b634e557f824bb2d696544662905
+  - enabled: 1
+    path: Assets/Scenes/Apartment.unity
+    guid: 9b5aa6428ba7a6246bd201ba8d95cebe
+  - enabled: 1
+    path: Assets/Scenes/UI - Master/NC.unity
+    guid: 9893325a91b567145aec40281d9593b3
+  - enabled: 1
+    path: Assets/Scenes/UI - Master/Credit.unity
+    guid: 5888933e327923c419076eae374daaf4
   m_configObjects: {}

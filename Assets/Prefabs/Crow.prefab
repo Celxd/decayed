@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 794290092ef07ad41ae0028ba06f864f, type: 2}
+  - {fileID: 2100000, guid: 22b96252d0607a04482c2253dcc476fb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -120,9 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d5eac3eaaa497a4b978d691263af0a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 4768263604086239257, guid: b434af40355624f4dae2141440b9ce15, type: 3}
+  speed: 5
+  followDistance: 10
+  stopDistance: 5
   flyAwayDistance: 15
-  flyAwaySpeed: 10
-  flyAwayDuration: 5
-  Player:
-    serializedVersion: 2
-    m_Bits: 8
