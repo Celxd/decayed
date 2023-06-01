@@ -36,6 +36,7 @@ public class PlayerShooting : MonoBehaviour
     float smoothRecoilVelX;
     float smoothRecoilVelY;
     float timePressed;
+    float originalVerticalValue;
     float totalAmmo;
 
     Coroutine fireCoroutine;
@@ -79,6 +80,8 @@ public class PlayerShooting : MonoBehaviour
     
     public void RecoilMath()
     {
+        originalVerticalValue = pov.m_VerticalAxis.Value;
+
         currentRecoilX = ((Random.value - 0.5f) / 2) * recoilX;
         currentRecoilY = ((Random.value - 0.5f) / 2) * (timePressed >= maxRecoilTime ? recoilY / 4 : recoilY);
 
@@ -177,5 +180,12 @@ public class PlayerShooting : MonoBehaviour
             StopCoroutine(fireCoroutine);
 
         timePressed = 0;
+        float currentVerticalValue = pov.m_VerticalAxis.Value;
+        float targetVerticalValue = originalVerticalValue;
+        float smoothReturnVelY = 0.1f;
+        float smoothReturnTime = 0.5f;
+
+        float smoothedVerticalValue = Mathf.SmoothDamp(currentVerticalValue, targetVerticalValue, ref smoothReturnVelY, smoothReturnTime);
+        pov.m_VerticalAxis.Value -= smoothedVerticalValue;
     }
 }
