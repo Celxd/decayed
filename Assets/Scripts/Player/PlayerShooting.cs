@@ -1,8 +1,6 @@
 using Cinemachine;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,7 +12,7 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] TMP_Text ammo;
     [SerializeField] GameObject holePrefab;
     
-    [Header("Settings")]
+    [Header("Recoil Settings")]
     [SerializeField] float recoilX;
     [SerializeField] float recoilY;
     [SerializeField] float maxRecoilTime;
@@ -180,12 +178,12 @@ public class PlayerShooting : MonoBehaviour
             StopCoroutine(fireCoroutine);
 
         timePressed = 0;
-        float currentVerticalValue = pov.m_VerticalAxis.Value;
-        float targetVerticalValue = originalVerticalValue;
-        float smoothReturnVelY = 0.1f;
-        float smoothReturnTime = 0.5f;
+        //float currentVerticalValue = pov.m_VerticalAxis.Value;
+        //float targetVerticalValue = originalVerticalValue;
+        //float smoothReturnVelY = 0.1f;
+        //float smoothReturnTime = 0.5f;
 
-        float smoothedVerticalValue = Mathf.SmoothDamp(currentVerticalValue, targetVerticalValue, ref smoothReturnVelY, smoothReturnTime);
-        pov.m_VerticalAxis.Value -= smoothedVerticalValue;
+        //float smoothedVerticalValue = Mathf.SmoothDamp(currentVerticalValue, targetVerticalValue, ref smoothReturnVelY, smoothReturnTime);
+        //pov.m_VerticalAxis.Value -= smoothedVerticalValue;
     }
 }
