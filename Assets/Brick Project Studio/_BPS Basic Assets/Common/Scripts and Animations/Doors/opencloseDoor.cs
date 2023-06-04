@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace SojaExiles
-
 {
 	public class opencloseDoor : MonoBehaviour
 	{
@@ -19,36 +18,30 @@ namespace SojaExiles
 
 		void OnMouseOver()
 		{
+			if (Player)
 			{
-				if (Player)
+				float dist = Vector3.Distance(Player.position, transform.position);
+				if (dist < 15)
 				{
-					float dist = Vector3.Distance(Player.position, transform.position);
-					if (dist < 15)
+					if (open == false)
 					{
-						if (open == false)
+						if (Input.GetMouseButtonDown(0))
+						{
+							StartCoroutine(opening());
+						}
+					}
+					else
+					{
+						if (open == true)
 						{
 							if (Input.GetMouseButtonDown(0))
 							{
-								StartCoroutine(opening());
+								StartCoroutine(closing());
 							}
 						}
-						else
-						{
-							if (open == true)
-							{
-								if (Input.GetMouseButtonDown(0))
-								{
-									StartCoroutine(closing());
-								}
-							}
-
-						}
-
 					}
 				}
-
 			}
-
 		}
 
 		IEnumerator opening()
@@ -66,7 +59,5 @@ namespace SojaExiles
 			open = false;
 			yield return new WaitForSeconds(.5f);
 		}
-
-
 	}
 }

@@ -3,6 +3,9 @@ using UnityEngine;
 public class Quest : MonoBehaviour
 {
     public GameObject Questpanel;
+    bool isPaused = false;
+    CursorLockMode previousLockState;
+    bool previousCursorVisibility;
 
     void Update()
     {
@@ -14,27 +17,35 @@ public class Quest : MonoBehaviour
 
     public void TogglePause()
     {
-        bool isPaused = Time.timeScale == 0;
-        Questpanel.SetActive(!isPaused);
-        Time.timeScale = isPaused ? 1 : 0;
+        isPaused = !isPaused;
+        Questpanel.SetActive(isPaused);
+        Time.timeScale = isPaused ? 0 : 1;
 
         if (isPaused)
         {
+            SaveCursorSettings();
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
         else
         {
+            Questpanel.SetActive(false);
+            Time.timeScale = 1;
+            RestoreCursorSettings();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
     }
 
-    public void HidePausePanel()
+    private void SaveCursorSettings()
     {
-        Questpanel.SetActive(false);
-        Time.timeScale = 1;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        previousLockState = Cursor.lockState;
+        previousCursorVisibility = Cursor.visible;
+    }
+
+    private void RestoreCursorSettings()
+    {
+        Cursor.lockState = previousLockState;
+        Cursor.visible = previousCursorVisibility;
     }
 }

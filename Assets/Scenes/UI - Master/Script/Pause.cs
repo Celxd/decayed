@@ -3,6 +3,9 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pausePanel;
+    bool isPaused = false;
+    CursorLockMode previousLockState;
+    bool previousCursorVisibility;
 
     void Update()
     {
@@ -14,27 +17,35 @@ public class PauseMenu : MonoBehaviour
 
     public void TogglePause()
     {
-        bool isPaused = Time.timeScale == 0;
-        pausePanel.SetActive(!isPaused);
-        Time.timeScale = isPaused ? 1 : 0;
+        isPaused = !isPaused;
+        pausePanel.SetActive(isPaused);
+        Time.timeScale = isPaused ? 0 : 1;
 
         if (isPaused)
         {
+            SaveCursorSettings();
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
         else
         {
+            pausePanel.SetActive(false);
+            Time.timeScale = 1;
+            RestoreCursorSettings();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
     }
 
-    public void HidePausePanel()
+    private void SaveCursorSettings()
     {
-        pausePanel.SetActive(false);
-        Time.timeScale = 1;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        previousLockState = Cursor.lockState;
+        previousCursorVisibility = Cursor.visible;
+    }
+
+    private void RestoreCursorSettings()
+    {
+        Cursor.lockState = previousLockState;
+        Cursor.visible = previousCursorVisibility;
     }
 }
