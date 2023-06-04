@@ -2,29 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Timeline;
 
 public class PlayerMovement : MonoBehaviour
 {
+    
     private CharacterController controller;
-    public PlayerInput playerInput;
+    [HideInInspector] public PlayerInput playerInput; //Public because it's being used by another script
     private Vector3 playerVelocity;
     private Transform camTransform;
     private bool groundedPlayer;
     private bool isRunning;
     private bool isCrouching = false;
-    [SerializeField] private float playerSpeed = 2.0f;
-    [SerializeField] private float jumpHeight = 1.0f;
-    [SerializeField] private float gravityValue = -9.81f;
-    [SerializeField] private float rotationSpeed = 5f;
-    [SerializeField] private float crouchHeight = 1f;
-    [SerializeField] private float crouchTransitionSpeed = 5f;
-    private float height;
-    private float currentSpeed;
-    private float currentHeight;
-    private InputAction action_move;
-    private InputAction action_jump;
-    private InputAction action_run;
-    private InputAction action_crouch;
+
+    [Header("Settings")]
+    [SerializeField] float playerSpeed = 2.0f;
+    [SerializeField] float jumpHeight = 1.0f;
+    [SerializeField] float gravityValue = -9.81f;
+    [SerializeField] float rotationSpeed = 5f;
+
+    [Header("Crouch Settings")]
+    [SerializeField] float crouchHeight = 1f;
+    [SerializeField] float crouchTransitionSpeed = 5f;
+
+    float height;
+    float currentSpeed;
+    float currentHeight;
+    InputAction action_move;
+    InputAction action_jump;
+    InputAction action_run;
+    InputAction action_crouch;
 
     private void Awake()
     {

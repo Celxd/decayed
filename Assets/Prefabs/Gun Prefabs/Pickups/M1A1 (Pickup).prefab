@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9029787998477981814}
   - component: {fileID: 346051485725767707}
   - component: {fileID: 6504757392923707572}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: safety_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 1472389034379090044}
   - component: {fileID: 640322958012816923}
   - component: {fileID: 4563658653150154562}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: safety
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 4001637563305745374}
   - component: {fileID: 1763059890951271872}
   - component: {fileID: 3907145310103511435}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: magRelease_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 759613681488732178}
   - component: {fileID: 5457236527095948055}
   - component: {fileID: 8769949744605921944}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: mag_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 9187484298375633680}
   - component: {fileID: 7126290244063418951}
   - component: {fileID: 6961031962071869218}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: safety_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -426,7 +426,7 @@ GameObject:
   - component: {fileID: 3141992966800441348}
   - component: {fileID: 5118255420224837303}
   - component: {fileID: 6012202982141467024}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: bolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 7438255538029763325}
   - component: {fileID: 4490964729004877030}
   - component: {fileID: 3547582409332036071}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: trigger_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -592,7 +592,7 @@ GameObject:
   - component: {fileID: 5577386483690037321}
   - component: {fileID: 7270075713376859766}
   - component: {fileID: 1166680648946898796}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: fireSelect_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -673,7 +673,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7015088868193666488}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: mag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -707,7 +707,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2210918397559875526}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: safety
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -743,7 +743,7 @@ GameObject:
   - component: {fileID: 370877483921020271}
   - component: {fileID: 1572969414180039695}
   - component: {fileID: 3143854729512013128}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: fireSelect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -826,7 +826,7 @@ GameObject:
   - component: {fileID: 6941015661632420597}
   - component: {fileID: 6286243524668390329}
   - component: {fileID: 1012825547340168927}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: mag_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -909,7 +909,7 @@ GameObject:
   - component: {fileID: 6263641027149350888}
   - component: {fileID: 373962590053861845}
   - component: {fileID: 413304126324207001}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: M1A1_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -992,7 +992,7 @@ GameObject:
   - component: {fileID: 3976564122620487150}
   - component: {fileID: 3349417334811580039}
   - component: {fileID: 6651806296201059474}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: stock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1073,7 +1073,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6608503986159926935}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: fireSelect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1109,7 +1109,7 @@ GameObject:
   - component: {fileID: 4476149674852070627}
   - component: {fileID: 5209294000107320453}
   - component: {fileID: 5005265860244953475}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1190,7 +1190,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9126891774430810319}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1226,7 +1226,7 @@ GameObject:
   - component: {fileID: 8604596503754657659}
   - component: {fileID: 3345359795893558078}
   - component: {fileID: 6690946521576033525}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: bolt_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1309,7 +1309,7 @@ GameObject:
   - component: {fileID: 2898624472815590117}
   - component: {fileID: 1006193337893369206}
   - component: {fileID: 160621111603320496}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: mag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1392,7 +1392,7 @@ GameObject:
   - component: {fileID: 696842931255993983}
   - component: {fileID: 5895428098449731315}
   - component: {fileID: 4645535782110892165}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: bolt_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1473,7 +1473,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1881712511959172880}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: stock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1507,7 +1507,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6150228329888420089}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: bolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1546,7 +1546,7 @@ GameObject:
   - component: {fileID: 6655424172850311513}
   - component: {fileID: 8165273238378931504}
   - component: {fileID: -6149159434507184572}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: M1A1 (Pickup)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1717,7 +1717,7 @@ GameObject:
   - component: {fileID: 983146026906324022}
   - component: {fileID: 3974946218364224195}
   - component: {fileID: 816464843265970534}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: stock_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1800,7 +1800,7 @@ GameObject:
   - component: {fileID: 4543172878613185190}
   - component: {fileID: 5302537412756385254}
   - component: {fileID: 3121288130409612103}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: M1A1_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1883,7 +1883,7 @@ GameObject:
   - component: {fileID: 5832677716637088383}
   - component: {fileID: 4887538428366612860}
   - component: {fileID: 1069734606302120427}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: fireSelect_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1964,7 +1964,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 449132768827367929}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: M1A1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2000,7 +2000,7 @@ GameObject:
   - component: {fileID: 8612668746069291081}
   - component: {fileID: 6267094370296539942}
   - component: {fileID: 1768493098206145917}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: trigger_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2083,7 +2083,7 @@ GameObject:
   - component: {fileID: 6259018284143560399}
   - component: {fileID: 8715919215288981947}
   - component: {fileID: 8426847064808894387}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: M1A1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2166,7 +2166,7 @@ GameObject:
   - component: {fileID: 6883975432102780357}
   - component: {fileID: 4883916871182270727}
   - component: {fileID: 5148796447137747257}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: stock_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2249,7 +2249,7 @@ GameObject:
   - component: {fileID: 8775632089409562020}
   - component: {fileID: 5274973683770094690}
   - component: {fileID: 6516414157753629364}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: magRelease
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2332,7 +2332,7 @@ GameObject:
   - component: {fileID: 47770950608512531}
   - component: {fileID: 8101913099840442269}
   - component: {fileID: 2790775450117793294}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: magRelease_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2413,7 +2413,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9003749684529542590}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: magRelease
   m_TagString: Untagged
   m_Icon: {fileID: 0}
