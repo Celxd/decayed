@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 781cc897cf8675041a751163b51f97dd, type: 3}
   m_Name: HDRenderPipelineGlobalSettings
   m_EditorClassIdentifier: 
-  m_DefaultVolumeProfile: {fileID: 11400000, guid: 22558c94ed907dc46a057b39c54e6f8c,
+  m_DefaultVolumeProfile: {fileID: 11400000, guid: f940a8037e6cda542891dc1aac1fa4e8,
     type: 2}
   m_LookDevVolumeProfile: {fileID: 11400000, guid: 4594f4a3fb14247e192bcca6dc23c8ed,
     type: 2}
@@ -108,6 +108,10 @@ MonoBehaviour:
       bounds:
         m_Center: {x: -263.25, y: 162, z: -40.5}
         m_Extent: {x: 101.25, y: 40.5, z: 81}
+    - sceneGUID: 9b5aa6428ba7a6246bd201ba8d95cebe
+      bounds:
+        m_Center: {x: -243, y: 121.5, z: -202.5}
+        m_Extent: {x: 162, y: 40.5, z: 121.5}
     serializedHasVolumes:
     - sceneGUID: fc1e6a0c2803d9444a02fce99b5b0fb2
       hasProbeVolumes: 1
@@ -136,7 +140,7 @@ MonoBehaviour:
     - sceneGUID: e04116a44dba7b741a9468e975b72dd7
       hasProbeVolumes: 0
     - sceneGUID: 9b5aa6428ba7a6246bd201ba8d95cebe
-      hasProbeVolumes: 0
+      hasProbeVolumes: 1
     - sceneGUID: a41d9111b1cc92b4981c664329e4bf6c
       hasProbeVolumes: 0
     - sceneGUID: 800141d3454c94a43b7512a864392e5b
@@ -151,7 +155,7 @@ MonoBehaviour:
       hasProbeVolumes: 0
     serializedProfiles:
     - sceneGUID: fc1e6a0c2803d9444a02fce99b5b0fb2
-      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+      profile: {fileID: 11400000, guid: 611db5e49cdbbca408df7bb4c630107a, type: 2}
     - sceneGUID: de1f6b2146434174380e7e56fc69579a
       profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
     - sceneGUID: eceab537e1c21674ab0da7b979399c6e
@@ -159,37 +163,37 @@ MonoBehaviour:
     - sceneGUID: b113fbf76ecc0f047b63fe945ed1f232
       profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
     - sceneGUID: af7dcacc0a9c5cb439ec06938623d616
-      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+      profile: {fileID: 11400000, guid: 611db5e49cdbbca408df7bb4c630107a, type: 2}
     - sceneGUID: 4162b634e557f824bb2d696544662905
-      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+      profile: {fileID: 11400000, guid: 611db5e49cdbbca408df7bb4c630107a, type: 2}
     - sceneGUID: 3aa3f85f51606ac44a3d685ff8e96c10
-      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+      profile: {fileID: 11400000, guid: 611db5e49cdbbca408df7bb4c630107a, type: 2}
     - sceneGUID: 42e41b115cf16744aac24cec73fd354a
-      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+      profile: {fileID: 11400000, guid: 611db5e49cdbbca408df7bb4c630107a, type: 2}
     - sceneGUID: adf977b7c87ef2843850da0793d1db64
-      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+      profile: {fileID: 11400000, guid: 611db5e49cdbbca408df7bb4c630107a, type: 2}
     - sceneGUID: 6b491ced63c84e54f96d41c1a20b372c
-      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+      profile: {fileID: 11400000, guid: 611db5e49cdbbca408df7bb4c630107a, type: 2}
     - sceneGUID: b6cbde090a41360489d2737371991775
-      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+      profile: {fileID: 11400000, guid: 611db5e49cdbbca408df7bb4c630107a, type: 2}
     - sceneGUID: a18f299d9b3463749afa798bec75a9b7
-      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+      profile: {fileID: 11400000, guid: 611db5e49cdbbca408df7bb4c630107a, type: 2}
     - sceneGUID: e04116a44dba7b741a9468e975b72dd7
-      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+      profile: {fileID: 11400000, guid: 611db5e49cdbbca408df7bb4c630107a, type: 2}
     - sceneGUID: 9b5aa6428ba7a6246bd201ba8d95cebe
-      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+      profile: {fileID: 11400000, guid: 611db5e49cdbbca408df7bb4c630107a, type: 2}
     - sceneGUID: a41d9111b1cc92b4981c664329e4bf6c
-      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+      profile: {fileID: 11400000, guid: 611db5e49cdbbca408df7bb4c630107a, type: 2}
     - sceneGUID: 800141d3454c94a43b7512a864392e5b
-      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+      profile: {fileID: 11400000, guid: 611db5e49cdbbca408df7bb4c630107a, type: 2}
     - sceneGUID: 9893325a91b567145aec40281d9593b3
-      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+      profile: {fileID: 11400000, guid: 611db5e49cdbbca408df7bb4c630107a, type: 2}
     - sceneGUID: bb292515bce708d46af97efcf13cba29
-      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+      profile: {fileID: 11400000, guid: 611db5e49cdbbca408df7bb4c630107a, type: 2}
     - sceneGUID: 5888933e327923c419076eae374daaf4
-      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+      profile: {fileID: 11400000, guid: 611db5e49cdbbca408df7bb4c630107a, type: 2}
     - sceneGUID: 99b3abeffc745304faa5349475c391f4
-      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+      profile: {fileID: 11400000, guid: 611db5e49cdbbca408df7bb4c630107a, type: 2}
     serializedBakeSettings:
     - sceneGUID: fc1e6a0c2803d9444a02fce99b5b0fb2
       settings:
@@ -588,7 +592,7 @@ MonoBehaviour:
           collisionMask:
             serializedVersion: 2
             m_Bits: 4294967291
-      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+      profile: {fileID: 11400000, guid: 611db5e49cdbbca408df7bb4c630107a, type: 2}
       lightingScenarios:
       - Default
     m_LightingScenario: Default
