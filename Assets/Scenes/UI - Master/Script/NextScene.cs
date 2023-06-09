@@ -39,6 +39,10 @@ public class NextScene : MonoBehaviour
     {
         SceneManager.LoadScene("Audio");
     }
+    public void Display()
+    {
+        SceneManager.LoadScene("Display");
+    }
 
     // This function quits the game
     public void QuitGame()
