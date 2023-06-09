@@ -21,9 +21,6 @@ EditorBuildSettings:
     path: Assets/Scenes/UI - Master/NC.unity
     guid: 9893325a91b567145aec40281d9593b3
   - enabled: 1
-    path: Assets/Scenes/UI - Master/Credit.unity
-    guid: 5888933e327923c419076eae374daaf4
-  - enabled: 1
     path: Assets/Scenes/UI - Master/Display.unity
     guid: 6d17d8f5ca45bd547a9f39ed2733da48
   m_configObjects: {}

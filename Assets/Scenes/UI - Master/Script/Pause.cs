@@ -6,6 +6,7 @@ public class PauseMenu : MonoBehaviour
     bool isPaused = false;
     CursorLockMode previousLockState;
     bool previousCursorVisibility;
+    float previousTimeScale;
 
     void Update()
     {
@@ -19,21 +20,20 @@ public class PauseMenu : MonoBehaviour
     {
         isPaused = !isPaused;
         pausePanel.SetActive(isPaused);
-        Time.timeScale = isPaused ? 0 : 1;
 
         if (isPaused)
         {
             SaveCursorSettings();
+            previousTimeScale = Time.timeScale;
+            Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
         else
         {
             pausePanel.SetActive(false);
-            Time.timeScale = 1;
+            Time.timeScale = previousTimeScale;
             RestoreCursorSettings();
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
         }
     }
 
