@@ -112,6 +112,10 @@ public class PlayerShooting : MonoBehaviour
             {
                 Debug.Log(hit.transform.name);
                 Instantiate(holePrefab, hit.point + (hit.normal * 0.001f), Quaternion.FromToRotation(Vector3.up, hit.normal), hit.transform);
+                if (hit.transform.gameObject.GetComponent<EnemyAi>() != null)
+                {
+                    hit.transform.gameObject.GetComponent<EnemyAi>().TakeDamage(28);
+                }
             }
             Debug.DrawRay(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0)), Camera.main.transform.forward * currentWeapon.range, Color.red, currentWeapon.range);
 
