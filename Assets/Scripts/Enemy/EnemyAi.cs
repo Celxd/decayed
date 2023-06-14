@@ -11,7 +11,7 @@ public class EnemyAi : MonoBehaviour
     NavMeshAgent m_Agent;
     Transform m_Player;
 
-    //States
+    //Stuff
     [Header("Settings")]
     [SerializeField] float m_SightRange;
     [SerializeField] float m_AttackRange;
@@ -24,7 +24,7 @@ public class EnemyAi : MonoBehaviour
     [SerializeField] bool m_WalkPointSet;
     [SerializeField] float m_WalkPointRange;
     [SerializeField] List<Transform> m_WalkPoints;
-    int m_CurrentWalkPointIndex;
+    [SerializeField] int m_CurrentWalkPointIndex = 0;
 
     //Attacking
     float m_AttackInterval;
@@ -34,6 +34,10 @@ public class EnemyAi : MonoBehaviour
     {
         m_Player = GameObject.Find("Player").transform;
         m_Agent = gameObject.GetComponent<NavMeshAgent>();
+
+        m_CurrentWalkPointIndex = 0;
+        m_Agent.SetDestination(m_WalkPoints[m_CurrentWalkPointIndex].position);
+        m_Agent.destination = m_WalkPoints[m_CurrentWalkPointIndex].position;
     }
 
     // Update is called once per frame
@@ -46,7 +50,7 @@ public class EnemyAi : MonoBehaviour
         if (m_PlayerInSight && !m_PlayerInAttack) ChasePlayer();
         if (m_PlayerInAttack && m_PlayerInSight) AttackPlayer();
 
-        m_CurrentWalkPointIndex = 0;
+        Debug.Log( m_CurrentWalkPointIndex);
     }
 
     void Patroling()
@@ -55,17 +59,18 @@ public class EnemyAi : MonoBehaviour
 
         //if (m_WalkPointSet)
         m_Agent.SetDestination(m_WalkPoints[m_CurrentWalkPointIndex].position);
+        m_Agent.destination = m_WalkPoints[m_CurrentWalkPointIndex].position;
 
-        Vector3 distance = transform.position - m_WalkPoint;
-
-        if (distance.magnitude > 0)
+        if (m_Agent.remainingDistance <= 1f)
         {
-            m_WalkPointSet = false;
-            m_CurrentWalkPointIndex = (m_CurrentWalkPointIndex + 1) % m_WalkPoints.Count;
+            m_CurrentWalkPointIndex = m_CurrentWalkPointIndex == m_WalkPoints.Count - 1 ? 0 : m_CurrentWalkPointIndex + 1;
+            m_Agent.SetDestination(m_WalkPoints[m_CurrentWalkPointIndex].position);
+            m_Agent.destination = m_WalkPoints[m_CurrentWalkPointIndex].position;
         }
-            
+
     }
 
+    //For random patrolling. Saving it for later just in case.
     void SearchWalkPoint()
     {
         float randomZ = Random.Range(-m_WalkPointRange, m_WalkPointRange);
@@ -84,7 +89,8 @@ public class EnemyAi : MonoBehaviour
 
     void AttackPlayer()
     {
-        m_Agent.SetDestination(transform.position);
+        //This commented code below is to freeze enemy once player is inside attack range, use it on ranged enemies
+        //m_Agent.SetDestination(transform.position);
 
         transform.LookAt(m_Player);
 
@@ -93,14 +99,14 @@ public class EnemyAi : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        //Create scriptable object for enemy next time
+        //Create scriptable object for enemy next time.
         //Copy scriptable object data to this scrpt
-        //To prevent it being shared
+        //to prevent it being shared.
         //Current health system is temporary.
         health -= damage;
 
-        if(health < 0)
-            Invoke(nameof(Die), 0.5f);
+        if (health < 0)
+            Die();
     }
 
     void Die() => Destroy(gameObject);
