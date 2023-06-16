@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Item : ScriptableObject
 {
+    [Header("Info")]
     public string name;
-    public string type;
+    public Type type;
     public Sprite icon;
+
+    public enum Type { Weapon, Ammo, Consumables }
 }
