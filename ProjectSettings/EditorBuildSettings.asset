@@ -17,4 +17,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UI - Master/NC.unity
     guid: 9893325a91b567145aec40281d9593b3
-  m_configObjects: {}
+  - enabled: 1
+    path: Assets/Scenes/Ground.unity
+    guid: 933bf7755fef84f4a8f025d60e616580
+  - enabled: 1
+    path: Assets/Scenes/Forest.unity
+    guid: 02511ab31af1c6e4a9cfb2eb9a62f668
+  m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 9852fa5cc6f92554b99564c57cacfaa7,
+      type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
+      guid: 93499312759c0584f8d05314767a795b, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 61c213f2ae0034e489b9876e2fc5f540,
+      type: 2}

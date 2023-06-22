@@ -7,7 +7,7 @@ public class Bird : MonoBehaviour
     public float moveSpeed = 5f;
     public float turnSpeed = 2f;
     public float changeDirectionTime = 3f;
-    public float flightAltitude = 5f; // the altitude at which the bird should fly
+    public float flightAltitude = 5f; 
 
     private float timer = 0f;
     private Vector3 targetDirection;
