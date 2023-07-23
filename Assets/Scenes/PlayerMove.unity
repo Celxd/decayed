@@ -1416,8 +1416,8 @@ MonoBehaviour:
     m_Bits: 256
   m_Agent: {fileID: 0}
   m_Player: {fileID: 0}
-  m_SightRange: 20
-  m_AttackRange: 2
+  m_SightRange: 40
+  m_AttackRange: 30
   health: 100
   m_PlayerInSight: 0
   m_PlayerInAttack: 0
@@ -1442,7 +1442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68f96fb73ddb16a4aa6ff042b02ac9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radius: 25
+  _radius: 40
   _angle: 120
   _playerMask:
     serializedVersion: 2
@@ -1976,7 +1976,7 @@ PrefabInstance:
     - target: {fileID: 6387339052395298912, guid: ab8fbab0018c55545ab029d20716ac0b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 60.7
+      value: -22.2
       objectReference: {fileID: 0}
     - target: {fileID: 6387339052395298912, guid: ab8fbab0018c55545ab029d20716ac0b,
         type: 3}
@@ -2055,7 +2055,7 @@ PrefabInstance:
     - target: {fileID: 636709834169430346, guid: 709bf9574817a794dbbbecc32c3af55e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 60.7
+      value: -22.2
       objectReference: {fileID: 0}
     - target: {fileID: 636709834169430346, guid: 709bf9574817a794dbbbecc32c3af55e,
         type: 3}
