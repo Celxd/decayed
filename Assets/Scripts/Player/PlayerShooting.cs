@@ -57,7 +57,8 @@ public class PlayerShooting : MonoBehaviour
 
         currentWeaponIndex = equipmentManager.currentWeaponIndex;
         
-        ammo.text = currentWeapon.currentAmmo.ToString();
+        if (currentWeapon != null)
+            ammo.text = currentWeapon.currentAmmo.ToString();
     }
 
     private void Update()
@@ -110,14 +111,13 @@ public class PlayerShooting : MonoBehaviour
 
             if (Physics.Raycast(Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0)), out RaycastHit hit))
             {
-                Debug.Log(hit.transform.name);
                 Instantiate(holePrefab, hit.point + (hit.normal * 0.001f), Quaternion.FromToRotation(Vector3.up, hit.normal), hit.transform);
                 if (hit.transform.gameObject.GetComponent<EnemyAi>() != null)
                 {
                     hit.transform.gameObject.GetComponent<EnemyAi>().TakeDamage(28);
                 }
             }
-            Debug.DrawRay(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0)), Camera.main.transform.forward * currentWeapon.range, Color.red, currentWeapon.range);
+            Debug.DrawRay(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0)), Camera.main.transform.forward * currentWeapon.range, Color.red, 10);
 
             RecoilMath();
             currentWeapon.currentAmmo--;

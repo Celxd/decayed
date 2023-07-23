@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     public float m_AttackRange;
     [SerializeField] float health;
     public bool m_PlayerInSight, m_PlayerInAttack;
+    public EnemyFOV m_FOV;
 
     //Patroling
     [Header("Patrolling Settings")]
@@ -34,6 +35,7 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
+        m_FOV = GetComponent<EnemyFOV>();
         m_Agent = GetComponent<NavMeshAgent>();
         m_Player = GameObject.Find("Player").transform;
 
@@ -41,12 +43,17 @@ public class Enemy : MonoBehaviour
         m_PlayerInAttack = Physics.CheckSphere(transform.position, m_AttackRange, m_PlayerLayer);
 
         m_CurrentState = m_PatrolingState;
+    }
 
+    private void Start()
+    {
+        m_FOV.StartFOV(m_PlayerLayer);
         m_CurrentState.StartState(this);
     }
 
     private void Update()
     {
+        Debug.Log(m_FOV.playerOnSight);
         m_CurrentState.UpdateState(this);
     }
 
