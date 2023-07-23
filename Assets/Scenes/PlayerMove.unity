@@ -644,11 +644,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6655424172850311513, guid: 97f1e74870f097442b30ae63ca5bbf29,
-        type: 3}
-      propertyPath: m_prompt
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6916796328910933065, guid: 97f1e74870f097442b30ae63ca5bbf29,
         type: 3}
       propertyPath: m_Name
@@ -808,11 +803,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pickup Prompt
-      objectReference: {fileID: 0}
-    - target: {fileID: 1575285075945924912, guid: 477c13d952961dc4889d9f292582d29a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3306281559109985102, guid: 477c13d952961dc4889d9f292582d29a,
         type: 3}
@@ -1868,11 +1858,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: M1911 (Pickup)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7722504771426648819, guid: 961dc22c42a121947bbc3ec49241e150,
-        type: 3}
-      propertyPath: m_prompt
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8395339128211573390, guid: 961dc22c42a121947bbc3ec49241e150,
         type: 3}
