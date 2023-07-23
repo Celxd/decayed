@@ -20,7 +20,7 @@ public class EnemyPatrollingState : EnemyBaseState
         }
 
         enemy.m_PlayerInSight = Physics.CheckSphere(enemy.transform.position, enemy.m_SightRange, enemy.m_PlayerLayer);
-        if (enemy.m_PlayerInSight)
+        if (enemy.m_FOV.playerOnSight)
             enemy.SwitchState(enemy.m_ChasingState);
     }
 

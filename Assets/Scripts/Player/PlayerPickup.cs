@@ -7,28 +7,28 @@ using UnityEngine.InputSystem;
 public class PlayerPickup : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private float pickupRange;
-    [SerializeField] private LayerMask pickupLayer;
-    [SerializeField] Canvas pickupPrompt;
+    [SerializeField] private float _pickupRange;
+    [SerializeField] private LayerMask _pickupLayer;
+    [SerializeField] Canvas _pickupPrompt;
     
 
-    private PlayerInput playerInput;
+    private PlayerInput _playerInput;
     private InputAction action_pickup;
-    private Camera cam;
-    private Inventory inventory;
+    private Camera _cam;
+    private Inventory _inventory;
     
     // Start is called before the first frame update
     void Start()
     {
-        playerInput = GetComponent<PlayerInput>();
-        cam = Camera.main;
-        inventory = GetComponent<Inventory>();
+        _playerInput = GetComponent<PlayerInput>();
+        _cam = Camera.main;
+        _inventory = GetComponent<Inventory>();
 
-        action_pickup = playerInput.actions["Pickup"];
+        action_pickup = _playerInput.actions["Pickup"];
         
         action_pickup.performed += ctx => Pickup();
 
-        pickupPrompt.enabled = false;
+        _pickupPrompt.enabled = false;
     }
 
     private void LateUpdate()
@@ -38,36 +38,36 @@ public class PlayerPickup : MonoBehaviour
 
     void CheckSeen()
     {
-        if (Physics.Raycast(cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0)), out RaycastHit hit, pickupRange, pickupLayer))
+        if (Physics.Raycast(_cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0)), out RaycastHit hit, _pickupRange, _pickupLayer))
         {
             InitPrompt(hit);
             Debug.Log(hit.transform.gameObject.name);
         } else
         {
-            pickupPrompt.enabled = false;
+            _pickupPrompt.enabled = false;
         }
     }
 
     void InitPrompt(RaycastHit hit)
     {
         ItemObject m_item = hit.transform.GetComponent<ItemObject>();
-        TextMeshProUGUI promptText = pickupPrompt.transform.Find("Panel/Name").GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI promptText = _pickupPrompt.transform.Find("Panel/Name").GetComponent<TextMeshProUGUI>();
         var pos = Camera.main.transform.position;
 
         promptText.text = m_item.item.name;
-        pickupPrompt.transform.position = hit.transform.position + Vector3.up * 0.5f;
-        pickupPrompt.transform.rotation = Quaternion.LookRotation(pickupPrompt.transform.position - pos);
+        _pickupPrompt.transform.position = hit.transform.position + Vector3.up * 0.5f;
+        _pickupPrompt.transform.rotation = Quaternion.LookRotation(_pickupPrompt.transform.position - pos);
 
-        pickupPrompt.enabled = true;
+        _pickupPrompt.enabled = true;
     }
 
     private void Pickup()
     {
-        Debug.DrawRay(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0)), Camera.main.transform.forward * pickupRange, Color.red, pickupRange);
-        if (Physics.Raycast(cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0)), out RaycastHit hit, pickupRange, pickupLayer)) {
+        Debug.DrawRay(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0)), Camera.main.transform.forward * _pickupRange, Color.red, _pickupRange);
+        if (Physics.Raycast(_cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0)), out RaycastHit hit, _pickupRange, _pickupLayer)) {
             Debug.Log("EEEEE");
             Weapon newItem = hit.transform.GetComponent<ItemObject>().item as Weapon;
-            inventory.AddItem(newItem);
+            _inventory.AddItem(newItem);
             Destroy(hit.transform.gameObject);
         }
     }

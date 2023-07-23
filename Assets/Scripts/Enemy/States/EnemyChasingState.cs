@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class EnemyChasingState : EnemyBaseState
 {
+    float timer;
+
     public override void StartState(Enemy enemy)
     {
         enemy.m_Agent.SetDestination(enemy.m_Player.position);
+        timer = 10;
     }
 
     public override void UpdateState(Enemy enemy)
@@ -18,8 +21,20 @@ public class EnemyChasingState : EnemyBaseState
         if (enemy.m_PlayerInAttack)
             enemy.SwitchState(enemy.m_AttackState);
 
-        if(!enemy.m_PlayerInSight)
-            enemy.SwitchState(enemy.m_PatrolingState);
+        if (!enemy.m_FOV.playerOnSight)
+        {
+            if (timer > 0) {
+                timer -= Time.deltaTime;
+                Debug.Log(timer);
+            } 
+            else if (timer <= 0)
+            {
+                timer = 0;
+                enemy.SwitchState(enemy.m_PatrolingState);
+            }
+            
+        }
+            
     }
 
     public override void OnCollisionEnter(Enemy enemy) { }
