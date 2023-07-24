@@ -112,9 +112,10 @@ public class PlayerShooting : MonoBehaviour
             if (Physics.Raycast(Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0)), out RaycastHit hit))
             {
                 Instantiate(holePrefab, hit.point + (hit.normal * 0.001f), Quaternion.FromToRotation(Vector3.up, hit.normal), hit.transform);
-                if (hit.transform.gameObject.GetComponent<EnemyAi>() != null)
+                if (hit.transform.gameObject.GetComponent<Enemy>() != null)
                 {
-                    hit.transform.gameObject.GetComponent<EnemyAi>().TakeDamage(28);
+                    hit.transform.gameObject.GetComponent<Enemy>().TakeDamage(28, hit.point);
+                    Debug.Log(hit.transform.gameObject.GetComponent<Enemy>().health);
                 }
             }
             Debug.DrawRay(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0)), Camera.main.transform.forward * currentWeapon.range, Color.red, 10);
