@@ -6,17 +6,19 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] public LayerMask m_GroundLayer;
-    [SerializeField] public LayerMask m_PlayerLayer;
     public NavMeshAgent m_Agent;
+    public EnemyRagdoll m_Ragdoll;
+    public LayerMask m_GroundLayer;
+    public LayerMask m_PlayerLayer;
     public Transform m_Player;
+    public EnemyAnimManager m_AnimManager;
 
     //Stuff
     [Header("Settings")]
     public float m_SightRange;
     public float m_AttackRange;
-    [SerializeField] float health;
-    public bool m_PlayerInSight, m_PlayerInAttack;
+    [SerializeField] public float health;
+    public bool m_PlayerInAttack;
     public EnemyFOV m_FOV;
 
     //Patroling
@@ -32,14 +34,19 @@ public class Enemy : MonoBehaviour
     public EnemyPatrollingState m_PatrolingState = new EnemyPatrollingState();
     public EnemyChasingState m_ChasingState = new EnemyChasingState();
     public EnemyAttackingState m_AttackState = new EnemyAttackingState();
+    public EnemyDeadState m_DeadState = new EnemyDeadState();
+
+    //misc
+    float timer = 2;
 
     private void Awake()
     {
         m_FOV = GetComponent<EnemyFOV>();
         m_Agent = GetComponent<NavMeshAgent>();
+        m_Ragdoll = GetComponent<EnemyRagdoll>();
+        m_AnimManager = GetComponent<EnemyAnimManager>();
         m_Player = GameObject.Find("Player").transform;
 
-        m_PlayerInSight = Physics.CheckSphere(transform.position, m_SightRange, m_PlayerLayer);
         m_PlayerInAttack = Physics.CheckSphere(transform.position, m_AttackRange, m_PlayerLayer);
 
         m_CurrentState = m_PatrolingState;
@@ -48,13 +55,23 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         m_FOV.StartFOV(m_PlayerLayer);
+        Debug.Log("Start 1");
         m_CurrentState.StartState(this);
+        Debug.Log("Start 2");
+
+        //if (timer > 0)
+        //    timer -= Time.deltaTime;
+        //else
+        //    transform.LookAt(m_Agent.destination);
     }
 
     private void Update()
     {
         Debug.Log(m_FOV.playerOnSight);
+        
         m_CurrentState.UpdateState(this);
+
+        //transform.rotation = Quaternion.Euler(0, transform.rotation.y, transform.rotation.z);
     }
 
     public void TakeDamage(int damage)
@@ -67,5 +84,26 @@ public class Enemy : MonoBehaviour
     {
         m_CurrentState = state;
         m_CurrentState.StartState(this);
+    }
+
+    public void LookDir(Transform dir)
+    {
+        Vector3 target = new Vector3(dir.position.x, transform.position.y, dir.position.z);
+
+        transform.LookAt(target);
+    }
+
+    public void TakeDamage(float dmg, Vector3 hit)
+    {
+        health -= dmg;
+
+        if(health <= 0)
+        {
+            Vector3 forceDir = transform.position - m_Player.position;
+            forceDir.y = 1;
+
+            m_Ragdoll.TriggerRagdoll((1000 * forceDir).normalized, hit);
+            SwitchState(m_DeadState);
+        }
     }
 }

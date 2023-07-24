@@ -10,6 +10,8 @@ public class EnemyChasingState : EnemyBaseState
     {
         enemy.m_Agent.SetDestination(enemy.m_Player.position);
         timer = 10;
+
+        enemy.m_AnimManager.Sprint();
     }
 
     public override void UpdateState(Enemy enemy)
@@ -41,6 +43,4 @@ public class EnemyChasingState : EnemyBaseState
         }
             
     }
-
-    public override void OnCollisionEnter(Enemy enemy) { }
 }

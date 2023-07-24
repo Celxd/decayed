@@ -33,7 +33,8 @@ public class Enemy_Hit : MonoBehaviour
 
             if (Physics.Raycast(ray, out RaycastHit hitInfo))
             {
-                Bandit_1 bandit_1 = hitInfo.collider.GetComponentInParent<Bandit_1>();
+                //Take everything inside dis
+                EnemyRagdoll bandit_1 = hitInfo.collider.GetComponentInParent<EnemyRagdoll>();
 
                 if (bandit_1 != null)
                 {

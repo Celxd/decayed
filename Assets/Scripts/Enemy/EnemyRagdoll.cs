@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Bandit_1 : MonoBehaviour
+public class EnemyRagdoll : MonoBehaviour
 {
-    private enum BanditState
-    {
-        Idle,
-        Ragdoll
-    }
+    //private enum BanditState
+    //{
+    //    Idle,
+    //    Ragdoll
+    //}
 
-    [SerializeField]
-    private Camera _camera;
+    //[SerializeField]
+    //private Camera _camera;
 
     
-    private Rigidbody[] _ragdollRigidbodies;
-    private BanditState _currentState = BanditState.Idle;
-    private Animator _animator;
-    private CharacterController _characterController;
+    Rigidbody[] _ragdollRigidbodies;
+    //private BanditState _currentState = BanditState.Idle;
+    Animator _animator;
+    CharacterController _characterController;
 
     void Awake()
     {
@@ -29,18 +29,18 @@ public class Bandit_1 : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        switch (_currentState)
-        {
-            case BanditState.Idle:
-                IdleBehaviour();
-                break;
-            case BanditState.Ragdoll:
-                RagdollBehaviour();
-                break;
-        }
-    }
+    //void Update()
+    //{
+    //    switch (_currentState)
+    //    {
+    //        case BanditState.Idle:
+    //            IdleBehaviour();
+    //            break;
+    //        case BanditState.Ragdoll:
+    //            RagdollBehaviour();
+    //            break;
+    //    }
+    //}
 
     private void DisableRagdoll()
     {
@@ -61,7 +61,7 @@ public class Bandit_1 : MonoBehaviour
 
         hitRigidbody.AddForceAtPosition(force, hitPoint, ForceMode.Impulse);
 
-        _currentState = BanditState.Ragdoll;
+        //_currentState = BanditState.Ragdoll;
     }
 
     private void EnableRagdoll()
@@ -75,19 +75,20 @@ public class Bandit_1 : MonoBehaviour
         _characterController.enabled = false;
     }
 
-    private void IdleBehaviour()
-    {
-        Vector3 direction = _camera.transform.position - transform.position;
-        direction.y = 0;
-        direction.Normalize();
+    //private void IdleBehaviour()
+    //{
+    //    Vector3 direction = _camera.transform.position - transform.position;
+    //    direction.y = 0;
+    //    direction.Normalize();
 
-        Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 20 * Time.deltaTime);
+    //    Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
+    //    transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 20 * Time.deltaTime);
 
-    }
+    //}
 
-    private void RagdollBehaviour()
-    {
+    //Might use this to disable ragdoll after some time
+    //private void RagdollBehaviour()
+    //{
 
-    }
+    //}
 }

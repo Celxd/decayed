@@ -7,14 +7,19 @@ public class EnemyAttackingState : EnemyBaseState
     float timer;
     public override void StartState(Enemy enemy)
     {
-        enemy.transform.LookAt(enemy.m_Player);
+        //enemy.transform.LookAt(enemy.m_Player, enemy.m_Player.transform.up);
+        enemy.LookDir(enemy.m_Player);
         enemy.m_Agent.SetDestination(enemy.transform.position);
         timer = 5;
+
+        enemy.m_AnimManager.Idle();
     }
 
     public override void UpdateState(Enemy enemy)
     {
-        enemy.transform.LookAt(enemy.m_Player);
+        //enemy.transform.LookAt(enemy.m_Player, enemy.m_Player.transform.up);
+        enemy.LookDir(enemy.m_Player);
+
         if (Physics.Raycast(enemy.transform.position, enemy.transform.forward, out RaycastHit hit , enemy.m_AttackRange))
         {
             if ((enemy.m_PlayerLayer.value & (1 << hit.transform.gameObject.layer)) != 0)
@@ -27,13 +32,9 @@ public class EnemyAttackingState : EnemyBaseState
         if (!enemy.m_FOV.playerOnSight)
         {
             if (timer > 0)
-            {
                 timer -= Time.deltaTime;
-            }
             else if (timer <= 0)
-            {
                 enemy.SwitchState(enemy.m_ChasingState);
-            }
 
         }
         else
@@ -41,10 +42,5 @@ public class EnemyAttackingState : EnemyBaseState
 
         //if (!enemy.m_FOV.playerOnSight)
         //    enemy.SwitchState(enemy.m_ChasingState);
-    }
-
-    public override void OnCollisionEnter(Enemy enemy)
-    {
-
     }
 }
