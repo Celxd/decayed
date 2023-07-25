@@ -31,6 +31,6 @@ public class GameFinished : MonoBehaviour
 
     private void SwitchToMenuScene()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Apartment");
     }
 }

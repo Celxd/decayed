@@ -54,7 +54,12 @@ public class PlayerMovement : MonoBehaviour
 
         height = currentHeight = controller.height;
     }
-    
+
+    private void Start()
+    {
+        Time.timeScale = 1;
+    }
+
     void Update()
     {
         //reset velocity

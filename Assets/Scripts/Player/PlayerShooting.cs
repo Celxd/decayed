@@ -58,7 +58,12 @@ public class PlayerShooting : MonoBehaviour
         currentWeaponIndex = equipmentManager.currentWeaponIndex;
         
         if (currentWeapon != null)
+        {
             ammo.text = currentWeapon.currentAmmo.ToString();
+            
+        }
+        ammo.text = "";
+
     }
 
     private void Update()
@@ -122,7 +127,8 @@ public class PlayerShooting : MonoBehaviour
 
             RecoilMath();
             currentWeapon.currentAmmo--;
-            ammo.text = currentWeapon.currentAmmo.ToString() + " / " + totalAmmo.ToString();
+            if(ammo != null)
+                ammo.text = currentWeapon.currentAmmo.ToString() + " / " + totalAmmo.ToString();
         }
 
     }
@@ -134,13 +140,15 @@ public class PlayerShooting : MonoBehaviour
         if(CanReload())
         {
             currentWeapon.reloading = true;
-            ammo.text = "Reloading";
+            if (ammo != null)
+                ammo.text = "Reloading";
             yield return new WaitForSeconds(currentWeapon.reloadTime);
             //TODO: Make a function in WaitForSeconds that checks if gun is swapped (If true: cancel reload)
             currentWeapon.currentAmmo = currentWeapon.magSize;
             totalAmmo -= currentWeapon.magSize;
             currentWeapon.magCount -= 1;
-            ammo.text = currentWeapon.currentAmmo.ToString() + "/" + totalAmmo.ToString();
+            if(ammo != null)
+                ammo.text = currentWeapon.currentAmmo.ToString() + "/" + totalAmmo.ToString();
             currentWeapon.reloading = false;
         }
     }
