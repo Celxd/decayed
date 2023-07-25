@@ -123,7 +123,7 @@ public class PlayerShooting : MonoBehaviour
                     Debug.Log(hit.transform.gameObject.GetComponent<Enemy>().health);
                 }
             }
-            Debug.DrawRay(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0)), Camera.main.transform.forward * currentWeapon.range, Color.red, 10);
+            //Debug.DrawRay(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0)), Camera.main.transform.forward * currentWeapon.range, Color.red, 10);
 
             RecoilMath();
             currentWeapon.currentAmmo--;

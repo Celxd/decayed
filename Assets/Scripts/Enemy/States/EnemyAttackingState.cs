@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyAttackingState : EnemyBaseState
 {
     float timer;
+    Vector3 head;
     public override void StartState(Enemy enemy)
     {
         //enemy.transform.LookAt(enemy.m_Player, enemy.m_Player.transform.up);
@@ -13,17 +14,24 @@ public class EnemyAttackingState : EnemyBaseState
         timer = 5;
 
         enemy.m_AnimManager.Idle();
+
+        head = enemy.transform.Find("Head").transform.position;
     }
 
     public override void UpdateState(Enemy enemy)
     {
         //enemy.transform.LookAt(enemy.m_Player, enemy.m_Player.transform.up);
         enemy.LookDir(enemy.m_Player);
+        Vector3 target = enemy.transform.forward;
+        
+        
+        target += Random.insideUnitSphere * enemy.m_Inaccuracy;
 
-        if (Physics.Raycast(enemy.transform.position, enemy.transform.forward, out RaycastHit hit , enemy.m_AttackRange))
+        Debug.DrawRay(head, target * enemy.m_AttackRange);
+        if (Physics.Raycast(enemy.transform.position, target, out RaycastHit hit , enemy.m_AttackRange))
         {
             if ((enemy.m_PlayerLayer.value & (1 << hit.transform.gameObject.layer)) != 0)
-                //enemy.m_Player.gameObject.GetComponent<Health>().TakeDamage(50 * Time.deltaTime);
+                enemy.m_Player.gameObject.GetComponent<Health>().TakeDamage(10);
             Debug.Log(enemy.m_Player.gameObject.GetComponent<Health>().health);
         }
 

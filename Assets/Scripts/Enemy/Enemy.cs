@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] public float health;
     public bool m_PlayerInAttack;
     public EnemyFOV m_FOV;
+    public float m_Inaccuracy;
 
     //Patroling
     [Header("Patrolling Settings")]
@@ -55,9 +56,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         m_FOV.StartFOV(m_PlayerLayer);
-        Debug.Log("Start 1");
         m_CurrentState.StartState(this);
-        Debug.Log("Start 2");
 
         //if (timer > 0)
         //    timer -= Time.deltaTime;
