@@ -31,7 +31,7 @@ public class EnemyAttackingState : EnemyBaseState
         if (Physics.Raycast(enemy.transform.position, target, out RaycastHit hit , enemy.m_AttackRange))
         {
             if ((enemy.m_PlayerLayer.value & (1 << hit.transform.gameObject.layer)) != 0)
-                enemy.m_Player.gameObject.GetComponent<Health>().TakeDamage(10);
+                enemy.m_Player.gameObject.GetComponent<Health>().TakeDamage(2);
             Debug.Log(enemy.m_Player.gameObject.GetComponent<Health>().health);
         }
 

@@ -2720,8 +2720,8 @@ MonoBehaviour:
     m_Bits: 256
   m_Player: {fileID: 0}
   m_AnimManager: {fileID: 0}
-  m_SightRange: 40
-  m_AttackRange: 30
+  m_SightRange: 30
+  m_AttackRange: 20
   health: 100
   m_PlayerInAttack: 0
   m_FOV: {fileID: 0}

@@ -37,9 +37,6 @@ public class Enemy : MonoBehaviour
     public EnemyAttackingState m_AttackState = new EnemyAttackingState();
     public EnemyDeadState m_DeadState = new EnemyDeadState();
 
-    //misc
-    float timer = 2;
-
     private void Awake()
     {
         m_FOV = GetComponent<EnemyFOV>();
