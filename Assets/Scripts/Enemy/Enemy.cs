@@ -86,6 +86,8 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float dmg, Vector3 hit)
     {
         health -= dmg;
+        if (m_CurrentState == m_PatrolingState)
+            SwitchState(m_ChasingState);
 
         if(health <= 0)
         {
