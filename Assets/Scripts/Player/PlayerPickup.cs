@@ -10,7 +10,6 @@ public class PlayerPickup : MonoBehaviour
     [SerializeField] private float _pickupRange;
     [SerializeField] private LayerMask _pickupLayer;
     [SerializeField] Canvas _pickupPrompt;
-    
 
     private PlayerInput _playerInput;
     private InputAction action_pickup;
@@ -40,12 +39,17 @@ public class PlayerPickup : MonoBehaviour
     {
         if (Physics.Raycast(_cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0)), out RaycastHit hit, _pickupRange, _pickupLayer))
         {
+            //Why so long?
+            //Cuz the weapon is in Player/Main Camera/Holder/Weapon holder
+            //Why? u said?
+            //Idk all the functions that needs this so ask the past version of me
+            if (hit.transform.parent?.transform.parent?.transform.parent?.transform.parent != null)
+                return;
+
             InitPrompt(hit);
-            Debug.Log(hit.transform.gameObject.name);
-        } else
-        {
+        } 
+        else
             _pickupPrompt.enabled = false;
-        }
     }
 
     void InitPrompt(RaycastHit hit)
@@ -63,9 +67,7 @@ public class PlayerPickup : MonoBehaviour
 
     private void Pickup()
     {
-        Debug.DrawRay(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0)), Camera.main.transform.forward * _pickupRange, Color.red, _pickupRange);
         if (Physics.Raycast(_cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0)), out RaycastHit hit, _pickupRange, _pickupLayer)) {
-            Debug.Log("EEEEE");
             Weapon newItem = hit.transform.GetComponent<ItemObject>().item as Weapon;
             _inventory.AddItem(newItem);
             Destroy(hit.transform.gameObject);

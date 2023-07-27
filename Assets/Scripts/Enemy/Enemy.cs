@@ -54,20 +54,14 @@ public class Enemy : MonoBehaviour
     {
         m_FOV.StartFOV(m_PlayerLayer);
         m_CurrentState.StartState(this);
-
-        //if (timer > 0)
-        //    timer -= Time.deltaTime;
-        //else
-        //    transform.LookAt(m_Agent.destination);
     }
 
     private void Update()
     {
-        Debug.Log(m_FOV.playerOnSight);
-        
-        m_CurrentState.UpdateState(this);
+        if (m_Player == null)
+            return;
 
-        //transform.rotation = Quaternion.Euler(0, transform.rotation.y, transform.rotation.z);
+        m_CurrentState.UpdateState(this);
     }
 
     public void TakeDamage(int damage)

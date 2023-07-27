@@ -62,6 +62,9 @@ public class SwayAndBob : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (weaponHolder == null)
+            return;
+
         GetInput();
         Sway();
         SwayRotation();

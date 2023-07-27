@@ -8,7 +8,6 @@ public class EnemyAttackingState : EnemyBaseState
     Vector3 head;
     public override void StartState(Enemy enemy)
     {
-        //enemy.transform.LookAt(enemy.m_Player, enemy.m_Player.transform.up);
         enemy.LookDir(enemy.m_Player);
         enemy.m_Agent.SetDestination(enemy.transform.position);
         timer = 5;
@@ -20,7 +19,6 @@ public class EnemyAttackingState : EnemyBaseState
 
     public override void UpdateState(Enemy enemy)
     {
-        //enemy.transform.LookAt(enemy.m_Player, enemy.m_Player.transform.up);
         enemy.LookDir(enemy.m_Player);
         Vector3 target = enemy.transform.forward;
         
@@ -46,8 +44,5 @@ public class EnemyAttackingState : EnemyBaseState
         }
         else
             timer = 5;
-
-        //if (!enemy.m_FOV.playerOnSight)
-        //    enemy.SwitchState(enemy.m_ChasingState);
     }
 }

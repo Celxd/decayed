@@ -61,6 +61,9 @@ public class EquipmentManager : MonoBehaviour
     
     private void HandleWeaponSelection(Weapon weapon)
     {
+        if (weapon == null)
+            return;
+
         if (currentWeaponIndex != (int)weapon.weaponCategory)
         {
             UnequipWeapon();
