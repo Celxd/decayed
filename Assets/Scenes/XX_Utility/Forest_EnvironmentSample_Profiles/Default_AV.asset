@@ -169,6 +169,7 @@ MonoBehaviour:
   - {fileID: 114395629876653470}
   - {fileID: 114366131238593196}
   - {fileID: -4146535956818189328}
+  - {fileID: 6034649718122191653}
 --- !u!114 &114366131238593196
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -230,11 +231,6 @@ MonoBehaviour:
   m_Name: AutoFocusProperties
   m_EditorClassIdentifier: 
   active: 1
-  target:
-    m_OverrideState: 1
-    m_Value:
-      exposedName: e3cb01f20eb223a49abf7d8a95d80d41
-      defaultValue: {fileID: 0}
   influence:
     m_OverrideState: 1
     m_Value: 1
@@ -472,11 +468,6 @@ MonoBehaviour:
   m_Name: WindControlProperties
   m_EditorClassIdentifier: 
   active: 1
-  target:
-    m_OverrideState: 1
-    m_Value:
-      exposedName: f7258958f04886544bf2db78846a82cf
-      defaultValue: {fileID: 0}
   windGlobalStrengthScale:
     m_OverrideState: 1
     m_Value: 0.8
@@ -604,11 +595,6 @@ MonoBehaviour:
   m_Name: LightProperties
   m_EditorClassIdentifier: 
   active: 1
-  target:
-    m_OverrideState: 1
-    m_Value:
-      exposedName: 40f280d80c8819b4b832539a0e3b8de0
-      defaultValue: {fileID: 0}
   rotation:
     m_OverrideState: 1
     m_Value: {x: 35.3, y: -450.96, z: -7}
@@ -627,6 +613,23 @@ MonoBehaviour:
   cookie:
     m_OverrideState: 0
     m_Value: {fileID: 0}
+    dimension: 1
   cookieSize:
     m_OverrideState: 0
     m_Value: 0
+--- !u!114 &6034649718122191653
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a7ff42a8c5be6646ad3975f3a54c1eb, type: 3}
+  m_Name: DiffusionProfileList
+  m_EditorClassIdentifier: 
+  active: 1
+  diffusionProfiles:
+    m_OverrideState: 1
+    m_Value: []

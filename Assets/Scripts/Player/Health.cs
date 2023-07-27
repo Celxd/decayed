@@ -1,12 +1,18 @@
 using Cinemachine;
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public float health = 100;
-    public GameObject cam;
+    [Header("References")]
+    [SerializeField] float health = 100;
+    [SerializeField] GameObject cam;
+    [SerializeField] GameObject healthbar;
+    [SerializeField] GameObject diepanel;
+    [SerializeField] GameObject holder;
+    
 
     public void TakeDamage(float damage)
     {
@@ -21,8 +27,20 @@ public class Health : MonoBehaviour
         cam.GetComponent<BoxCollider>().enabled = true;
         cam.GetComponent<Rigidbody>().isKinematic = false;
 
-
+        Destroy(holder);
         cam.transform.parent = null;
+
+        StartCoroutine(DeathUI());
+        
+    }
+
+    IEnumerator DeathUI()
+    {
+        yield return new WaitForSeconds(3);
+
+        diepanel.SetActive(true);
+        diepanel.GetComponent<Animator>().SetBool("dead", true);
+
         Destroy(gameObject);
     }
 

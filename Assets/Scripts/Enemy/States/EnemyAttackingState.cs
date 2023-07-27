@@ -32,7 +32,6 @@ public class EnemyAttackingState : EnemyBaseState
         {
             if ((enemy.m_PlayerLayer.value & (1 << hit.transform.gameObject.layer)) != 0)
                 enemy.m_Player.gameObject.GetComponent<Health>().TakeDamage(2);
-            Debug.Log(enemy.m_Player.gameObject.GetComponent<Health>().health);
         }
 
         enemy.m_PlayerInAttack = Physics.CheckSphere(enemy.transform.position, enemy.m_AttackRange, enemy.m_PlayerLayer);
