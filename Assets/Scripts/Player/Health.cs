@@ -30,6 +30,8 @@ public class Health : MonoBehaviour
         Destroy(holder);
         cam.transform.parent = null;
 
+        Cursor.lockState = CursorLockMode.None;
+
         StartCoroutine(DeathUI());
         
     }

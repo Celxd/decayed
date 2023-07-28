@@ -7,6 +7,6 @@ public class Restart : MonoBehaviour
 {
     public void restart()
     {
-        SceneManager.LoadScene("");
+        SceneManager.LoadScene("Forest");
     }
 }

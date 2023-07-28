@@ -15,11 +15,11 @@ public class EnemyDeadState : EnemyBaseState
     // Update is called once per frame
     public override void UpdateState(Enemy enemy)
     {
-        if (timer <= 0)
-        {
-            enemy.m_Ragdoll.RagdollBehavior();
-        }
-        else
-            timer -= Time.deltaTime;
+        //if (timer <= 0)
+        //{
+        //    enemy.m_Ragdoll.RagdollBehavior();
+        //}
+        //else
+        //    timer -= Time.deltaTime;
     }
 }
