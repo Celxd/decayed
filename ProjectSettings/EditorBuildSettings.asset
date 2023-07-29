@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UI - Master/NC.unity
     guid: 9893325a91b567145aec40281d9593b3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Ground.unity
     guid: 933bf7755fef84f4a8f025d60e616580
   - enabled: 1
