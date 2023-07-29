@@ -1,5 +1,4 @@
 using Cinemachine;
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,18 +6,27 @@ using UnityEngine.UI;
 public class Health : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] float health = 100;
     [SerializeField] GameObject cam;
-    [SerializeField] GameObject healthbar;
     [SerializeField] GameObject diepanel;
     [SerializeField] GameObject holder;
-    
+    [SerializeField] Slider healthSlider;
+    [SerializeField] float maxHealth = 100;
+    private float currentHealth;
+
+    // Initialize health value
+    private void Start()
+    {
+        currentHealth = maxHealth;
+        UpdateHealthUI();
+    }
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
-        if (health <= 0)
+        currentHealth -= damage;
+        if (currentHealth <= 0)
             Die();
+
+        UpdateHealthUI();
     }
 
     void Die()
@@ -33,7 +41,6 @@ public class Health : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
 
         StartCoroutine(DeathUI());
-        
     }
 
     IEnumerator DeathUI()
@@ -46,4 +53,8 @@ public class Health : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private void UpdateHealthUI()
+    {
+        healthSlider.value = currentHealth / maxHealth;
+    }
 }
