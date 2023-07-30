@@ -15,7 +15,6 @@ public class Enemy : MonoBehaviour
 
     //Stuff
     [Header("Settings")]
-    public float m_SightRange;
     public float m_AttackRange;
     [SerializeField] public float health;
     public bool m_PlayerInAttack;
@@ -62,12 +61,6 @@ public class Enemy : MonoBehaviour
             return;
 
         m_CurrentState.UpdateState(this);
-    }
-
-    public void TakeDamage(int damage)
-    {
-        health -= damage;
-        if (health <= 0) Destroy(gameObject);
     }
 
     public void SwitchState(EnemyBaseState state)

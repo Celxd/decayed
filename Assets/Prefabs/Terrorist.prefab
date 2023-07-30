@@ -2611,9 +2611,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 148626385840343344}
   - {fileID: 6195609141828818011}
   - {fileID: 7765370295307389145}
+  - {fileID: 148626385840343344}
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 3.898, z: 0}
@@ -2720,8 +2720,7 @@ MonoBehaviour:
     m_Bits: 256
   m_Player: {fileID: 0}
   m_AnimManager: {fileID: 0}
-  m_SightRange: 30
-  m_AttackRange: 20
+  m_AttackRange: 40
   health: 100
   m_PlayerInAttack: 0
   m_FOV: {fileID: 0}
@@ -2746,7 +2745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68f96fb73ddb16a4aa6ff042b02ac9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radius: 40
+  _radius: 50
   _angle: 120
   _playerMask:
     serializedVersion: 2

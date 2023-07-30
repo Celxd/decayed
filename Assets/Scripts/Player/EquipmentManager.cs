@@ -34,7 +34,7 @@ public class EquipmentManager : MonoBehaviour
         action_drop.performed += ctx => DropWeapon();
     }
     
-    private void EquipWeapon(Weapon weapon)
+    public void EquipWeapon(Weapon weapon)
     {
         currentWeaponIndex = (int)weapon.weaponCategory;
         currentWeaponObject = Instantiate(weapon.gunModel, weaponHolder);
@@ -46,7 +46,7 @@ public class EquipmentManager : MonoBehaviour
         currentWeaponIndex = 2;
     }
 
-    private void DropWeapon()
+    public void DropWeapon()
     {
         Rigidbody rb = currentWeaponObject.GetComponent<Rigidbody>();
 

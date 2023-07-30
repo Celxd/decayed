@@ -21,7 +21,6 @@ public class EnemyFOVDisplay : Editor
         {
             Handles.color = Color.green;
             Handles.DrawLine(fov.transform.position, fov.transform.forward);
-            Debug.Log("Player seen");
         }
     }
 

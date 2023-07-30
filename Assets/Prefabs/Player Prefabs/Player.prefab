@@ -74,7 +74,7 @@ Transform:
   - {fileID: 8053733233086193122}
   - {fileID: 6616798738985510624}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3839553971242850515
 MeshFilter:
@@ -181,8 +181,13 @@ MonoBehaviour:
   jumpHeight: 0.5
   gravityValue: -9.81
   rotationSpeed: 1
-  crouchHeight: 1
+  crouchHeight: 0.9
   crouchTransitionSpeed: 5
+  maxStamina: 100
+  currentStamina: 0
+  staminaRegenRate: 10
+  staminaDepletionRate: 20
+  staminaSlider: {fileID: 0}
 --- !u!114 &6435650643652842631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,11 +294,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4392bcaef56d3bc4f80798bada7ac263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
   cam: {fileID: 6033527708140867285}
-  healthbar: {fileID: 0}
   diepanel: {fileID: 0}
   holder: {fileID: 358504133562863668}
+  healthSlider: {fileID: 0}
+  maxHealth: 100
 --- !u!1 &1362559151266600897
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,7 +630,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6033527708140867285}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

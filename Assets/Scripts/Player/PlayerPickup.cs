@@ -11,10 +11,12 @@ public class PlayerPickup : MonoBehaviour
     [SerializeField] private LayerMask _pickupLayer;
     [SerializeField] Canvas _pickupPrompt;
 
-    private PlayerInput _playerInput;
-    private InputAction action_pickup;
-    private Camera _cam;
-    private Inventory _inventory;
+    PlayerInput _playerInput;
+    InputAction action_pickup;
+    Camera _cam;
+    Inventory _inventory;
+    EquipmentManager _equipmentManager;
+    PlayerShooting _playerShooting;
     
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,8 @@ public class PlayerPickup : MonoBehaviour
         _playerInput = GetComponent<PlayerInput>();
         _cam = Camera.main;
         _inventory = GetComponent<Inventory>();
+        _equipmentManager = GetComponent<EquipmentManager>();
+        _playerShooting = GetComponent<PlayerShooting>();
 
         action_pickup = _playerInput.actions["Pickup"];
         
@@ -69,8 +73,21 @@ public class PlayerPickup : MonoBehaviour
     {
         if (Physics.Raycast(_cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0)), out RaycastHit hit, _pickupRange, _pickupLayer)) {
             Weapon newItem = hit.transform.GetComponent<ItemObject>().item as Weapon;
-            _inventory.AddItem(newItem);
+
+            if (_inventory.GetItem((int)newItem.weaponCategory) == null)
+            {
+                _inventory.AddItem(newItem);
+            } 
+            else
+            {
+                _equipmentManager.DropWeapon();
+                _inventory.AddItem(newItem);
+                _playerShooting.InitWeapon();
+            }
+
             Destroy(hit.transform.gameObject);
+            _equipmentManager.EquipWeapon(newItem);
+
         }
     }
 }
