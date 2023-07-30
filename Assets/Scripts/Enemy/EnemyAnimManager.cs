@@ -7,7 +7,7 @@ public class EnemyAnimManager : MonoBehaviour
     NavMeshAgent m_Agent;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         m_Animator = GetComponent<Animator>();
         m_Animator.enabled = true;
