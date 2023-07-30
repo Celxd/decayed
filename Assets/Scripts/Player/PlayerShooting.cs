@@ -10,6 +10,7 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera vcam;
     [SerializeField] GameObject point;
     [SerializeField] TMP_Text ammo;
+    [SerializeField] TMP_Text gun;
     [SerializeField] GameObject holePrefab;
     
     [Header("Recoil Settings")]

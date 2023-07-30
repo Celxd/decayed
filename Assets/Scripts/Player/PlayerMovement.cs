@@ -88,11 +88,10 @@ public class PlayerMovement : MonoBehaviour
 
         //set running speed
         currentSpeed = playerSpeed;
-        if
-        (isRunning) { 
+        if (isRunning) { 
             currentSpeed *= 2;
-        isDepletingStamina = true;
-    }
+            isDepletingStamina = true;
+        }
 
         //read input and do movement
         Vector2 input = action_move.ReadValue<Vector2>();
