@@ -36,7 +36,6 @@ public class EnemyFOV : MonoBehaviour
 
             if (Vector3.Angle(transform.forward, dirToTarget) < _angle / 2)
             {
-                float distance = Vector3.Distance(transform.position, target.position);
                 if (Physics.Raycast(transform.position, dirToTarget, out RaycastHit hit))
                 {
                     if ((_playerMask.value & (1 << hit.transform.gameObject.layer)) != 0)
