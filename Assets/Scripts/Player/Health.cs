@@ -10,14 +10,34 @@ public class Health : MonoBehaviour
     [SerializeField] GameObject diepanel;
     [SerializeField] GameObject holder;
     [SerializeField] Slider healthSlider;
+    [SerializeField] Slider hungerSlider;
     [SerializeField] float maxHealth = 100;
+    [SerializeField] float maxHunger = 100;
     private float currentHealth;
+    private float currentHunger;
 
-    // Initialize health value
+    public float hungerRate = 1f;
+
+
     private void Start()
     {
         currentHealth = maxHealth;
+        currentHunger = maxHunger;
         UpdateHealthUI();
+        UpdateHungerUI();
+
+    }
+
+    private void DecreaseHunger()
+    {
+        currentHunger -= hungerRate;
+        UpdateHungerUI();
+
+        if (currentHunger <= 0f)
+        {
+            TakeDamage(5f);
+            currentHunger = 0f;
+        }
     }
 
     public void TakeDamage(float damage)
@@ -28,6 +48,7 @@ public class Health : MonoBehaviour
 
         UpdateHealthUI();
     }
+
 
     void Die()
     {
@@ -56,5 +77,9 @@ public class Health : MonoBehaviour
     private void UpdateHealthUI()
     {
         healthSlider.value = currentHealth / maxHealth;
+    }
+    private void UpdateHungerUI()
+    {
+        hungerSlider.value = currentHunger / maxHealth;
     }
 }

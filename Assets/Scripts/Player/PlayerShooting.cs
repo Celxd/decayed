@@ -38,6 +38,8 @@ public class PlayerShooting : MonoBehaviour
     float originalVerticalValue;
     float totalAmmo;
 
+    public AudioSource soundhit;
+
     Coroutine fireCoroutine;
 
     // Start is called before the first frame update
@@ -64,6 +66,7 @@ public class PlayerShooting : MonoBehaviour
             
         }
         ammo.text = "";
+        gun.text = "";
 
     }
 
@@ -81,6 +84,7 @@ public class PlayerShooting : MonoBehaviour
         if (currentWeapon == null)
             return;
 
+        gun.text = currentWeapon.name.ToString();
         totalAmmo = currentWeapon.magCount * currentWeapon.magSize;
         ammo.text = currentWeapon.currentAmmo.ToString() + " / " + totalAmmo.ToString();
         currentWeapon.reloading = false;
@@ -126,6 +130,7 @@ public class PlayerShooting : MonoBehaviour
                     hit.transform.gameObject.GetComponent<Enemy>().TakeDamage(28, hit.point);
                     Debug.Log(hit.transform.gameObject.GetComponent<Enemy>().health);
                 }
+                    
             }
 
             RecoilMath();

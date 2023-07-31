@@ -16,11 +16,15 @@ public class Weapon : Item
     public int magCount;
     public float reloadTime;
     
+    
     [Header("Gun Effects")]
     public GameObject gunModel;
     
     public bool reloading;
     public float currentAmmo;
+
+    public AudioSource firing;
+    public AudioSource reload;
 }
 
 public enum WeaponType {  Melee, Pistol, Rifle, Sniper, Shotgun, Submachine }

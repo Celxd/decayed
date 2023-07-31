@@ -36,6 +36,8 @@ public class Enemy : MonoBehaviour
     public EnemyAttackingState m_AttackState = new EnemyAttackingState();
     public EnemyDeadState m_DeadState = new EnemyDeadState();
 
+    public float delay = 2.0f;
+
     private void Awake()
     {
         m_FOV = GetComponent<EnemyFOV>();
@@ -84,11 +86,17 @@ public class Enemy : MonoBehaviour
 
         if(health <= 0)
         {
-            Vector3 forceDir = transform.position - m_Player.position;
-            forceDir.y = 1;
-
-            m_Ragdoll.TriggerRagdoll((1000 * forceDir).normalized, hit);
-            SwitchState(m_DeadState);
+            DeadBehavior(hit);
         }
+    }
+
+    void DeadBehavior(Vector3 hit)
+    {
+        Vector3 forceDir = transform.position - m_Player.position;
+        forceDir.y = 1;
+
+        m_Ragdoll.TriggerRagdoll((1000 * forceDir).normalized, hit);
+        SwitchState(m_DeadState);
+        Destroy(gameObject, delay);
     }
 }

@@ -20,9 +20,11 @@ MonoBehaviour:
   fireRate: 350
   range: 150
   magSize: 30
-  magCount: 120
+  magCount: 2
   reloadTime: 2.1
   gunModel: {fileID: 6916796328910933065, guid: 97f1e74870f097442b30ae63ca5bbf29,
     type: 3}
-  reloading: 0
-  currentAmmo: 0
+  reloading: 1
+  currentAmmo: 19
+  firing: {fileID: 0}
+  reload: {fileID: 0}
