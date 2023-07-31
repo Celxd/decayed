@@ -12,11 +12,14 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] TMP_Text ammo;
     [SerializeField] TMP_Text gun;
     [SerializeField] GameObject holePrefab;
-    
+    [SerializeField] Transform adsPosition;
+    [SerializeField] Transform weaponHolder;
+
     [Header("Recoil Settings")]
     [SerializeField] float recoilX;
     [SerializeField] float recoilY;
     [SerializeField] float maxRecoilTime;
+    [SerializeField] float zoomRatio;
 
     private CinemachinePOV pov;
     private Inventory inventory;
@@ -25,6 +28,7 @@ public class PlayerShooting : MonoBehaviour
     InputAction action_shoot;
     InputAction action_reload;
     InputAction mouse;
+    InputAction action_aim;
     private Weapon currentWeapon;
     private int currentWeaponIndex = 0;
 
@@ -37,6 +41,8 @@ public class PlayerShooting : MonoBehaviour
     float timePressed;
     float originalVerticalValue;
     float totalAmmo;
+
+    bool ads = false;
 
     Coroutine fireCoroutine;
 
@@ -51,10 +57,12 @@ public class PlayerShooting : MonoBehaviour
         action_shoot = playerInput.actions["Shoot"];
         action_reload = playerInput.actions["Reload"];
         mouse = playerInput.actions["Look"];
+        action_aim = playerInput.actions["Aim"];
 
         action_shoot.started += ctx => StartFiring();
         action_shoot.canceled += ctx => StopFiring();
         action_reload.started += ctx => StartCoroutine(Reload());
+        action_aim.started += ctx => ads = !ads;
 
         currentWeaponIndex = equipmentManager.currentWeaponIndex;
         
@@ -71,6 +79,17 @@ public class PlayerShooting : MonoBehaviour
     {
         if (currentWeaponIndex != equipmentManager.currentWeaponIndex)
             InitWeapon();
+
+        if(ads)
+        {
+            weaponHolder = Vector3.Lerp(adsPosition.localPosition. aimAnimationSpeed * Time.deltaTime);
+            SetFieldOfView(Mathf.Lerp(pov, zoomRatio * _defaulFOV, _aimAnimationSpeed * Time.deltaTime));
+            
+        } else
+        {
+            weaponHolder = Vector3.Lerp(adsPosition.localPosition._animationSpeed * Time.deltaTime);
+            SetFieldOfView(Mathf.Lerp(pov, zoomRatio * _defaultFOV, _aimAnimationSpeed * Time.deltaTime));
+        }
     }
 
     public void InitWeapon()
