@@ -274,7 +274,7 @@ MonoBehaviour:
   recoilX: 25
   recoilY: 60
   maxRecoilTime: 5.47
-  zoomRatio: 5
+  zoomRatio: 2
   aimAnimationSpeed: 10
   ads: 0
 --- !u!114 &5583627292817516100
