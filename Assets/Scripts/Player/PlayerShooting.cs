@@ -12,22 +12,13 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] TMP_Text ammo;
     [SerializeField] TMP_Text gun;
     [SerializeField] GameObject holePrefab;
-    
+    [SerializeField] Transform adsPosition;
+    [SerializeField] Transform weaponHolder;
+
     [Header("Recoil Settings")]
     [SerializeField] float recoilX;
     [SerializeField] float recoilY;
     [SerializeField] float maxRecoilTime;
-
-    private CinemachinePOV pov;
-    private Inventory inventory;
-    private EquipmentManager equipmentManager;
-    private PlayerInput playerInput;
-    InputAction action_shoot;
-    InputAction action_reload;
-    InputAction mouse;
-    private Weapon currentWeapon;
-    private int currentWeaponIndex = 0;
-
     float currentRecoilX;
     float currentRecoilY;
     float recoilDuration = 0.1f;
@@ -36,8 +27,26 @@ public class PlayerShooting : MonoBehaviour
     float smoothRecoilVelY;
     float timePressed;
     float originalVerticalValue;
-    float totalAmmo;
 
+    [Header("Aim Settings")]
+    [SerializeField] float zoomRatio;
+    [SerializeField] float aimAnimationSpeed;
+    [HideInInspector] public bool ads = false;
+    float defaultFOV;
+    Vector3 defaultPos;
+
+    private CinemachinePOV pov;
+    private Inventory inventory;
+    private EquipmentManager equipmentManager;
+    private PlayerInput playerInput;
+    InputAction action_shoot;
+    InputAction action_reload;
+    InputAction mouse;
+    InputAction action_aim;
+    private Weapon currentWeapon;
+    private int currentWeaponIndex = 0;
+    
+    float totalAmmo;
     public AudioSource soundhit;
 
     Coroutine fireCoroutine;
@@ -53,10 +62,12 @@ public class PlayerShooting : MonoBehaviour
         action_shoot = playerInput.actions["Shoot"];
         action_reload = playerInput.actions["Reload"];
         mouse = playerInput.actions["Look"];
+        action_aim = playerInput.actions["Aim"];
 
         action_shoot.started += ctx => StartFiring();
         action_shoot.canceled += ctx => StopFiring();
         action_reload.started += ctx => StartCoroutine(Reload());
+        action_aim.started += ctx => ads = !ads;
 
         currentWeaponIndex = equipmentManager.currentWeaponIndex;
         
@@ -68,12 +79,30 @@ public class PlayerShooting : MonoBehaviour
         ammo.text = "";
         gun.text = "";
 
+        defaultFOV = vcam.m_Lens.FieldOfView;
+        defaultPos = weaponHolder.localPosition;
     }
 
     private void Update()
     {
         if (currentWeaponIndex != equipmentManager.currentWeaponIndex)
             InitWeapon();
+
+        if (ads)
+        {
+            weaponHolder.localPosition = Vector3.Lerp(weaponHolder.localPosition, adsPosition.localPosition, aimAnimationSpeed * Time.deltaTime);
+            SetFieldOfView(Mathf.Lerp(vcam.m_Lens.FieldOfView, defaultFOV / zoomRatio, aimAnimationSpeed * Time.deltaTime));
+        }
+        else
+        {
+            weaponHolder.localPosition = Vector3.Lerp(weaponHolder.localPosition, defaultPos, aimAnimationSpeed * Time.deltaTime);
+            SetFieldOfView(Mathf.Lerp(vcam.m_Lens.FieldOfView, defaultFOV, aimAnimationSpeed * Time.deltaTime));
+        }
+    }
+
+    void SetFieldOfView(float fov)
+    {
+        vcam.m_Lens.FieldOfView = fov;
     }
 
     public void InitWeapon()

@@ -11,6 +11,7 @@ public class SwayAndBob : MonoBehaviour
     InputAction action_Look;
     InputAction action_Move;
     CharacterController characterController;
+    PlayerShooting playerShoot;
 
     [Header("Settings")]
     public bool sway = true;
@@ -52,6 +53,7 @@ public class SwayAndBob : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
+        playerShoot = GetComponent<PlayerShooting>();
         action_Look = playerInput.actions["Look"];
         action_Move = playerInput.actions["Move"];
 
@@ -107,6 +109,12 @@ public class SwayAndBob : MonoBehaviour
 
     void CompositePositionRotation()
     {
+        if (playerShoot.ads)
+        {
+            weaponHolder.transform.localPosition = defaultPos;
+            weaponHolder.transform.localRotation = Quaternion.Euler(defaultRot);
+            return;
+        }
         //Pos
         weaponHolder.transform.localPosition = Vector3.Lerp(weaponHolder.transform.localPosition, swayPos + bobPosition, Time.deltaTime * smooth);
 

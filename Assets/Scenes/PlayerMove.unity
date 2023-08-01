@@ -822,7 +822,7 @@ PrefabInstance:
     - target: {fileID: 3301313467658440587, guid: c7d76cd1f514d7a41ad339870bc89b6d,
         type: 3}
       propertyPath: m_spawnInterval
-      value: 2
+      value: 10000000
       objectReference: {fileID: 0}
     - target: {fileID: 3301313467658440587, guid: c7d76cd1f514d7a41ad339870bc89b6d,
         type: 3}
@@ -2097,15 +2097,15 @@ PrefabInstance:
       propertyPath: vcam
       value: 
       objectReference: {fileID: 1296567772}
+    - target: {fileID: 7472102945417308327, guid: 709bf9574817a794dbbbecc32c3af55e,
+        type: 3}
+      propertyPath: zoomRatio
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8053733233086193122, guid: 709bf9574817a794dbbbecc32c3af55e,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 8053733233086193122, guid: 709bf9574817a794dbbbecc32c3af55e,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8053733233086193122, guid: 709bf9574817a794dbbbecc32c3af55e,
         type: 3}
