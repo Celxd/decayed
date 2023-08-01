@@ -18,19 +18,23 @@ public class Health : MonoBehaviour
 
     public float hungerRate = 1f;
 
-
     private void Start()
     {
         currentHealth = maxHealth;
         currentHunger = maxHunger;
         UpdateHealthUI();
         UpdateHungerUI();
+    }
 
+    private void FixedUpdate()
+    {
+        DecreaseHunger();
     }
 
     private void DecreaseHunger()
     {
-        currentHunger -= hungerRate;
+        currentHunger -= hungerRate * Time.fixedDeltaTime;
+        currentHunger = Mathf.Clamp(currentHunger, 0f, maxHunger);
         UpdateHungerUI();
 
         if (currentHunger <= 0f)
@@ -43,12 +47,13 @@ public class Health : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
+
         if (currentHealth <= 0)
             Die();
 
         UpdateHealthUI();
     }
-
 
     void Die()
     {
@@ -76,10 +81,12 @@ public class Health : MonoBehaviour
 
     private void UpdateHealthUI()
     {
-        healthSlider.value = currentHealth / maxHealth;
+ 
+        healthSlider.value = currentHealth;
     }
+
     private void UpdateHungerUI()
     {
-        hungerSlider.value = currentHunger / maxHealth;
+        hungerSlider.value = currentHunger;
     }
 }

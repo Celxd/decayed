@@ -17,7 +17,7 @@ public class EquipmentManager : MonoBehaviour
     public int currentWeaponIndex = 2;
     private GameObject currentWeaponObject = null;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         inventory = GetComponent<Inventory>();

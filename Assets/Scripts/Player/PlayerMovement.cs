@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Timeline;
 using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    
     private CharacterController controller;
     [HideInInspector] public PlayerInput playerInput;
     private Vector3 playerVelocity;
@@ -39,8 +37,8 @@ public class PlayerMovement : MonoBehaviour
     public float staminaRegenRate = 10f;
     public float staminaDepletionRate = 20f;
     public Slider staminaSlider;
+    public Slider thirstSlider;
     private bool isDepletingStamina = false;
-
 
     private void Awake()
     {
@@ -56,7 +54,11 @@ public class PlayerMovement : MonoBehaviour
         action_crouch = playerInput.actions["Crouch"];
 
         action_run.started += ctx => isRunning = true;
-        action_run.canceled += ctx => isRunning = false;
+        action_run.canceled += ctx =>
+        {
+            isRunning = false;
+            isDepletingStamina = false;
+        };
 
         action_crouch.started += ctx => isCrouching = true;
         action_crouch.canceled += ctx => isCrouching = false;
@@ -73,27 +75,28 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        //reset velocity
+
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
         }
 
-        //crouching
+
         if (isCrouching)
             Crouch();
         else
             CrouchEnd();
 
-        //set running speed
+
         currentSpeed = playerSpeed;
-        if (isRunning) { 
+        if (isRunning && currentStamina > 0)
+        {
             currentSpeed *= 2;
             isDepletingStamina = true;
         }
 
-        //read input and do movement
+        // Read input and do movement
         Vector2 input = action_move.ReadValue<Vector2>();
         Vector3 move = new Vector3(input.x, 0, input.y);
         move = move.x * camTransform.right.normalized + move.z * camTransform.forward.normalized;
@@ -109,13 +112,37 @@ public class PlayerMovement : MonoBehaviour
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
 
-        //rotate player to camera
+        // Rotate player to camera
         Quaternion rotation = Quaternion.Euler(0, camTransform.eulerAngles.y, 0);
         transform.rotation = rotation;
+
+        // Stamina management
+        if (isRunning && isDepletingStamina)
+        {
+            // Deplete stamina while running
+            currentStamina -= staminaDepletionRate * Time.deltaTime;
+            currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
+        }
+        else
+        {
+
+            currentStamina += staminaRegenRate * Time.deltaTime;
+            currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
+        }
+
+        // Update the stamina slider UI
+        UpdateStaminaUI();
     }
-    
+
     void Crouch()
     {
+        // Check if there is enough stamina to crouch while running
+        if (isRunning && currentStamina < staminaDepletionRate * Time.deltaTime)
+        {
+            isRunning = false;
+            isDepletingStamina = true;
+        }
+
         float crouchDelta = Time.deltaTime * crouchTransitionSpeed;
         currentHeight = Mathf.Lerp(currentHeight, crouchHeight, crouchDelta);
         controller.height = currentHeight;
@@ -131,12 +158,19 @@ public class PlayerMovement : MonoBehaviour
             float distanceToCeiling = hit.point.y - castOrigin.y;
             heightTarget = Mathf.Max(currentHeight + distanceToCeiling - 0.1f, crouchHeight);
         }
-        
+
         float crouchDelta = Time.deltaTime * crouchTransitionSpeed;
         currentHeight = Mathf.Lerp(currentHeight, heightTarget, crouchDelta);
         controller.height = currentHeight;
         currentSpeed = playerSpeed;
+
+        // If not running, stop depleting stamina
+        if (!isRunning)
+        {
+            isDepletingStamina = false;
+        }
     }
+
     void UpdateStaminaUI()
     {
         if (staminaSlider != null)
@@ -145,4 +179,3 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 }
-
