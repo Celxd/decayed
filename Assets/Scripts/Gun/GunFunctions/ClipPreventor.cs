@@ -14,7 +14,6 @@ public class ClipPrevention : MonoBehaviour
     
     private void Update()
     {
-        Debug.DrawRay(clipProjector.transform.position, clipProjector.transform.forward, Color.green);
         if (Physics.Raycast(clipProjector.transform.position, clipProjector.transform.forward, out hit, checkDistance, 5))
         {
             lerpPos = 1 - (hit.distance / checkDistance);

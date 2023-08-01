@@ -48,6 +48,8 @@ public class EquipmentManager : MonoBehaviour
 
     public void DropWeapon()
     {
+        if (currentWeaponObject == null)
+            return;
         Rigidbody rb = currentWeaponObject.GetComponent<Rigidbody>();
 
         inventory.RemoveItem(currentWeaponIndex);

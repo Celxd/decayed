@@ -19,7 +19,21 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] float recoilX;
     [SerializeField] float recoilY;
     [SerializeField] float maxRecoilTime;
+    float currentRecoilX;
+    float currentRecoilY;
+    float recoilDuration = 0.1f;
+    float smoothTime = 0.1f;
+    float smoothRecoilVelX;
+    float smoothRecoilVelY;
+    float timePressed;
+    float originalVerticalValue;
+
+    [Header("Aim Settings")]
     [SerializeField] float zoomRatio;
+    [SerializeField] float aimAnimationSpeed;
+    [HideInInspector] public bool ads = false;
+    float defaultFOV;
+    Vector3 defaultPos;
 
     private CinemachinePOV pov;
     private Inventory inventory;
@@ -31,19 +45,8 @@ public class PlayerShooting : MonoBehaviour
     InputAction action_aim;
     private Weapon currentWeapon;
     private int currentWeaponIndex = 0;
-
-    float currentRecoilX;
-    float currentRecoilY;
-    float recoilDuration = 0.1f;
-    float smoothTime = 0.1f;
-    float smoothRecoilVelX;
-    float smoothRecoilVelY;
-    float timePressed;
-    float originalVerticalValue;
+    
     float totalAmmo;
-
-    bool ads = false;
-
     Coroutine fireCoroutine;
 
     // Start is called before the first frame update
@@ -73,6 +76,8 @@ public class PlayerShooting : MonoBehaviour
         }
         ammo.text = "";
 
+        defaultFOV = vcam.m_Lens.FieldOfView;
+        defaultPos = weaponHolder.localPosition;
     }
 
     private void Update()
@@ -80,16 +85,21 @@ public class PlayerShooting : MonoBehaviour
         if (currentWeaponIndex != equipmentManager.currentWeaponIndex)
             InitWeapon();
 
-        if(ads)
+        if (ads)
         {
-            weaponHolder = Vector3.Lerp(adsPosition.localPosition. aimAnimationSpeed * Time.deltaTime);
-            SetFieldOfView(Mathf.Lerp(pov, zoomRatio * _defaulFOV, _aimAnimationSpeed * Time.deltaTime));
-            
-        } else
-        {
-            weaponHolder = Vector3.Lerp(adsPosition.localPosition._animationSpeed * Time.deltaTime);
-            SetFieldOfView(Mathf.Lerp(pov, zoomRatio * _defaultFOV, _aimAnimationSpeed * Time.deltaTime));
+            weaponHolder.localPosition = Vector3.Lerp(weaponHolder.localPosition, adsPosition.localPosition, aimAnimationSpeed * Time.deltaTime);
+            SetFieldOfView(Mathf.Lerp(vcam.m_Lens.FieldOfView, defaultFOV / zoomRatio, aimAnimationSpeed * Time.deltaTime));
         }
+        else
+        {
+            weaponHolder.localPosition = Vector3.Lerp(weaponHolder.localPosition, defaultPos, aimAnimationSpeed * Time.deltaTime);
+            SetFieldOfView(Mathf.Lerp(vcam.m_Lens.FieldOfView, defaultFOV, aimAnimationSpeed * Time.deltaTime));
+        }
+    }
+
+    void SetFieldOfView(float fov)
+    {
+        vcam.m_Lens.FieldOfView = fov;
     }
 
     public void InitWeapon()
