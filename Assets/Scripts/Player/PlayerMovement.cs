@@ -111,7 +111,7 @@ public class PlayerMovement : MonoBehaviour
         // Changes the height position of the player..
         if (action_jump.triggered && groundedPlayer)
         {
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            playerVelocity.y += Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
@@ -122,16 +122,20 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = rotation;
 
         // Stamina management
-        if (isRunning && isDepletingStamina)
+        if (isRunning && isDepletingStamina && currentStamina > 0)
         {
             // Deplete stamina while running
-            currentStamina -= staminaDepletionRate * Time.deltaTime;
+            float depletedStamina = staminaDepletionRate * Time.deltaTime;
+            currentStamina -= depletedStamina;
             currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
+            UpdateStaminaUI(); // Update the stamina slider
         }
         else
         {
+            // Regenerate stamina if not running
             currentStamina += staminaRegenRate * Time.deltaTime;
             currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
+            UpdateStaminaUI(); // Update the stamina slider
         }
 
         // Thirst management
@@ -139,9 +143,10 @@ public class PlayerMovement : MonoBehaviour
         {
             currentThirst -= thirstDepletionRate * Time.deltaTime;
             currentThirst = Mathf.Clamp(currentThirst, 0f, maxThirst);
-            if (currentThirst <= thirstThresholdForRunning)
+            UpdateThirstUI(); // Update the thirst slider
+
+            if (currentThirst <= thirstThresholdForRunning && isRunning)
             {
-                isRunning = false;
                 isDepletingStamina = true;
             }
         }
@@ -149,11 +154,8 @@ public class PlayerMovement : MonoBehaviour
         {
             isRunning = false;
             isDepletingStamina = true;
+            UpdateThirstUI(); // Update the thirst slider
         }
-
-        // Update the UI sliders
-        UpdateStaminaUI();
-        UpdateThirstUI();
     }
 
     void Crouch()

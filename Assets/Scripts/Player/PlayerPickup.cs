@@ -86,7 +86,8 @@ public class PlayerPickup : MonoBehaviour
             }
 
             Destroy(hit.transform.gameObject);
-            _equipmentManager.EquipWeapon(newItem);
+            //_equipmentManager.EquipWeapon(newItem);
+            _equipmentManager.HandleWeaponSelection(_inventory.GetItem((int)newItem.weaponCategory));
 
         }
     }

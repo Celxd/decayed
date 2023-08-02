@@ -32,9 +32,11 @@ public class EquipmentManager : MonoBehaviour
         action_secondary.performed += ctx => HandleWeaponSelection(inventory.GetItem(1));
         action_melee.performed += ctx => HandleWeaponSelection(inventory.GetItem(2));
         action_drop.performed += ctx => DropWeapon();
+
+        HandleWeaponSelection(inventory.GetItem(2));
     }
     
-    public void EquipWeapon(Weapon weapon)
+    private void EquipWeapon(Weapon weapon)
     {
         currentWeaponIndex = (int)weapon.weaponCategory;
         currentWeaponObject = Instantiate(weapon.gunModel, weaponHolder);
@@ -61,7 +63,7 @@ public class EquipmentManager : MonoBehaviour
         currentWeaponObject = null;
     }
     
-    private void HandleWeaponSelection(Weapon weapon)
+    public void HandleWeaponSelection(Weapon weapon)
     {
         if (weapon == null)
             return;

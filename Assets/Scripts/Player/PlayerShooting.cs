@@ -50,7 +50,10 @@ public class PlayerShooting : MonoBehaviour
     public AudioSource soundhit;
     public GameObject hitmarker;
 
+    
+
     Coroutine fireCoroutine;
+    bool melee;
 
     // Start is called before the first frame update
     private void Start()
@@ -70,7 +73,7 @@ public class PlayerShooting : MonoBehaviour
         action_reload.started += ctx => StartCoroutine(Reload());
         action_aim.started += ctx => ads = !ads;
 
-        currentWeaponIndex = equipmentManager.currentWeaponIndex;
+        InitWeapon();
         
         if (currentWeapon != null)
         {
@@ -115,6 +118,11 @@ public class PlayerShooting : MonoBehaviour
         if (currentWeapon == null)
             return;
 
+        if ((int)currentWeapon.weaponCategory == 2)
+            melee = true;
+        else
+            melee = false;
+
         gun.text = currentWeapon.name.ToString();
         totalAmmo = currentWeapon.magCount * currentWeapon.magSize;
         ammo.text = currentWeapon.currentAmmo.ToString() + " / " + totalAmmo.ToString();
@@ -150,10 +158,9 @@ public class PlayerShooting : MonoBehaviour
 
     public void Shoot()
     {
-        if (CanShoot())
+        if (CanShoot() || melee)
         {
-
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0)), out RaycastHit hit))
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0)), out RaycastHit hit, currentWeapon.range))
             {
                 Instantiate(holePrefab, hit.point + (hit.normal * 0.001f), Quaternion.FromToRotation(Vector3.up, hit.normal), hit.transform);
                 if (hit.transform.gameObject.GetComponent<Enemy>() != null)
@@ -165,10 +172,14 @@ public class PlayerShooting : MonoBehaviour
                     
             }
 
-            RecoilMath();
-            currentWeapon.currentAmmo--;
-            if(ammo != null)
-                ammo.text = currentWeapon.currentAmmo.ToString() + " / " + totalAmmo.ToString();
+            if (!melee)
+            {
+                RecoilMath();
+                if (!melee) currentWeapon.currentAmmo--;
+                if (ammo != null)
+                    ammo.text = currentWeapon.currentAmmo.ToString() + " / " + totalAmmo.ToString();
+            }
+            
         }
 
     }

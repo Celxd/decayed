@@ -222,6 +222,10 @@ MonoBehaviour:
   staminaRegenRate: 10
   staminaDepletionRate: 20
   staminaSlider: {fileID: 0}
+  maxThirst: 100
+  currentThirst: 100
+  thirstDepletionRate: 5
+  thirstThresholdForRunning: 30
   thirstSlider: {fileID: 0}
 --- !u!114 &6435650643652842631
 MonoBehaviour:
@@ -281,6 +285,7 @@ MonoBehaviour:
   aimAnimationSpeed: 10
   ads: 0
   soundhit: {fileID: 0}
+  hitmarker: {fileID: 0}
 --- !u!114 &5583627292817516100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,7 +301,7 @@ MonoBehaviour:
   weapons:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: f00186eff19b72f4cab7cffcdc7daa30, type: 2}
 --- !u!114 &4556688817233760421
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,10 +5,12 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     [SerializeField] private Weapon[] weapons;
+    [SerializeField] Weapon hand;
 
     private void Start()
     {
-        InitVariables();
+        //InitVariables();
+        weapons[2] = hand;
     }
 
     public void AddItem(Weapon newWeapon)

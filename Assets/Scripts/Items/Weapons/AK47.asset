@@ -13,18 +13,18 @@ MonoBehaviour:
   m_Name: AK47
   m_EditorClassIdentifier: 
   name: AK47
-  type: 
+  type: 0
   icon: {fileID: 0}
   weaponType: 2
   weaponCategory: 0
   fireRate: 600
-  range: 0
+  range: 150
   magSize: 32
-  magCount: 4
+  magCount: 2
   reloadTime: 2
   gunModel: {fileID: 3966905432967582627, guid: 947dfd90abaae7d43af6b85d8abf567f,
     type: 3}
   reloading: 0
-  currentAmmo: 31
+  currentAmmo: 15
   firing: {fileID: 0}
   reload: {fileID: 0}
