@@ -48,6 +48,7 @@ public class PlayerShooting : MonoBehaviour
     
     float totalAmmo;
     public AudioSource soundhit;
+    public GameObject hitmarker;
 
     Coroutine fireCoroutine;
 
@@ -81,6 +82,7 @@ public class PlayerShooting : MonoBehaviour
 
         defaultFOV = vcam.m_Lens.FieldOfView;
         defaultPos = weaponHolder.localPosition;
+        hitmarker.SetActive(false);
     }
 
     private void Update()
@@ -157,7 +159,8 @@ public class PlayerShooting : MonoBehaviour
                 if (hit.transform.gameObject.GetComponent<Enemy>() != null)
                 {
                     hit.transform.gameObject.GetComponent<Enemy>().TakeDamage(28, hit.point);
-                    Debug.Log(hit.transform.gameObject.GetComponent<Enemy>().health);
+                    Hitactive();
+                    Invoke("Hitdisable", 0.2f);
                 }
                     
             }
@@ -238,5 +241,13 @@ public class PlayerShooting : MonoBehaviour
 
         //float smoothedVerticalValue = Mathf.SmoothDamp(currentVerticalValue, targetVerticalValue, ref smoothReturnVelY, smoothReturnTime);
         //pov.m_VerticalAxis.Value -= smoothedVerticalValue;
+    }
+    private void Hitactive()
+    {
+        hitmarker.SetActive(true);
+    }
+    private void Hitdisable()
+    {
+        hitmarker.SetActive(false);
     }
 }
