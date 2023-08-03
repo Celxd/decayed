@@ -49,9 +49,6 @@ public class PlayerShooting : MonoBehaviour
     float totalAmmo;
     public AudioSource soundhit;
     public GameObject hitmarker;
-
-    
-
     Coroutine fireCoroutine;
     bool melee;
 

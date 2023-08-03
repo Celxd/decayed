@@ -39,6 +39,17 @@ public class PlayerPickup : MonoBehaviour
         CheckSeen();
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if ((_pickupLayer.value & (1 << collision.gameObject.layer)) != 0)
+        {
+            if (collision.gameObject.GetComponent<ItemObject>().item.type != Item.Type.Consumables)
+                return;
+
+
+        }
+    }
+
     void CheckSeen()
     {
         if (Physics.Raycast(_cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0)), out RaycastHit hit, _pickupRange, _pickupLayer))
@@ -85,10 +96,8 @@ public class PlayerPickup : MonoBehaviour
                 _playerShooting.InitWeapon();
             }
 
-            Destroy(hit.transform.gameObject);
-            //_equipmentManager.EquipWeapon(newItem);
+            Destroy(hit.transform.gameObject);\
             _equipmentManager.HandleWeaponSelection(_inventory.GetWeapon((int)newItem.weaponCategory));
-
         }
     }
 }

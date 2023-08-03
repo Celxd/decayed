@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4976d7f07ad70304d9890f2fb2cfb519, type: 3}
   m_Name: M1A1
   m_EditorClassIdentifier: 
+  id: Assets/Scripts/Items/Weapons/M1A1.asset
   name: M1A1
-  type: Weapon
+  type: 0
   icon: {fileID: 21300000, guid: f9161c6c9e06dc445ada3ee16d991f90, type: 3}
   weaponType: 5
   weaponCategory: 0
@@ -24,7 +25,7 @@ MonoBehaviour:
   reloadTime: 2.1
   gunModel: {fileID: 6916796328910933065, guid: 97f1e74870f097442b30ae63ca5bbf29,
     type: 3}
-  reloading: 1
-  currentAmmo: 19
+  reloading: 0
+  currentAmmo: 12
   firing: {fileID: 0}
   reload: {fileID: 0}
