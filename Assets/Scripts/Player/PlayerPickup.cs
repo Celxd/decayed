@@ -74,20 +74,20 @@ public class PlayerPickup : MonoBehaviour
         if (Physics.Raycast(_cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0)), out RaycastHit hit, _pickupRange, _pickupLayer)) {
             Weapon newItem = hit.transform.GetComponent<ItemObject>().item as Weapon;
 
-            if (_inventory.GetItem((int)newItem.weaponCategory) == null)
+            if (_inventory.GetWeapon((int)newItem.weaponCategory) == null)
             {
-                _inventory.AddItem(newItem);
+                _inventory.AddWeapon(newItem);
             } 
             else
             {
                 _equipmentManager.DropWeapon();
-                _inventory.AddItem(newItem);
+                _inventory.AddWeapon(newItem);
                 _playerShooting.InitWeapon();
             }
 
             Destroy(hit.transform.gameObject);
             //_equipmentManager.EquipWeapon(newItem);
-            _equipmentManager.HandleWeaponSelection(_inventory.GetItem((int)newItem.weaponCategory));
+            _equipmentManager.HandleWeaponSelection(_inventory.GetWeapon((int)newItem.weaponCategory));
 
         }
     }

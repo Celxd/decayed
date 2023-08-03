@@ -15,5 +15,6 @@ MonoBehaviour:
   name: Snickers
   type: 2
   icon: {fileID: 0}
+  stack: 1
   consumeType: 0
   restorePoint: 5

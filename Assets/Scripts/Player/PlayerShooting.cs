@@ -113,7 +113,7 @@ public class PlayerShooting : MonoBehaviour
     public void InitWeapon()
     {
         currentWeaponIndex = equipmentManager.currentWeaponIndex;
-        currentWeapon = inventory.GetItem(currentWeaponIndex);
+        currentWeapon = inventory.GetWeapon(currentWeaponIndex);
 
         if (currentWeapon == null)
             return;

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] private Weapon[] weapons;
+    [SerializeField] Weapon[] weapons;
     [SerializeField] Weapon hand;
+    [SerializeField] Item[] items;
 
     private void Start()
     {
@@ -13,24 +14,24 @@ public class Inventory : MonoBehaviour
         weapons[2] = hand;
     }
 
-    public void AddItem(Weapon newWeapon)
+    public void AddWeapon(Weapon newWeapon)
     {
         int newItemIndex = (int)newWeapon.weaponCategory;
         
         if (weapons[newItemIndex] != null)
         {
-            RemoveItem(newItemIndex);
+            RemoveWeapon(newItemIndex);
         }
-        
-        weapons[newItemIndex] = newWeapon;
+
+        weapons[newItemIndex] = Instantiate(newWeapon);
     }
 
-    public void RemoveItem(int index)
+    public void RemoveWeapon(int index)
     {
         weapons[index] = null;
     }
 
-    public Weapon GetItem(int index)
+    public Weapon GetWeapon(int index)
     {
         return weapons[index];
     }

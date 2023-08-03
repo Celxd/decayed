@@ -6,5 +6,5 @@ using UnityEngine;
 public class ItemObject : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] public Item item;
+    public Item item;
 }
