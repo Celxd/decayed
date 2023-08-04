@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     public Transform m_Player;
     public EnemyAnimManager m_AnimManager;
 
+
     //Stuff
     [Header("Settings")]
     public float m_AttackRange;
@@ -36,7 +37,7 @@ public class Enemy : MonoBehaviour
     public EnemyAttackingState m_AttackState = new EnemyAttackingState();
     public EnemyDeadState m_DeadState = new EnemyDeadState();
 
-    public float delay = 2.0f;
+    public float delay = 20.0f;
 
     private void Awake()
     {
