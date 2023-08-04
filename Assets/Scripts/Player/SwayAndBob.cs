@@ -109,7 +109,7 @@ public class SwayAndBob : MonoBehaviour
 
     void CompositePositionRotation()
     {
-        if (playerShoot.ads)
+        if (playerShoot)
         {
             weaponHolder.transform.localPosition = defaultPos;
             weaponHolder.transform.localRotation = Quaternion.Euler(defaultRot);
