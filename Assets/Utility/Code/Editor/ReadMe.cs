@@ -168,7 +168,6 @@ public class ReadMe : EditorWindow {
 
     [MenuItem("Help/About Book of the Dead: Environment", false, 1)]
     public static new void Show() {
-        return;
         ((ReadMe) ScriptableObject.CreateInstance(typeof(ReadMe))).ShowUtility();
         SessionState.SetBool(kShownThisSession, true);
     }

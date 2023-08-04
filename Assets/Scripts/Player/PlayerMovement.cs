@@ -2,45 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Timeline;
-using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    
     private CharacterController controller;
-    [HideInInspector] public PlayerInput playerInput;
+    public PlayerInput playerInput;
     private Vector3 playerVelocity;
     private Transform camTransform;
     private bool groundedPlayer;
     private bool isRunning;
     private bool isCrouching = false;
-
-    [Header("Settings")]
-    [SerializeField] float playerSpeed = 2.0f;
-    [SerializeField] float jumpHeight = 1.0f;
-    [SerializeField] float gravityValue = -9.81f;
-    [SerializeField] float rotationSpeed = 5f;
-
-    [Header("Crouch Settings")]
-    [SerializeField] float crouchHeight = 1f;
-    [SerializeField] float crouchTransitionSpeed = 5f;
-
-    float height;
-    float currentSpeed;
-    float currentHeight;
-    InputAction action_move;
-    InputAction action_jump;
-    InputAction action_run;
-    InputAction action_crouch;
-
-    public float maxStamina = 100f;
-    public float currentStamina;
-    public float staminaRegenRate = 10f;
-    public float staminaDepletionRate = 20f;
-    public Slider staminaSlider;
-    private bool isDepletingStamina = false;
-
+    [SerializeField] private float playerSpeed = 2.0f;
+    [SerializeField] private float jumpHeight = 1.0f;
+    [SerializeField] private float gravityValue = -9.81f;
+    [SerializeField] private float rotationSpeed = 5f;
+    [SerializeField] private float crouchHeight = 1f;
+    [SerializeField] private float crouchTransitionSpeed = 5f;
+    private float height;
+    private float currentSpeed;
+    private float currentHeight;
+    private InputAction action_move;
+    private InputAction action_jump;
+    private InputAction action_run;
+    private InputAction action_crouch;
 
     private void Awake()
     {
@@ -63,14 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
         height = currentHeight = controller.height;
     }
-
-    private void Start()
-    {
-        Time.timeScale = 1;
-        currentStamina = maxStamina;
-        UpdateStaminaUI();
-    }
-
+    
     void Update()
     {
         //reset velocity
@@ -79,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         {
             playerVelocity.y = 0f;
         }
-
+        
         //crouching
         if (isCrouching)
             Crouch();
@@ -88,10 +65,8 @@ public class PlayerMovement : MonoBehaviour
 
         //set running speed
         currentSpeed = playerSpeed;
-        if (isRunning) { 
+        if (isRunning)
             currentSpeed *= 2;
-            isDepletingStamina = true;
-        }
 
         //read input and do movement
         Vector2 input = action_move.ReadValue<Vector2>();
@@ -137,12 +112,4 @@ public class PlayerMovement : MonoBehaviour
         controller.height = currentHeight;
         currentSpeed = playerSpeed;
     }
-    void UpdateStaminaUI()
-    {
-        if (staminaSlider != null)
-        {
-            staminaSlider.value = currentStamina / maxStamina;
-        }
-    }
 }
-

@@ -1,28 +1,54 @@
 using UnityEngine;
-using UnityEngine.Experimental.Rendering;
-using UnityEngine.Rendering.HighDefinition;
+using System.Collections;
 
 public class DayNightCycle : MonoBehaviour
 {
-    public HDAdditionalLightData directionalLight;
-    public Material skyMaterial;
-    public Gradient skyColorGradient;
-    public float dayCycleDuration = 10f;
 
-    private float m_timeOfDay = 0f;
+    public float secondsInFullDay = 120f;
+    [Range(0, 1)]
+    public float currentTimeOfDay = 0;
+    [HideInInspector]
+    public float timeMultiplier = 1f;
 
-    private void Update()
+    float sunInitialIntensity;
+    Light sun;
+
+    void Start()
     {
-        // Update the time of day based on the real time
-        m_timeOfDay += Time.deltaTime / dayCycleDuration;
-        if (m_timeOfDay > 1f)
-            m_timeOfDay = 0f;
+        sun = GetComponent<Light>();
+        sunInitialIntensity = sun.intensity;
+    }
 
-        // Calculate the rotation of the directional light
-        float sunAngle = m_timeOfDay * 360f;
-        directionalLight.transform.localRotation = Quaternion.Euler(sunAngle, 0f, 0f);
+    void Update()
+    {
+        UpdateSun();
 
-        // Update the sky material color based on the time of day
-        skyMaterial.SetColor("_SkyTint", skyColorGradient.Evaluate(m_timeOfDay));
+        currentTimeOfDay += (Time.deltaTime / secondsInFullDay) * timeMultiplier;
+
+        if (currentTimeOfDay >= 1)
+        {
+            currentTimeOfDay = 0;
+        }
+    }
+
+    void UpdateSun()
+    {
+        sun.transform.localRotation = Quaternion.Euler((currentTimeOfDay * 360f) - 90, 170, 0);
+
+        float intensityMultiplier = 1;
+        if (currentTimeOfDay <= 0.23f || currentTimeOfDay >= 0.75f)
+        {
+            intensityMultiplier = 0;
+        }
+        else if (currentTimeOfDay <= 0.25f)
+        {
+            intensityMultiplier = Mathf.Clamp01((currentTimeOfDay - 0.23f) * (1 / 0.02f));
+        }
+        else if (currentTimeOfDay >= 0.73f)
+        {
+            intensityMultiplier = Mathf.Clamp01(1 - ((currentTimeOfDay - 0.73f) * (1 / 0.02f)));
+        }
+
+        sun.intensity = sunInitialIntensity * intensityMultiplier;
     }
 }

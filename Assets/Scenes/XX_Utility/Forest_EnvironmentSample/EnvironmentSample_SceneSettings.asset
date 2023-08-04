@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24f077503be6ae942a1e1245dbd53ea9, type: 3}
   m_Name: Bloom
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   quality:
     m_OverrideState: 1
     m_Value: 1
@@ -487,7 +487,6 @@ MonoBehaviour:
   - {fileID: -2427646846090745656}
   - {fileID: -4887220871564415216}
   - {fileID: 3532320887952485235}
-  - {fileID: 2868156397289945262}
 --- !u!114 &114309526438481982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -642,22 +641,6 @@ MonoBehaviour:
   m_SampleCount:
     m_OverrideState: 1
     m_Value: 10
---- !u!114 &2868156397289945262
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a7ff42a8c5be6646ad3975f3a54c1eb, type: 3}
-  m_Name: DiffusionProfileList
-  m_EditorClassIdentifier: 
-  active: 1
-  diffusionProfiles:
-    m_OverrideState: 1
-    m_Value: []
 --- !u!114 &3532320887952485235
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1187,7 +1170,7 @@ MonoBehaviour:
     m_Value: 0.9
   reflectSky:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   usedAlgorithm:
     m_OverrideState: 1
     m_Value: 1
@@ -1345,17 +1328,17 @@ MonoBehaviour:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 14.452221
-        value: 11.658639
-        inSlope: 0.3885694
-        outSlope: 0.3885694
+        time: 6.375
+        value: 5.8907356
+        inSlope: 1
+        outSlope: 1
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0.43426648
+        outWeight: 0
       - serializedVersion: 3
-        time: 23.787907
-        value: 18.886728
+        time: 13.367883
+        value: 13.367883
         inSlope: 0.9999999
         outSlope: 0.9999999
         tangentMode: 0
@@ -1379,15 +1362,6 @@ MonoBehaviour:
         weightedMode: 0
         inWeight: 0
         outWeight: 0
-      - serializedVersion: 3
-        time: 7.9185786
-        value: 3.350916
-        inSlope: 1.2996445
-        outSlope: 1.2996445
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
       - serializedVersion: 3
         time: 20
         value: 18

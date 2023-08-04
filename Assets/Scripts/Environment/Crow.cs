@@ -1,80 +1,55 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CrowController : MonoBehaviour
+public class Crow : MonoBehaviour
 {
-    // Reference to the player object
-    public GameObject player;
+    public float flyAwayDistance = 10f;
+    public float flyAwaySpeed = 5f;
+    public float flyAwayDuration = 3f;
+    private Vector3 initialPosition;
+    private bool isFlyingAway = false;
+    private float flyAwayTimer = 0f;
+    private Vector3 velocity; // New variable to store bird's velocity
+    public LayerMask Player;
 
-    // Speed of the crow
-    public float speed = 5f;
+    void Start()
+    {
+        initialPosition = transform.position;
+    }
 
-    // Distance from the player at which the crow will start following them
-    public float followDistance = 10f;
-
-    // Distance from the player at which the crow will stop following them
-    public float stopDistance = 5f;
-
-    // Distance from the player at which the crow will fly away
-    public float flyAwayDistance = 2f;
-
-    // Update is called once per frame
     void Update()
     {
-        // Calculate the distance between the crow and the player
-        float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-
-        // If the player is within the follow distance
-        if (distanceToPlayer < followDistance)
+        if (!isFlyingAway && Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) < flyAwayDistance)
         {
-            // If the player is too close, fly away
-            if (distanceToPlayer < flyAwayDistance)
+            isFlyingAway = true;
+            // Generate a random direction and distance from the initial position
+            Vector3 randomDirection = Random.insideUnitSphere.normalized;
+            float randomDistance = Random.Range(0f, flyAwayDistance);
+            Vector3 targetPosition = initialPosition + randomDirection * randomDistance;
+            // Set the bird's rotation to face the target position
+            transform.LookAt(targetPosition);
+            flyAwayTimer = 0f;
+        }
+
+        if (isFlyingAway)
+        {
+            // Move the bird towards the target position
+            velocity = transform.forward * flyAwaySpeed;
+            transform.position += velocity * Time.deltaTime;
+            if (Vector3.Distance(transform.position, initialPosition) < 0.1f)
             {
-                // Calculate the direction away from the player
-                Vector3 directionAwayFromPlayer = (transform.position - player.transform.position).normalized;
-
-                // Move the crow away from the player
-                transform.Translate(directionAwayFromPlayer * speed * Time.deltaTime, Space.World);
-
-                // Rotate the crow to face away from the player
-                transform.LookAt(transform.position - directionAwayFromPlayer);
+                isFlyingAway = false;
+                flyAwayTimer = 0f;
+                transform.position = initialPosition; // Reset position to initial position
+            }
+            else if (flyAwayTimer > flyAwayDuration)
+            {
+                isFlyingAway = false;
+                flyAwayTimer = 0f;
             }
             else
             {
-                // Calculate the direction to the player
-                Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
-
-                // Move the crow towards the player
-                transform.Translate(directionToPlayer * speed * Time.deltaTime, Space.World);
-
-                // Rotate the crow to face the player
-                transform.LookAt(player.transform);
+                flyAwayTimer += Time.deltaTime;
             }
-        }
-        // If the player is within the stop distance
-        if (distanceToPlayer < stopDistance)
-        {
-            // Stop moving the crow
-            speed = 0;
-        }
-        else
-        {
-            // Resume moving the crow
-            speed = 5f;
-        }
-
-        // If the player is within the fly away distance, fly away
-        if (distanceToPlayer < flyAwayDistance)
-        {
-            // Calculate the direction away from the player
-            Vector3 directionAwayFromPlayer = (transform.position - player.transform.position).normalized;
-
-            // Move the crow away from the player
-            transform.Translate(directionAwayFromPlayer * speed * Time.deltaTime, Space.World);
-
-            // Rotate the crow to face away from the player
-            transform.LookAt(transform.position - directionAwayFromPlayer);
         }
     }
 }

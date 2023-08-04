@@ -1,85 +1,75 @@
-using Cinemachine;
-using System.Collections;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] GameObject cam;
-    [SerializeField] GameObject diepanel;
-    [SerializeField] GameObject holder;
-    [SerializeField] Slider healthSlider;
-    [SerializeField] Slider hungerSlider;
-    [SerializeField] float maxHealth = 100;
-    [SerializeField] float maxHunger = 100;
-    private float currentHealth;
-    private float currentHunger;
+    public int maxHealth = 100;
+    public int currentHealth;
+    public bool isAlive = true;
 
-    public float hungerRate = 1f;
+    public Slider healthSlider;
 
-
-    private void Start()
+    void Start()
     {
         currentHealth = maxHealth;
-        currentHunger = maxHunger;
-        UpdateHealthUI();
-        UpdateHungerUI();
 
+        // Set the initial health slider value
+        if (healthSlider != null)
+            healthSlider.value = currentHealth;
     }
 
-    private void DecreaseHunger()
+    public void TakeDamage(int damage)
     {
-        currentHunger -= hungerRate;
-        UpdateHungerUI();
+        if (!isAlive)
+            return;
 
-        if (currentHunger <= 0f)
-        {
-            TakeDamage(5f);
-            currentHunger = 0f;
-        }
-    }
-
-    public void TakeDamage(float damage)
-    {
         currentHealth -= damage;
+
+        // Update the health slider value
+        if (healthSlider != null)
+            healthSlider.value = currentHealth;
+
         if (currentHealth <= 0)
             Die();
-
-        UpdateHealthUI();
     }
-
 
     void Die()
     {
-        cam.GetComponent<CinemachineBrain>().enabled = false;
-        cam.GetComponent<BoxCollider>().enabled = true;
-        cam.GetComponent<Rigidbody>().isKinematic = false;
-
-        Destroy(holder);
-        cam.transform.parent = null;
-
-        Cursor.lockState = CursorLockMode.None;
-
-        StartCoroutine(DeathUI());
+        isAlive = false;
+        // Play death animation, remove object, etc.
     }
 
-    IEnumerator DeathUI()
+    public void Heal(int amount)
     {
-        yield return new WaitForSeconds(3);
+        currentHealth += amount;
 
-        diepanel.SetActive(true);
-        diepanel.GetComponent<Animator>().SetBool("dead", true);
+        // Clamp the current health to the max health
+        if (currentHealth > maxHealth)
+            currentHealth = maxHealth;
 
-        Destroy(gameObject);
+        // Update the health slider value
+        if (healthSlider != null)
+            healthSlider.value = currentHealth;
     }
 
-    private void UpdateHealthUI()
+    public void Damage(int damage)
     {
-        healthSlider.value = currentHealth / maxHealth;
+        if (!isAlive)
+            return;
+
+        currentHealth -= damage;
+
+        // Update the health slider value
+        if (healthSlider != null)
+            healthSlider.value = currentHealth;
+
+        if (currentHealth <= 0)
+            Die();
+
+        Debug.Log($"Player took {damage} damage. Current health: {currentHealth}");
     }
-    private void UpdateHungerUI()
-    {
-        hungerSlider.value = currentHunger / maxHealth;
-    }
+
+
+
 }
