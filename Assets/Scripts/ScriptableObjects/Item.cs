@@ -12,9 +12,9 @@ public class Item : ScriptableObject
     public Type type;
     public Sprite icon;
 
-    public enum Type { Weapon, Ammo, Consumables }
+    public enum Type { Weapon, Consumables }
 
-    private void OnValidate()
+    protected virtual void OnValidate()
     {
         string path = AssetDatabase.GetAssetPath(this);
         id = AssetDatabase.GetAssetPath(this);

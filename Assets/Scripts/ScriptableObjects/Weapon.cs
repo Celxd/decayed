@@ -25,7 +25,13 @@ public class Weapon : Item
 
     public AudioSource firing;
     public AudioSource reload;
+
+    protected override void OnValidate()
+    {
+        base.OnValidate();
+        type = Type.Weapon;
+    }
 }
 
-public enum WeaponType {  Melee, Pistol, Rifle, Sniper, Shotgun, Submachine }
+public enum WeaponType { Melee, Pistol, Rifle, Sniper, Shotgun, Submachine }
 public enum WeaponCategory { Primary, Secondary, Melee }

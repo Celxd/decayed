@@ -12,5 +12,18 @@ public class Consumables : Item
     public ConsumeType consumeType;
     public float restorePoint;
 
-    public enum ConsumeType { Food, Beverage, Med}
+    [Header("Ammo type (Don't change unless it's ammo)")]
+    public AmmoType ammoType;
+
+    protected override void OnValidate()
+    {
+        base.OnValidate();
+        type = Type.Consumables;
+
+        if (consumeType != ConsumeType.Ammo)
+            ammoType = AmmoType.Non;
+    }
 }
+
+public enum ConsumeType { Ammo, Food, Beverage, Med }
+public enum AmmoType { Non, Pistol, Rifle, Sniper, Shotgun, Submachine }

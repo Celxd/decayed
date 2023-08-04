@@ -48,7 +48,7 @@ public class Inventory : MonoBehaviour
             item.stack += newItem.stack;
             return;
         }
-        items.Add(newItem);
+        items.Add(Instantiate(newItem));
     }
 
     public void RemoveItem(Consumables currentConsum)
@@ -67,8 +67,21 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void InitVariables()
+    public List<Consumables> GetAllItems()
     {
-        weapons = new Weapon[3];
+        return items;
+    }
+
+    public Consumables SearchItemByType(ConsumeType type)
+    {
+        foreach (Consumables item in items)
+        {
+            if (item.consumeType != type)
+                break;
+
+            return item;
+        }
+
+        return null;
     }
 }

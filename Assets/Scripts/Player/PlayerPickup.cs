@@ -43,10 +43,12 @@ public class PlayerPickup : MonoBehaviour
     {
         if ((_pickupLayer.value & (1 << collision.gameObject.layer)) != 0)
         {
-            if (collision.gameObject.GetComponent<ItemObject>().item.type != Item.Type.Consumables)
+            Consumables newItem = collision.gameObject.GetComponent<ItemObject>().item as Consumables;
+
+            if (newItem.type != Item.Type.Consumables)
                 return;
 
-
+            _inventory.AddItem(newItem);
         }
     }
 
@@ -96,7 +98,7 @@ public class PlayerPickup : MonoBehaviour
                 _playerShooting.InitWeapon();
             }
 
-            Destroy(hit.transform.gameObject);\
+            Destroy(hit.transform.gameObject);
             _equipmentManager.HandleWeaponSelection(_inventory.GetWeapon((int)newItem.weaponCategory));
         }
     }
