@@ -39,6 +39,22 @@ public class PlayerPickup : MonoBehaviour
         CheckSeen();
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if ((_pickupLayer.value & (1 << collision.gameObject.layer)) != 0)
+        {
+            Debug.Log("sip");
+            Item newItem = collision.gameObject.GetComponent<ItemObject>().item;
+
+            if (newItem.type != Item.Type.Consumables)
+                return;
+
+            _inventory.AddItem(newItem as Consumables);
+            Destroy(collision.gameObject);
+            _playerShooting.InitWeapon();
+        }
+    }
+
     void CheckSeen()
     {
         if (Physics.Raycast(_cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0)), out RaycastHit hit, _pickupRange, _pickupLayer))
@@ -48,6 +64,9 @@ public class PlayerPickup : MonoBehaviour
             //Why? u said?
             //Idk all the functions that needs this so ask the past version of me
             if (hit.transform.parent?.transform.parent?.transform.parent?.transform.parent != null)
+                return;
+
+            if (hit.transform.GetComponent<ItemObject>().item.type == Item.Type.Consumables)
                 return;
 
             InitPrompt(hit);
@@ -74,21 +93,19 @@ public class PlayerPickup : MonoBehaviour
         if (Physics.Raycast(_cam.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0)), out RaycastHit hit, _pickupRange, _pickupLayer)) {
             Weapon newItem = hit.transform.GetComponent<ItemObject>().item as Weapon;
 
-            if (_inventory.GetItem((int)newItem.weaponCategory) == null)
+            if (_inventory.GetWeapon((int)newItem.weaponCategory) == null)
             {
-                _inventory.AddItem(newItem);
+                _inventory.AddWeapon(newItem);
             } 
             else
             {
                 _equipmentManager.DropWeapon();
-                _inventory.AddItem(newItem);
+                _inventory.AddWeapon(newItem);
                 _playerShooting.InitWeapon();
             }
 
             Destroy(hit.transform.gameObject);
-            //_equipmentManager.EquipWeapon(newItem);
-            _equipmentManager.HandleWeaponSelection(_inventory.GetItem((int)newItem.weaponCategory));
-
+            _equipmentManager.HandleWeaponSelection(_inventory.GetWeapon((int)newItem.weaponCategory));
         }
     }
 }

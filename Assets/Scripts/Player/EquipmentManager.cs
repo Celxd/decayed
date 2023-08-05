@@ -28,18 +28,19 @@ public class EquipmentManager : MonoBehaviour
         action_melee = playerInput.actions["Weapon_Melee"];
         action_drop = playerInput.actions["Drop"];
 
-        action_primary.performed += ctx => HandleWeaponSelection(inventory.GetItem(0));
-        action_secondary.performed += ctx => HandleWeaponSelection(inventory.GetItem(1));
-        action_melee.performed += ctx => HandleWeaponSelection(inventory.GetItem(2));
+        action_primary.performed += ctx => HandleWeaponSelection(inventory.GetWeapon(0));
+        action_secondary.performed += ctx => HandleWeaponSelection(inventory.GetWeapon(1));
+        action_melee.performed += ctx => HandleWeaponSelection(inventory.GetWeapon(2));
         action_drop.performed += ctx => DropWeapon();
 
-        HandleWeaponSelection(inventory.GetItem(2));
+        HandleWeaponSelection(inventory.GetWeapon(2));
     }
     
     private void EquipWeapon(Weapon weapon)
     {
         currentWeaponIndex = (int)weapon.weaponCategory;
         currentWeaponObject = Instantiate(weapon.gunModel, weaponHolder);
+        currentWeaponObject.GetComponent<ItemObject>().item = weapon;
     }
     
     private void UnequipWeapon()
@@ -54,7 +55,7 @@ public class EquipmentManager : MonoBehaviour
             return;
         Rigidbody rb = currentWeaponObject.GetComponent<Rigidbody>();
 
-        inventory.RemoveItem(currentWeaponIndex);
+        inventory.RemoveWeapon(currentWeaponIndex);
         currentWeaponIndex = 2;
         currentWeaponObject.transform.parent = null;
         rb.isKinematic = false;

@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4976d7f07ad70304d9890f2fb2cfb519, type: 3}
   m_Name: AK47
   m_EditorClassIdentifier: 
+  id: Assets/Scripts/Items/Weapons/AK47.asset
   name: AK47
   type: 0
   icon: {fileID: 0}
   weaponType: 2
   weaponCategory: 0
+  ammoType: 2
   fireRate: 600
   range: 150
   magSize: 32
-  magCount: 2
   reloadTime: 2
   gunModel: {fileID: 3966905432967582627, guid: 947dfd90abaae7d43af6b85d8abf567f,
     type: 3}

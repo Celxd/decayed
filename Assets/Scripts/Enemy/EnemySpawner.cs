@@ -47,7 +47,6 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            Debug.Log(timer);
             timer -= Time.deltaTime;
         }
     }
@@ -64,8 +63,6 @@ public class EnemySpawner : MonoBehaviour
 
     void Spawn()
     {
-        Debug.Log("coyrytinse");
-
         Transform spawnPoint = m_spawnPoints.Count > 1 ? m_spawnPoints[Random.Range(0, m_spawnPoints.Count)] : m_spawnPoints[0];
 
         //Check is player not too far

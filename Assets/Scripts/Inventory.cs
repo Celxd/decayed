@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] private Weapon[] weapons;
+    [SerializeField] Weapon[] weapons;
     [SerializeField] Weapon hand;
+    [SerializeField] List<Consumables> items;
 
     private void Start()
     {
@@ -13,30 +14,97 @@ public class Inventory : MonoBehaviour
         weapons[2] = hand;
     }
 
-    public void AddItem(Weapon newWeapon)
+    public void AddWeapon(Weapon newWeapon)
     {
         int newItemIndex = (int)newWeapon.weaponCategory;
         
         if (weapons[newItemIndex] != null)
         {
-            RemoveItem(newItemIndex);
+            RemoveWeapon(newItemIndex);
         }
-        
-        weapons[newItemIndex] = newWeapon;
+
+        weapons[newItemIndex] = Instantiate(newWeapon);
     }
 
-    public void RemoveItem(int index)
+    public void RemoveWeapon(int index)
     {
         weapons[index] = null;
     }
 
-    public Weapon GetItem(int index)
+    public Weapon GetWeapon(int index)
     {
         return weapons[index];
     }
 
-    private void InitVariables()
+    public void AddItem(Consumables newItem)
     {
-        weapons = new Weapon[3];
+        string newItemID = newItem.ID;
+        if (newItemID == null)
+            Debug.Log("no id?????????");
+
+        foreach (Consumables item in items)
+        {
+            if (item == null)
+                break;
+
+            if (item.ID != newItemID)
+                break;
+
+            item.stack += newItem.stack;
+            return;
+        }
+        items.Add(Instantiate(newItem));
+    }
+
+    public void RemoveItem(Consumables currentConsum)
+    {
+        foreach (Consumables item in items)
+        {
+            if (item == null)
+                break;
+
+            if (item.ID != currentConsum.ID)
+                break;
+
+            if (item.stack - 1 <= 0)
+                items.Remove(item);
+            else
+                item.stack -= 1;
+
+            return;
+        }
+    }
+
+    public List<Consumables> GetAllItems()
+    {
+        return items;
+    }
+
+    public Consumables SearchItemByType(ConsumeType type)
+    {
+        foreach (Consumables item in items)
+        {
+            if (item.consumeType != type)
+                break;
+
+            return item;
+        }
+
+        return null;
+    }
+
+    public Consumables SearchAmmo(AmmoType type)
+    {
+        foreach(Consumables item in items)
+        {
+            if (item.consumeType != ConsumeType.Ammo)
+                break;
+
+            if (item.ammoType == type)
+                return item;
+            else
+                break;
+        }
+        return null;
     }
 }

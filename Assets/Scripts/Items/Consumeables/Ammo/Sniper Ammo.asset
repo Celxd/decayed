@@ -9,9 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0647af52061d94640a6f8d48822b2f87, type: 3}
-  m_Name: Medkit
+  m_Script: {fileID: 11500000, guid: e9ec07430426d6c4b9650aabb8d902f1, type: 3}
+  m_Name: Sniper Ammo
   m_EditorClassIdentifier: 
-  name: Medkit
-  type: 
+  id: Assets/Scripts/Items/Consumeables/Ammo/Sniper Ammo.asset
+  name: Sniper Ammo
+  type: 1
   icon: {fileID: 0}
+  stack: 1
+  consumeType: 0
+  restorePoint: 10
+  ammoType: 3

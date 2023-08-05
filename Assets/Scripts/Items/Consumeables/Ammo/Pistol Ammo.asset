@@ -10,10 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9ec07430426d6c4b9650aabb8d902f1, type: 3}
-  m_Name: Snickers
+  m_Name: Pistol Ammo
   m_EditorClassIdentifier: 
-  name: Snickers
-  type: 2
+  id: Assets/Scripts/Items/Consumeables/Ammo/Pistol Ammo.asset
+  name: Pistol Ammo
+  type: 1
   icon: {fileID: 0}
+  stack: 1
   consumeType: 0
-  restorePoint: 5
+  restorePoint: 10
+  ammoType: 1

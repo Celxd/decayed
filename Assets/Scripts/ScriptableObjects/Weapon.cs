@@ -8,12 +8,13 @@ public class Weapon : Item
 {
     public WeaponType weaponType;
     public WeaponCategory weaponCategory;
+    public AmmoType ammoType;
     
     [Header("Gun Stats")]
     public float fireRate;
     public float range;
     public int magSize;
-    public int magCount;
+    //public int magCount;
     public float reloadTime;
     
     
@@ -25,7 +26,13 @@ public class Weapon : Item
 
     public AudioSource firing;
     public AudioSource reload;
+
+    protected override void OnValidate()
+    {
+        base.OnValidate();
+        type = Type.Weapon;
+    }
 }
 
-public enum WeaponType {  Melee, Pistol, Rifle, Sniper, Shotgun, Submachine }
+public enum WeaponType { Melee, Pistol, Rifle, Sniper, Shotgun, Submachine }
 public enum WeaponCategory { Primary, Secondary, Melee }
