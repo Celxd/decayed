@@ -32,11 +32,19 @@ public class PlayerMovement : MonoBehaviour
     InputAction action_run;
     InputAction action_crouch;
 
-    public float maxStamina = 100f;
-    public float currentStamina = 100f; // Starting stamina count is 100
-    public float staminaRegenRate = 10f;
-    public float staminaDepletionRate = 20f;
+    //---------------------------------------------------------
+    public float Stamina = 1.0f;
+    public float MaxStamina = 1.0f;
+
+    //---------------------------------------------------------
+    private float StaminaRegenTimer = 0.0f;
+
+    //---------------------------------------------------------
+    private const float StaminaDecreasePerFrame = 10.0f;
+    private const float StaminaIncreasePerFrame = 10.0f;
+    private const float StaminaTimeToRegen = 3.0f;
     public Slider staminaSlider;
+
 
     public float maxThirst = 100f;
     public float currentThirst = 100f; // Starting thirst count is 100
@@ -75,8 +83,6 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
-        currentStamina = maxStamina; // stamina count
-        currentThirst = maxThirst; // thirst count
         UpdateStaminaUI();
         UpdateThirstUI();
     }
@@ -95,12 +101,29 @@ public class PlayerMovement : MonoBehaviour
             CrouchEnd();
 
         currentSpeed = playerSpeed;
-        if (isRunning && currentStamina > 0 && currentThirst > 0)
+        bool isRunning = action_run.ReadValue<float>() > 0.0f;
+        if (isRunning)
         {
-            currentSpeed *= 2;
-            isDepletingStamina = true;
+            if (Stamina > 0f)
+            {
+                currentSpeed *= 2;
+                Stamina = Mathf.Clamp(Stamina - (StaminaDecreasePerFrame * Time.deltaTime), 0.0f, MaxStamina);
+                StaminaRegenTimer = 0.0f;
+            }
+            else
+            {
+                isRunning = false;
+                isDepletingStamina = true;
+            }
         }
-
+        else if (Stamina < MaxStamina)
+        {
+            if (StaminaRegenTimer >= StaminaTimeToRegen)
+                Stamina = Mathf.Clamp(Stamina + (StaminaIncreasePerFrame * Time.deltaTime), 0.0f, MaxStamina);
+            else
+                StaminaRegenTimer += Time.deltaTime;
+        }
+        UpdateStaminaUI();
 
         Vector2 input = action_move.ReadValue<Vector2>();
         Vector3 move = new Vector3(input.x, 0, input.y);
@@ -116,51 +139,30 @@ public class PlayerMovement : MonoBehaviour
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
 
-
         Quaternion rotation = Quaternion.Euler(0, camTransform.eulerAngles.y, 0);
         transform.rotation = rotation;
-
-        // Stamina management
-        if (isRunning && isDepletingStamina && currentStamina > 0)
-        {
-
-            float depletedStamina = staminaDepletionRate * Time.deltaTime;
-            currentStamina -= depletedStamina;
-            currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
-            UpdateStaminaUI(); 
-        }
-        else
-        {
- 
-            currentStamina += staminaRegenRate * Time.deltaTime;
-            currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
-            UpdateStaminaUI(); 
-        }
 
         // Thirst management
         if (currentThirst > 0f)
         {
-            currentThirst -= thirstDepletionRate * Time.deltaTime;
+            float thirstDepletionRateMultiplier = isRunning && Stamina <= thirstThresholdForRunning ? 2f : 1f;
+            currentThirst -= thirstDepletionRate * thirstDepletionRateMultiplier * Time.deltaTime;
             currentThirst = Mathf.Clamp(currentThirst, 0f, maxThirst);
-            UpdateThirstUI(); 
-
-            if (currentThirst <= thirstThresholdForRunning && isRunning)
-            {
-                isDepletingStamina = true;
-            }
-        }
-        else
-        {
-            isRunning = false;
-            isDepletingStamina = true;
             UpdateThirstUI();
+
+            if (currentThirst <= 0f)
+            {
+                isRunning = false;
+                isDepletingStamina = true;
+                UpdateThirstUI();
+            }
         }
     }
 
     void Crouch()
     {
         // Check if there is enough stamina and thirst to crouch while running
-        if ((isRunning && currentStamina < staminaDepletionRate * Time.deltaTime) || currentThirst <= 0f)
+        if ((isRunning && Stamina < StaminaDecreasePerFrame * Time.deltaTime) || currentThirst <= 0f)
         {
             isRunning = false;
             isDepletingStamina = true;
@@ -198,7 +200,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (staminaSlider != null)
         {
-            staminaSlider.value = currentStamina / maxStamina;
+            staminaSlider.value = Stamina;
         }
     }
 
@@ -206,8 +208,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (thirstSlider != null)
         {
-            thirstSlider.value = currentThirst / maxThirst;
+            thirstSlider.value = currentThirst;
         }
     }
-
 }

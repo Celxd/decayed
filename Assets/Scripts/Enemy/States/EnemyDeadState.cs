@@ -10,6 +10,7 @@ public class EnemyDeadState : EnemyBaseState
     public override void StartState(Enemy enemy)
     {
         enemy.m_Agent.SetDestination(enemy.transform.position);
+        
     }
 
     // Update is called once per frame

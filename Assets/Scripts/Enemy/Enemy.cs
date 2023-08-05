@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,6 +13,7 @@ public class Enemy : MonoBehaviour
     public LayerMask m_PlayerLayer;
     public Transform m_Player;
     public EnemyAnimManager m_AnimManager;
+    public KillCountManager m_KillCountManager;
 
 
     //Stuff
@@ -46,6 +48,7 @@ public class Enemy : MonoBehaviour
         m_Ragdoll = GetComponent<EnemyRagdoll>();
         m_AnimManager = GetComponent<EnemyAnimManager>();
         m_Player = GameObject.Find("Player").transform;
+        m_KillCountManager = GameObject.Find("KillCountManager").GetComponent<KillCountManager>();
 
         m_PlayerInAttack = Physics.CheckSphere(transform.position, m_AttackRange, m_PlayerLayer);
 
@@ -87,6 +90,7 @@ public class Enemy : MonoBehaviour
 
         if(health <= 0)
         {
+            Destroy(gameObject, delay);
             DeadBehavior(hit);
         }
     }
@@ -97,6 +101,7 @@ public class Enemy : MonoBehaviour
         forceDir.y = 1;
 
         m_Ragdoll.TriggerRagdoll((1000 * forceDir).normalized, hit);
+        m_KillCountManager.IncreaseKillCount();
         SwitchState(m_DeadState);
         Destroy(gameObject, delay);
     }

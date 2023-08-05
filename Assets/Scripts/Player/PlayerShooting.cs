@@ -188,7 +188,7 @@ public class PlayerShooting : MonoBehaviour
             {
                 RecoilMath();
                 if (!melee) currentWeapon.currentAmmo--;
-                if (ammo != null && currentAmmo != null)
+                if (ammo != null)
                     UpdateUI();
             }
             
@@ -196,7 +196,20 @@ public class PlayerShooting : MonoBehaviour
 
     }
 
-    private bool CanReload() => currentAmmo.stack > 0 && currentWeapon.currentAmmo < currentWeapon.magSize && !currentWeapon.reloading;
+    //private bool CanReload() => currentAmmo.stack > 0 && currentWeapon.currentAmmo < currentWeapon.magSize && !currentWeapon.reloading;
+
+    private bool CanReload()
+    {
+        if (currentAmmo != null)
+            return currentAmmo.stack > 0 && currentWeapon.currentAmmo < currentWeapon.magSize && !currentWeapon.reloading;
+        else
+        {
+            if (currentWeapon.currentAmmo > 0 && !currentWeapon.reloading)
+                return true;
+            else
+                return false;
+        }
+    }
 
     IEnumerator Reload()
     {

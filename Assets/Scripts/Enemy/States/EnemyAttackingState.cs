@@ -25,6 +25,7 @@ public class EnemyAttackingState : EnemyBaseState
         
         target += Random.insideUnitSphere * enemy.m_Inaccuracy;
 
+        Debug.DrawRay(head, target);
         if (Physics.Raycast(head, target, out RaycastHit hit , enemy.m_AttackRange))
         {
             if ((enemy.m_PlayerLayer.value & (1 << hit.transform.gameObject.layer)) != 0)

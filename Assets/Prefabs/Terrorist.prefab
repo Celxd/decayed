@@ -2720,6 +2720,7 @@ MonoBehaviour:
     m_Bits: 256
   m_Player: {fileID: 0}
   m_AnimManager: {fileID: 0}
+  m_KillCountManager: {fileID: 0}
   m_AttackRange: 40
   health: 100
   m_PlayerInAttack: 0
@@ -2733,6 +2734,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_CurrentWalkPointIndex: 0
+  delay: 100
 --- !u!114 &5224291467024690619
 MonoBehaviour:
   m_ObjectHideFlags: 0
