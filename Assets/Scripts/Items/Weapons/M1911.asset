@@ -18,10 +18,10 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 0c6a2a64ca9f9c946a7dbbd1674cf5bd, type: 3}
   weaponType: 1
   weaponCategory: 1
+  ammoType: 1
   fireRate: 40
   range: 50
   magSize: 7
-  magCount: 77
   reloadTime: 2.1
   gunModel: {fileID: 2701606195766134439, guid: 961dc22c42a121947bbc3ec49241e150,
     type: 3}

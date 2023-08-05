@@ -43,12 +43,15 @@ public class PlayerPickup : MonoBehaviour
     {
         if ((_pickupLayer.value & (1 << collision.gameObject.layer)) != 0)
         {
-            Consumables newItem = collision.gameObject.GetComponent<ItemObject>().item as Consumables;
+            Debug.Log("sip");
+            Item newItem = collision.gameObject.GetComponent<ItemObject>().item;
 
             if (newItem.type != Item.Type.Consumables)
                 return;
 
-            _inventory.AddItem(newItem);
+            _inventory.AddItem(newItem as Consumables);
+            Destroy(collision.gameObject);
+            _playerShooting.InitWeapon();
         }
     }
 
@@ -61,6 +64,9 @@ public class PlayerPickup : MonoBehaviour
             //Why? u said?
             //Idk all the functions that needs this so ask the past version of me
             if (hit.transform.parent?.transform.parent?.transform.parent?.transform.parent != null)
+                return;
+
+            if (hit.transform.GetComponent<ItemObject>().item.type == Item.Type.Consumables)
                 return;
 
             InitPrompt(hit);

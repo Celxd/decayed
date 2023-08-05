@@ -8,12 +8,13 @@ public class Weapon : Item
 {
     public WeaponType weaponType;
     public WeaponCategory weaponCategory;
+    public AmmoType ammoType;
     
     [Header("Gun Stats")]
     public float fireRate;
     public float range;
     public int magSize;
-    public int magCount;
+    //public int magCount;
     public float reloadTime;
     
     

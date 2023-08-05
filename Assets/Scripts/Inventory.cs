@@ -39,9 +39,14 @@ public class Inventory : MonoBehaviour
     public void AddItem(Consumables newItem)
     {
         string newItemID = newItem.ID;
+        if (newItemID == null)
+            Debug.Log("no id?????????");
 
         foreach (Consumables item in items)
         {
+            if (item == null)
+                break;
+
             if (item.ID != newItemID)
                 break;
 
@@ -55,6 +60,9 @@ public class Inventory : MonoBehaviour
     {
         foreach (Consumables item in items)
         {
+            if (item == null)
+                break;
+
             if (item.ID != currentConsum.ID)
                 break;
 
@@ -82,6 +90,21 @@ public class Inventory : MonoBehaviour
             return item;
         }
 
+        return null;
+    }
+
+    public Consumables SearchAmmo(AmmoType type)
+    {
+        foreach(Consumables item in items)
+        {
+            if (item.consumeType != ConsumeType.Ammo)
+                break;
+
+            if (item.ammoType == type)
+                return item;
+            else
+                break;
+        }
         return null;
     }
 }

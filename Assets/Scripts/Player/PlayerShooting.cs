@@ -46,7 +46,7 @@ public class PlayerShooting : MonoBehaviour
     private Weapon currentWeapon;
     private int currentWeaponIndex = 0;
     
-    float totalAmmo;
+    Consumables currentAmmo;
     public AudioSource soundhit;
     public GameObject hitmarker;
     Coroutine fireCoroutine;
@@ -111,6 +111,7 @@ public class PlayerShooting : MonoBehaviour
     {
         currentWeaponIndex = equipmentManager.currentWeaponIndex;
         currentWeapon = inventory.GetWeapon(currentWeaponIndex);
+        currentAmmo = inventory.SearchAmmo(currentWeapon.ammoType);
 
         if (currentWeapon == null)
             return;
@@ -120,10 +121,27 @@ public class PlayerShooting : MonoBehaviour
         else
             melee = false;
 
-        gun.text = currentWeapon.name.ToString();
-        totalAmmo = currentWeapon.magCount * currentWeapon.magSize;
-        ammo.text = currentWeapon.currentAmmo.ToString() + " / " + totalAmmo.ToString();
+        UpdateUI();
+
         currentWeapon.reloading = false;
+    }
+
+    void UpdateUI()
+    {
+        currentWeaponIndex = equipmentManager.currentWeaponIndex;
+        currentWeapon = inventory.GetWeapon(currentWeaponIndex);
+        currentAmmo = inventory.SearchAmmo(currentWeapon.ammoType);
+
+        gun.text = currentWeapon.name.ToString();
+
+        if (currentAmmo == null)
+        {
+            ammo.text = currentWeapon.currentAmmo.ToString() + " / " + "0";
+        }
+        else
+        {
+            ammo.text = currentWeapon.currentAmmo.ToString() + " / " + currentAmmo.stack * currentAmmo.restorePoint;
+        }
     }
     
     public void RecoilMath()
@@ -132,9 +150,6 @@ public class PlayerShooting : MonoBehaviour
 
         currentRecoilX = ((Random.value - 0.5f) / 2) * recoilX;
         currentRecoilY = ((Random.value - 0.5f) / 2) * (timePressed >= maxRecoilTime ? recoilY / 4 : recoilY);
-
-        //float smoothedRecoilY = Mathf.Lerp(0f, Mathf.Abs(currentRecoilY), timePressed);
-        //float smoothedRecoilX = Mathf.Lerp(0f, currentRecoilX, timePressed);
 
         float smoothedRecoilY = Mathf.SmoothDamp(0f, Mathf.Abs(currentRecoilY), ref smoothRecoilVelY, smoothTime);
         float smoothedRecoilX = Mathf.SmoothDamp(0f, currentRecoilX, ref smoothRecoilVelX, smoothTime);
@@ -164,7 +179,7 @@ public class PlayerShooting : MonoBehaviour
                 {
                     hit.transform.gameObject.GetComponent<Enemy>().TakeDamage(28, hit.point);
                     Hitactive();
-                    Invoke("Hitdisable", 0.2f);
+                    Invoke(nameof(Hitdisable), 0.2f);
                 }
                     
             }
@@ -173,30 +188,32 @@ public class PlayerShooting : MonoBehaviour
             {
                 RecoilMath();
                 if (!melee) currentWeapon.currentAmmo--;
-                if (ammo != null)
-                    ammo.text = currentWeapon.currentAmmo.ToString() + " / " + totalAmmo.ToString();
+                if (ammo != null && currentAmmo != null)
+                    UpdateUI();
             }
             
         }
 
     }
 
-    private bool CanReload() => totalAmmo > 0 && currentWeapon.currentAmmo < currentWeapon.magSize && !currentWeapon.reloading;
+    private bool CanReload() => currentAmmo.stack > 0 && currentWeapon.currentAmmo < currentWeapon.magSize && !currentWeapon.reloading;
 
     IEnumerator Reload()
     {
         if(CanReload())
         {
+            float ammoLeft;
             currentWeapon.reloading = true;
             if (ammo != null)
                 ammo.text = "Reloading";
             yield return new WaitForSeconds(currentWeapon.reloadTime);
             //TODO: Make a function in WaitForSeconds that checks if gun is swapped (If true: cancel reload)
-            currentWeapon.currentAmmo = currentWeapon.magSize;
-            totalAmmo -= currentWeapon.magSize;
-            currentWeapon.magCount -= 1;
-            if(ammo != null)
-                ammo.text = currentWeapon.currentAmmo.ToString() + "/" + totalAmmo.ToString();
+            currentWeapon.currentAmmo = currentAmmo.restorePoint;
+            currentAmmo.stack -= 1;
+            if(currentAmmo.stack <= 0)
+                inventory.RemoveItem(currentAmmo);
+
+            UpdateUI();
             currentWeapon.reloading = false;
         }
     }
