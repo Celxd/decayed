@@ -75,8 +75,8 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
-        currentStamina = maxStamina; // Set stamina count to 100
-        currentThirst = maxThirst; // Set thirst count to 100
+        currentStamina = maxStamina; // stamina count
+        currentThirst = maxThirst; // thirst count
         UpdateStaminaUI();
         UpdateThirstUI();
     }
@@ -101,14 +101,13 @@ public class PlayerMovement : MonoBehaviour
             isDepletingStamina = true;
         }
 
-        // Read input and do movement
+
         Vector2 input = action_move.ReadValue<Vector2>();
         Vector3 move = new Vector3(input.x, 0, input.y);
         move = move.x * camTransform.right.normalized + move.z * camTransform.forward.normalized;
         move.y = 0f;
         controller.Move(move * Time.deltaTime * currentSpeed);
 
-        // Changes the height position of the player..
         if (action_jump.triggered && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
@@ -117,25 +116,25 @@ public class PlayerMovement : MonoBehaviour
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
 
-        // Rotate player to camera
+
         Quaternion rotation = Quaternion.Euler(0, camTransform.eulerAngles.y, 0);
         transform.rotation = rotation;
 
         // Stamina management
         if (isRunning && isDepletingStamina && currentStamina > 0)
         {
-            // Deplete stamina while running
+
             float depletedStamina = staminaDepletionRate * Time.deltaTime;
             currentStamina -= depletedStamina;
             currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
-            UpdateStaminaUI(); // Update the stamina slider
+            UpdateStaminaUI(); 
         }
         else
         {
-            // Regenerate stamina if not running
+ 
             currentStamina += staminaRegenRate * Time.deltaTime;
             currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
-            UpdateStaminaUI(); // Update the stamina slider
+            UpdateStaminaUI(); 
         }
 
         // Thirst management
@@ -143,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
         {
             currentThirst -= thirstDepletionRate * Time.deltaTime;
             currentThirst = Mathf.Clamp(currentThirst, 0f, maxThirst);
-            UpdateThirstUI(); // Update the thirst slider
+            UpdateThirstUI(); 
 
             if (currentThirst <= thirstThresholdForRunning && isRunning)
             {
@@ -154,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isRunning = false;
             isDepletingStamina = true;
-            UpdateThirstUI(); // Update the thirst slider
+            UpdateThirstUI();
         }
     }
 
@@ -210,4 +209,5 @@ public class PlayerMovement : MonoBehaviour
             thirstSlider.value = currentThirst / maxThirst;
         }
     }
+
 }
