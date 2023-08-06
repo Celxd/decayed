@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DamageIndicator : MonoBehaviour
 {
-    const float maxTimer = 8f;
+    const float maxTimer = 3f;
     float timer = maxTimer;
 
     CanvasGroup canvasGroup = null;

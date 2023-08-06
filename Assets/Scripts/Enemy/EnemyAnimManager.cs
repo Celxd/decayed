@@ -20,7 +20,7 @@ public class EnemyAnimManager : MonoBehaviour
         m_Animator.SetBool("Walk", false);
         m_Animator.SetBool("Sprint", false);
 
-        m_Agent.speed = 1;
+        m_Agent.speed = 0;
     }
 
     public void Walk()

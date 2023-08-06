@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4357953090385290833}
   - component: {fileID: 1127761904988182753}
   - component: {fileID: -3151720803795165555}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Can Food
   m_TagString: Untagged
   m_Icon: {fileID: 0}

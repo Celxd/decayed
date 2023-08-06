@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4395875577402539848}
   - component: {fileID: 973405238168763307}
   - component: {fileID: -2430797565303913569}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Chocolate bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

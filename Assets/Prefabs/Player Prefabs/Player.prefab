@@ -217,15 +217,13 @@ MonoBehaviour:
   rotationSpeed: 1
   crouchHeight: 0.9
   crouchTransitionSpeed: 5
+  stamina: 1
   maxStamina: 100
-  currentStamina: 100
-  staminaRegenRate: 10
-  staminaDepletionRate: 20
   staminaSlider: {fileID: 0}
   maxThirst: 100
   currentThirst: 100
-  thirstDepletionRate: 5
-  thirstThresholdForRunning: 30
+  thirstDepletionRate: 1
+  thirstThresholdForRunning: 5
   thirstSlider: {fileID: 0}
 --- !u!114 &6435650643652842631
 MonoBehaviour:
@@ -302,6 +300,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 11400000, guid: f00186eff19b72f4cab7cffcdc7daa30, type: 2}
+  hand: {fileID: 11400000, guid: f00186eff19b72f4cab7cffcdc7daa30, type: 2}
+  items: []
 --- !u!114 &4556688817233760421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,7 +348,7 @@ MonoBehaviour:
   hungerSlider: {fileID: 0}
   maxHealth: 100
   maxHunger: 100
-  hungerRate: 1
+  hungerRate: 0.2
 --- !u!82 &8071087906481893142
 AudioSource:
   m_ObjectHideFlags: 0
@@ -420,7 +420,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.08888889
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -458,7 +458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   footstepsSound: {fileID: 8071087906481893142}
-  sprintSound: {fileID: 0}
+  speedMultiplier: 1.5
 --- !u!1 &1362559151266600897
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,7 +790,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6033527708140867285}
   serializedVersion: 4
-  m_Mass: 10
+  m_Mass: 60
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -855,7 +855,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6420414839400143433}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.15, y: -0.25, z: 0.4}
+  m_LocalPosition: {x: 0.15, y: -0.218, z: 0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

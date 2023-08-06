@@ -35,16 +35,16 @@ public class PlayerShooting : MonoBehaviour
     float defaultFOV;
     Vector3 defaultPos;
 
-    private CinemachinePOV pov;
-    private Inventory inventory;
-    private EquipmentManager equipmentManager;
-    private PlayerInput playerInput;
+    CinemachinePOV pov;
+    Inventory inventory;
+    EquipmentManager equipmentManager;
+    PlayerInput playerInput;
     InputAction action_shoot;
     InputAction action_reload;
     InputAction mouse;
     InputAction action_aim;
-    private Weapon currentWeapon;
-    private int currentWeaponIndex = 0;
+    Weapon currentWeapon;
+    int currentWeaponIndex = 0;
     
     Consumables currentAmmo;
     public AudioSource soundhit;
@@ -69,20 +69,12 @@ public class PlayerShooting : MonoBehaviour
         action_shoot.canceled += ctx => StopFiring();
         action_reload.started += ctx => StartCoroutine(Reload());
         action_aim.started += ctx => ads = !ads;
-
-        InitWeapon();
         
-        if (currentWeapon != null)
-        {
-            ammo.text = currentWeapon.currentAmmo.ToString();
-            
-        }
-        ammo.text = "";
-        gun.text = "";
-
         defaultFOV = vcam.m_Lens.FieldOfView;
         defaultPos = weaponHolder.localPosition;
         hitmarker.SetActive(false);
+
+        InitWeapon();
     }
 
     private void Update()
@@ -174,7 +166,9 @@ public class PlayerShooting : MonoBehaviour
         {
             if (Physics.Raycast(Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0)), out RaycastHit hit, currentWeapon.range))
             {
-                Instantiate(holePrefab, hit.point + (hit.normal * 0.001f), Quaternion.FromToRotation(Vector3.up, hit.normal), hit.transform);
+                if(currentWeapon.name != "Hand")
+                    Instantiate(holePrefab, hit.point + (hit.normal * 0.001f), Quaternion.FromToRotation(Vector3.up, hit.normal), hit.transform);
+
                 if (hit.transform.gameObject.GetComponent<Enemy>() != null)
                 {
                     hit.transform.gameObject.GetComponent<Enemy>().TakeDamage(28, hit.point);
