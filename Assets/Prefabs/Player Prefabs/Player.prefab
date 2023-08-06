@@ -302,6 +302,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f00186eff19b72f4cab7cffcdc7daa30, type: 2}
   hand: {fileID: 11400000, guid: f00186eff19b72f4cab7cffcdc7daa30, type: 2}
   items: []
+  slotsUI: []
+  inventoryItemPrefab: {fileID: 4655182859783634851, guid: badc3434b71b8a74294ef1700844f973,
+    type: 3}
 --- !u!114 &4556688817233760421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -790,7 +793,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6033527708140867285}
   serializedVersion: 4
-  m_Mass: 60
+  m_Mass: 25
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

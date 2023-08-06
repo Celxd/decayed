@@ -15,7 +15,7 @@ MonoBehaviour:
   id: Assets/Scripts/Items/Consumeables/Ammo/Sniper Ammo.asset
   name: Sniper Ammo
   type: 1
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: edae1e4157e8ae64e99722522a3e95ee, type: 3}
   stack: 1
   consumeType: 0
   restorePoint: 10

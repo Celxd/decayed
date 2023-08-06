@@ -15,7 +15,7 @@ MonoBehaviour:
   id: Assets/Scripts/Items/Consumeables/Ammo/Rifle Ammo.asset
   name: Rifle Ammo
   type: 1
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: eafb8cba9861a3144a04f8e090c9a803, type: 3}
   stack: 1
   consumeType: 0
   restorePoint: 30

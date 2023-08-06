@@ -34,8 +34,9 @@ public class EnemyAttackingState : EnemyBaseState
                 enemy.m_Player.gameObject.GetComponent<Health>().TakeDamage(2);
                 if (diTimer > 0)
                 {
-                    diTimer -= Time.deltaTime;
-                } else
+                    diTimer -= 1;
+                } 
+                else
                 {
                     DI_System.CreateIndicator(enemy.transform);
                     diTimer = 3f;
