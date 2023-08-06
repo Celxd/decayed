@@ -6,6 +6,7 @@ public class EnemyAttackingState : EnemyBaseState
 {
     float timer;
     Vector3 head;
+    float diTimer = 0f;
     public override void StartState(Enemy enemy)
     {
         enemy.LookDir(enemy.m_Player);
@@ -29,7 +30,18 @@ public class EnemyAttackingState : EnemyBaseState
         if (Physics.Raycast(head, target, out RaycastHit hit , enemy.m_AttackRange))
         {
             if ((enemy.m_PlayerLayer.value & (1 << hit.transform.gameObject.layer)) != 0)
+            {
                 enemy.m_Player.gameObject.GetComponent<Health>().TakeDamage(2);
+                if (diTimer > 0)
+                {
+                    diTimer -= Time.deltaTime;
+                } else
+                {
+                    DI_System.CreateIndicator(enemy.transform);
+                    diTimer = 3f;
+                }
+                
+            }
         }
 
         enemy.m_PlayerInAttack = Physics.CheckSphere(enemy.transform.position, enemy.m_AttackRange, enemy.m_PlayerLayer);

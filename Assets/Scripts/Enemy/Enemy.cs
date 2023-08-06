@@ -15,7 +15,6 @@ public class Enemy : MonoBehaviour
     public EnemyAnimManager m_AnimManager;
     public KillCountManager m_KillCountManager;
 
-
     //Stuff
     [Header("Settings")]
     public float m_AttackRange;

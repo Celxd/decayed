@@ -6,13 +6,13 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private CharacterController controller;
+    CharacterController controller;
     [HideInInspector] public PlayerInput playerInput;
-    private Vector3 playerVelocity;
-    private Transform camTransform;
-    private bool groundedPlayer;
-    private bool isRunning;
-    private bool isCrouching = false;
+    Vector3 playerVelocity;
+    Transform camTransform;
+    bool groundedPlayer;
+    bool isRunning;
+    bool isCrouching = false;
 
     [Header("Settings")]
     [SerializeField] float playerSpeed = 2.0f;
@@ -33,16 +33,16 @@ public class PlayerMovement : MonoBehaviour
     InputAction action_crouch;
 
     //---------------------------------------------------------
-    public float Stamina = 1.0f;
-    public float MaxStamina = 1.0f;
+    public float stamina = 1.0f;
+    public float maxStamina = 1.0f;
 
     //---------------------------------------------------------
-    private float StaminaRegenTimer = 0.0f;
+    //private float staminaRegenTimer = 0.0f;
 
     //---------------------------------------------------------
-    private const float StaminaDecreasePerFrame = 10.0f;
-    private const float StaminaIncreasePerFrame = 10.0f;
-    private const float StaminaTimeToRegen = 3.0f;
+    const float StaminaDecreasePerFrame = 10.0f;
+    const float StaminaIncreasePerFrame = 10.0f;
+    const float StaminaTimeToRegen = 3.0f;
     public Slider staminaSlider;
 
 
@@ -52,7 +52,8 @@ public class PlayerMovement : MonoBehaviour
     public float thirstThresholdForRunning = 30f;
     public Slider thirstSlider;
 
-    private bool isDepletingStamina = false;
+    bool isDepletingStamina = false;
+    bool isMoving;
 
     private void Awake()
     {
@@ -68,22 +69,22 @@ public class PlayerMovement : MonoBehaviour
         action_crouch = playerInput.actions["Crouch"];
 
         action_run.started += ctx => isRunning = true;
-        action_run.canceled += ctx =>
-        {
-            isRunning = false;
-            isDepletingStamina = false;
-        };
+        action_run.canceled += ctx => isRunning = false;
+
+        action_move.started += ctx => isMoving = true;
+        action_move.canceled += ctx => isMoving = false;
 
         action_crouch.started += ctx => isCrouching = true;
         action_crouch.canceled += ctx => isCrouching = false;
 
         height = currentHeight = controller.height;
+
+        stamina = maxStamina;
     }
 
     private void Start()
     {
         Time.timeScale = 1;
-        UpdateStaminaUI();
         UpdateThirstUI();
     }
 
@@ -101,28 +102,20 @@ public class PlayerMovement : MonoBehaviour
             CrouchEnd();
 
         currentSpeed = playerSpeed;
-        bool isRunning = action_run.ReadValue<float>() > 0.0f;
         if (isRunning)
         {
-            if (Stamina > 0f)
+            if (stamina > 0f)
             {
                 currentSpeed *= 2;
-                Stamina = Mathf.Clamp(Stamina - (StaminaDecreasePerFrame * Time.deltaTime), 0.0f, MaxStamina);
-                StaminaRegenTimer = 0.0f;
-            }
-            else
-            {
-                isRunning = false;
-                isDepletingStamina = true;
+                if(isMoving)
+                    stamina = Mathf.Clamp(stamina - (StaminaDecreasePerFrame * Time.deltaTime), 0.0f, maxStamina);
             }
         }
-        else if (Stamina < MaxStamina)
+        else if (stamina < maxStamina && !isRunning)
         {
-            if (StaminaRegenTimer >= StaminaTimeToRegen)
-                Stamina = Mathf.Clamp(Stamina + (StaminaIncreasePerFrame * Time.deltaTime), 0.0f, MaxStamina);
-            else
-                StaminaRegenTimer += Time.deltaTime;
+            stamina = Mathf.Clamp(stamina + (StaminaIncreasePerFrame * Time.deltaTime), 0.0f, maxStamina);
         }
+
         UpdateStaminaUI();
 
         Vector2 input = action_move.ReadValue<Vector2>();
@@ -145,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
         // Thirst management
         if (currentThirst > 0f)
         {
-            float thirstDepletionRateMultiplier = isRunning && Stamina <= thirstThresholdForRunning ? 2f : 1f;
+            float thirstDepletionRateMultiplier = isRunning && stamina <= thirstThresholdForRunning ? 2f : 1f;
             currentThirst -= thirstDepletionRate * thirstDepletionRateMultiplier * Time.deltaTime;
             currentThirst = Mathf.Clamp(currentThirst, 0f, maxThirst);
             UpdateThirstUI();
@@ -162,7 +155,7 @@ public class PlayerMovement : MonoBehaviour
     void Crouch()
     {
         // Check if there is enough stamina and thirst to crouch while running
-        if ((isRunning && Stamina < StaminaDecreasePerFrame * Time.deltaTime) || currentThirst <= 0f)
+        if ((isRunning && stamina < StaminaDecreasePerFrame * Time.deltaTime) || currentThirst <= 0f)
         {
             isRunning = false;
             isDepletingStamina = true;
@@ -200,7 +193,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (staminaSlider != null)
         {
-            staminaSlider.value = Stamina;
+            staminaSlider.value = stamina;
         }
     }
 
