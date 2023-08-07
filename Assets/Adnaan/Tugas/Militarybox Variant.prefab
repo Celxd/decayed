@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &925225796037003416
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 75392322007018579, guid: 41326ce59df464b45b7e5d435c61fe26,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1712
+      objectReference: {fileID: 0}
+    - target: {fileID: 75392322007018579, guid: 41326ce59df464b45b7e5d435c61fe26,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 186.78448
+      objectReference: {fileID: 0}
+    - target: {fileID: 75392322007018579, guid: 41326ce59df464b45b7e5d435c61fe26,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 113.062546
+      objectReference: {fileID: 0}
+    - target: {fileID: 75392322007018579, guid: 41326ce59df464b45b7e5d435c61fe26,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 386.82486
+      objectReference: {fileID: 0}
+    - target: {fileID: 75392322007018579, guid: 41326ce59df464b45b7e5d435c61fe26,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 75392322007018579, guid: 41326ce59df464b45b7e5d435c61fe26,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 75392322007018579, guid: 41326ce59df464b45b7e5d435c61fe26,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 75392322007018579, guid: 41326ce59df464b45b7e5d435c61fe26,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 75392322007018579, guid: 41326ce59df464b45b7e5d435c61fe26,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 75392322007018579, guid: 41326ce59df464b45b7e5d435c61fe26,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 75392322007018579, guid: 41326ce59df464b45b7e5d435c61fe26,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5903280328940355587, guid: 41326ce59df464b45b7e5d435c61fe26,
+        type: 3}
+      propertyPath: m_Name
+      value: Militarybox Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 41326ce59df464b45b7e5d435c61fe26, type: 3}

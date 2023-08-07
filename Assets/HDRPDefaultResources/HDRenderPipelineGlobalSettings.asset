@@ -106,6 +106,14 @@ MonoBehaviour:
       bounds:
         m_Center: {x: -263.25, y: 162, z: -40.5}
         m_Extent: {x: 101.25, y: 40.5, z: 81}
+    - sceneGUID: 6ebf182b90a259e468645f3931de914b
+      bounds:
+        m_Center: {x: -243, y: 60.75, z: -243}
+        m_Extent: {x: 243, y: 60.75, z: 121.5}
+    - sceneGUID: ea0ae229dcdd6e3498ae0a28840ec656
+      bounds:
+        m_Center: {x: -243, y: 121.5, z: -243}
+        m_Extent: {x: 243, y: 121.5, z: 121.5}
     serializedHasVolumes:
     - sceneGUID: fc1e6a0c2803d9444a02fce99b5b0fb2
       hasProbeVolumes: 1
@@ -119,6 +127,28 @@ MonoBehaviour:
       hasProbeVolumes: 0
     - sceneGUID: 9b5aa6428ba7a6246bd201ba8d95cebe
       hasProbeVolumes: 0
+    - sceneGUID: 60608b3476f7cdd4c9fb178f4de8a626
+      hasProbeVolumes: 0
+    - sceneGUID: b20664e61ad5d9847bd29051ece19ffd
+      hasProbeVolumes: 0
+    - sceneGUID: 6ebf182b90a259e468645f3931de914b
+      hasProbeVolumes: 1
+    - sceneGUID: 17dd0fa30022b7244a8774b65f3b2944
+      hasProbeVolumes: 0
+    - sceneGUID: bff62dc65058be24881d24b3a2e64257
+      hasProbeVolumes: 0
+    - sceneGUID: ea0ae229dcdd6e3498ae0a28840ec656
+      hasProbeVolumes: 1
+    - sceneGUID: 041c9849c1427104ab78c9b4bb17050b
+      hasProbeVolumes: 0
+    - sceneGUID: 49f89fc7272946b439dd6f2c5751c830
+      hasProbeVolumes: 0
+    - sceneGUID: 04a7a2086b6700447b2d92cc9942e060
+      hasProbeVolumes: 0
+    - sceneGUID: 22f0bb388367f274cab4a32623f68c3f
+      hasProbeVolumes: 0
+    - sceneGUID: 8acbf794d4648a440b6df49ab877aa12
+      hasProbeVolumes: 0
     serializedProfiles:
     - sceneGUID: fc1e6a0c2803d9444a02fce99b5b0fb2
       profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
@@ -131,6 +161,28 @@ MonoBehaviour:
     - sceneGUID: 59ff1647cd0086244944de8e56779763
       profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
     - sceneGUID: 9b5aa6428ba7a6246bd201ba8d95cebe
+      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+    - sceneGUID: 60608b3476f7cdd4c9fb178f4de8a626
+      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+    - sceneGUID: b20664e61ad5d9847bd29051ece19ffd
+      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+    - sceneGUID: 6ebf182b90a259e468645f3931de914b
+      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+    - sceneGUID: 17dd0fa30022b7244a8774b65f3b2944
+      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+    - sceneGUID: bff62dc65058be24881d24b3a2e64257
+      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+    - sceneGUID: ea0ae229dcdd6e3498ae0a28840ec656
+      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+    - sceneGUID: 041c9849c1427104ab78c9b4bb17050b
+      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+    - sceneGUID: 49f89fc7272946b439dd6f2c5751c830
+      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+    - sceneGUID: 04a7a2086b6700447b2d92cc9942e060
+      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+    - sceneGUID: 22f0bb388367f274cab4a32623f68c3f
+      profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
+    - sceneGUID: 8acbf794d4648a440b6df49ab877aa12
       profile: {fileID: 11400000, guid: 318cb32fcfd3532428dd3ebbf36cd53d, type: 2}
     serializedBakeSettings:
     - sceneGUID: fc1e6a0c2803d9444a02fce99b5b0fb2
@@ -241,6 +293,204 @@ MonoBehaviour:
           collisionMask:
             serializedVersion: 2
             m_Bits: 4294967291
+    - sceneGUID: 60608b3476f7cdd4c9fb178f4de8a626
+      settings:
+        m_Version: 1
+        dilationSettings:
+          enableDilation: 1
+          dilationDistance: 1
+          dilationValidityThreshold: 0.25
+          dilationIterations: 1
+          squaredDistWeighting: 1
+        virtualOffsetSettings:
+          useVirtualOffset: 1
+          outOfGeoOffset: 0.01
+          searchMultiplier: 0.2
+          rayOriginBias: -0.001
+          maxHitsPerRay: 10
+          collisionMask:
+            serializedVersion: 2
+            m_Bits: 4294967291
+    - sceneGUID: b20664e61ad5d9847bd29051ece19ffd
+      settings:
+        m_Version: 1
+        dilationSettings:
+          enableDilation: 1
+          dilationDistance: 1
+          dilationValidityThreshold: 0.25
+          dilationIterations: 1
+          squaredDistWeighting: 1
+        virtualOffsetSettings:
+          useVirtualOffset: 1
+          outOfGeoOffset: 0.01
+          searchMultiplier: 0.2
+          rayOriginBias: -0.001
+          maxHitsPerRay: 10
+          collisionMask:
+            serializedVersion: 2
+            m_Bits: 4294967291
+    - sceneGUID: 6ebf182b90a259e468645f3931de914b
+      settings:
+        m_Version: 1
+        dilationSettings:
+          enableDilation: 1
+          dilationDistance: 1
+          dilationValidityThreshold: 0.25
+          dilationIterations: 1
+          squaredDistWeighting: 1
+        virtualOffsetSettings:
+          useVirtualOffset: 1
+          outOfGeoOffset: 0.01
+          searchMultiplier: 0.2
+          rayOriginBias: -0.001
+          maxHitsPerRay: 10
+          collisionMask:
+            serializedVersion: 2
+            m_Bits: 4294967291
+    - sceneGUID: 17dd0fa30022b7244a8774b65f3b2944
+      settings:
+        m_Version: 1
+        dilationSettings:
+          enableDilation: 1
+          dilationDistance: 1
+          dilationValidityThreshold: 0.25
+          dilationIterations: 1
+          squaredDistWeighting: 1
+        virtualOffsetSettings:
+          useVirtualOffset: 1
+          outOfGeoOffset: 0.01
+          searchMultiplier: 0.2
+          rayOriginBias: -0.001
+          maxHitsPerRay: 10
+          collisionMask:
+            serializedVersion: 2
+            m_Bits: 4294967291
+    - sceneGUID: bff62dc65058be24881d24b3a2e64257
+      settings:
+        m_Version: 1
+        dilationSettings:
+          enableDilation: 1
+          dilationDistance: 1
+          dilationValidityThreshold: 0.25
+          dilationIterations: 1
+          squaredDistWeighting: 1
+        virtualOffsetSettings:
+          useVirtualOffset: 1
+          outOfGeoOffset: 0.01
+          searchMultiplier: 0.2
+          rayOriginBias: -0.001
+          maxHitsPerRay: 10
+          collisionMask:
+            serializedVersion: 2
+            m_Bits: 4294967291
+    - sceneGUID: ea0ae229dcdd6e3498ae0a28840ec656
+      settings:
+        m_Version: 1
+        dilationSettings:
+          enableDilation: 1
+          dilationDistance: 1
+          dilationValidityThreshold: 0.25
+          dilationIterations: 1
+          squaredDistWeighting: 1
+        virtualOffsetSettings:
+          useVirtualOffset: 1
+          outOfGeoOffset: 0.01
+          searchMultiplier: 0.2
+          rayOriginBias: -0.001
+          maxHitsPerRay: 10
+          collisionMask:
+            serializedVersion: 2
+            m_Bits: 4294967291
+    - sceneGUID: 041c9849c1427104ab78c9b4bb17050b
+      settings:
+        m_Version: 1
+        dilationSettings:
+          enableDilation: 1
+          dilationDistance: 1
+          dilationValidityThreshold: 0.25
+          dilationIterations: 1
+          squaredDistWeighting: 1
+        virtualOffsetSettings:
+          useVirtualOffset: 1
+          outOfGeoOffset: 0.01
+          searchMultiplier: 0.2
+          rayOriginBias: -0.001
+          maxHitsPerRay: 10
+          collisionMask:
+            serializedVersion: 2
+            m_Bits: 4294967291
+    - sceneGUID: 49f89fc7272946b439dd6f2c5751c830
+      settings:
+        m_Version: 1
+        dilationSettings:
+          enableDilation: 1
+          dilationDistance: 1
+          dilationValidityThreshold: 0.25
+          dilationIterations: 1
+          squaredDistWeighting: 1
+        virtualOffsetSettings:
+          useVirtualOffset: 1
+          outOfGeoOffset: 0.01
+          searchMultiplier: 0.2
+          rayOriginBias: -0.001
+          maxHitsPerRay: 10
+          collisionMask:
+            serializedVersion: 2
+            m_Bits: 4294967291
+    - sceneGUID: 04a7a2086b6700447b2d92cc9942e060
+      settings:
+        m_Version: 1
+        dilationSettings:
+          enableDilation: 1
+          dilationDistance: 1
+          dilationValidityThreshold: 0.25
+          dilationIterations: 1
+          squaredDistWeighting: 1
+        virtualOffsetSettings:
+          useVirtualOffset: 1
+          outOfGeoOffset: 0.01
+          searchMultiplier: 0.2
+          rayOriginBias: -0.001
+          maxHitsPerRay: 10
+          collisionMask:
+            serializedVersion: 2
+            m_Bits: 4294967291
+    - sceneGUID: 22f0bb388367f274cab4a32623f68c3f
+      settings:
+        m_Version: 1
+        dilationSettings:
+          enableDilation: 1
+          dilationDistance: 1
+          dilationValidityThreshold: 0.25
+          dilationIterations: 1
+          squaredDistWeighting: 1
+        virtualOffsetSettings:
+          useVirtualOffset: 1
+          outOfGeoOffset: 0.01
+          searchMultiplier: 0.2
+          rayOriginBias: -0.001
+          maxHitsPerRay: 10
+          collisionMask:
+            serializedVersion: 2
+            m_Bits: 4294967291
+    - sceneGUID: 8acbf794d4648a440b6df49ab877aa12
+      settings:
+        m_Version: 1
+        dilationSettings:
+          enableDilation: 1
+          dilationDistance: 1
+          dilationValidityThreshold: 0.25
+          dilationIterations: 1
+          squaredDistWeighting: 1
+        virtualOffsetSettings:
+          useVirtualOffset: 1
+          outOfGeoOffset: 0.01
+          searchMultiplier: 0.2
+          rayOriginBias: -0.001
+          maxHitsPerRay: 10
+          collisionMask:
+            serializedVersion: 2
+            m_Bits: 4294967291
     serializedBakingSets:
     - name: New Baking Set
       sceneGUIDs:
@@ -248,6 +498,17 @@ MonoBehaviour:
       - 59ff1647cd0086244944de8e56779763
       - 9b5aa6428ba7a6246bd201ba8d95cebe
       - de1f6b2146434174380e7e56fc69579a
+      - 60608b3476f7cdd4c9fb178f4de8a626
+      - b20664e61ad5d9847bd29051ece19ffd
+      - 6ebf182b90a259e468645f3931de914b
+      - 17dd0fa30022b7244a8774b65f3b2944
+      - bff62dc65058be24881d24b3a2e64257
+      - ea0ae229dcdd6e3498ae0a28840ec656
+      - 041c9849c1427104ab78c9b4bb17050b
+      - 49f89fc7272946b439dd6f2c5751c830
+      - 04a7a2086b6700447b2d92cc9942e060
+      - 22f0bb388367f274cab4a32623f68c3f
+      - 8acbf794d4648a440b6df49ab877aa12
       settings:
         m_Version: 1
         dilationSettings:

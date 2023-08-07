@@ -158,8 +158,8 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0.15
   m_SampleCount:
-    m_OverrideState: 1
-    m_Value: 8
+    m_OverrideState: 0
+    m_Value: 10
 --- !u!114 &114809940861631676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,10 +275,10 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 2
   upperHemisphereLuxValue:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   upperHemisphereLuxColor:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: {x: 0, y: 0, z: 0}
   desiredLuxValue:
     m_OverrideState: 0

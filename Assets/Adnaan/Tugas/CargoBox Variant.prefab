@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4208926911592559453
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1904518648626148886, guid: 512106e491fada34ea0bb1384949369b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2103
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904518648626148886, guid: 512106e491fada34ea0bb1384949369b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 199.89075
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904518648626148886, guid: 512106e491fada34ea0bb1384949369b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 111.05759
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904518648626148886, guid: 512106e491fada34ea0bb1384949369b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 556.49884
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904518648626148886, guid: 512106e491fada34ea0bb1384949369b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99961454
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904518648626148886, guid: 512106e491fada34ea0bb1384949369b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.027763613
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904518648626148886, guid: 512106e491fada34ea0bb1384949369b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904518648626148886, guid: 512106e491fada34ea0bb1384949369b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904518648626148886, guid: 512106e491fada34ea0bb1384949369b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -3.182
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904518648626148886, guid: 512106e491fada34ea0bb1384949369b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1904518648626148886, guid: 512106e491fada34ea0bb1384949369b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5348636621272855678, guid: 512106e491fada34ea0bb1384949369b,
+        type: 3}
+      propertyPath: m_Name
+      value: CargoBox Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 512106e491fada34ea0bb1384949369b, type: 3}
