@@ -26,6 +26,6 @@ MonoBehaviour:
   gunModel: {fileID: 2701606195766134439, guid: 961dc22c42a121947bbc3ec49241e150,
     type: 3}
   reloading: 0
-  currentAmmo: 0
+  currentAmmo: 7
   firing: {fileID: 0}
   reload: {fileID: 0}

@@ -41,10 +41,15 @@ public class PlayerPickup : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if ((_pickupLayer.value & (1 << collision.gameObject.layer)) != 0)
+        Collider[] collisions = Physics.OverlapSphere(transform.position, 1, _pickupLayer);
+        foreach (Collider col in collisions)
         {
-            Debug.Log("sip");
-            Item newItem = collision.gameObject.GetComponent<ItemObject>().item;
+            Item newItem = col.gameObject.GetComponent<ItemObject>().item;
+            if (newItem == null)
+            {
+                Debug.Log("No ItemObject component");
+                return;
+            }
 
             if (newItem.type != Item.Type.Consumables)
                 return;

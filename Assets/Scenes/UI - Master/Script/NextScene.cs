@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class NextScene : MonoBehaviour
 {
-   
     public void Menu()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
@@ -26,10 +25,10 @@ public class NextScene : MonoBehaviour
     }
 
 
-    public void Haykal()
-    {
-        SceneManager.LoadScene("Haykal");
-    }
+    //public void Haykal()
+    //{
+    //    SceneManager.LoadScene("Haykal");
+    //}
     public void Apartment()
     {
         SceneManager.LoadScene("Apartment");
@@ -39,14 +38,11 @@ public class NextScene : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+
     public void NC()
     {
         SceneManager.LoadScene("NC");
     }
-
-
-
-
    
     public void QuitGame()
     {
