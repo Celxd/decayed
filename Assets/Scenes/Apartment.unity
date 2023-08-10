@@ -21409,6 +21409,31 @@ PrefabInstance:
       propertyPath: field of view
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 2481231223362119587, guid: 709bf9574817a794dbbbecc32c3af55e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853277320135345670, guid: 709bf9574817a794dbbbecc32c3af55e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5583627292817516100, guid: 709bf9574817a794dbbbecc32c3af55e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6435650643652842631, guid: 709bf9574817a794dbbbecc32c3af55e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7472102945417308327, guid: 709bf9574817a794dbbbecc32c3af55e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8053733233086193122, guid: 709bf9574817a794dbbbecc32c3af55e,
         type: 3}
       propertyPath: m_LocalPosition.x

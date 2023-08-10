@@ -43,8 +43,10 @@ public class PlayerPickup : MonoBehaviour
     {
         if ((_pickupLayer.value & (1 << collision.gameObject.layer)) != 0)
         {
-            Debug.Log("sip");
             Item newItem = collision.gameObject.GetComponent<ItemObject>().item;
+
+            if (newItem == null)
+                return;
 
             if (newItem.type != Item.Type.Consumables)
                 return;

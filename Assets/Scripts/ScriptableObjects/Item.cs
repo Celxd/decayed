@@ -6,8 +6,8 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
     [Header("Info")]
-    [SerializeField] string id;
-    public string ID { get { return id; } }
+    //[SerializeField] string id;
+    //public string ID { get { return id; } }
     new public string name;
     public Type type;
     public Sprite icon;
@@ -16,7 +16,7 @@ public class Item : ScriptableObject
 
     protected virtual void OnValidate()
     {
-        string path = AssetDatabase.GetAssetPath(this);
-        id = AssetDatabase.GetAssetPath(this);
+        //string path = AssetDatabase.GetAssetPath(this);
+        //id = AssetDatabase.GetAssetPath(this);
     }
 }

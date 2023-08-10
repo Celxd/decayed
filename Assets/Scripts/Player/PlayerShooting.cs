@@ -209,11 +209,13 @@ public class PlayerShooting : MonoBehaviour
     {
         if(CanReload())
         {
-            float ammoLeft;
             currentWeapon.reloading = true;
+
             if (ammo != null)
                 ammo.text = "Reloading";
+
             yield return new WaitForSeconds(currentWeapon.reloadTime);
+
             //TODO: Make a function in WaitForSeconds that checks if gun is swapped (If true: cancel reload)
             currentWeapon.currentAmmo = currentAmmo.restorePoint;
             currentAmmo.stack -= 1;

@@ -40,15 +40,21 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(Consumables newItem)
     {
-        string newItemID = newItem.ID;
+        //string newItemID = newItem.ID;
 
         foreach (Consumables item in items)
         {
             if (item == null)
                 break;
 
-            if (item.ID != newItemID)
+            if (item.consumeType != newItem.consumeType)
                 break;
+
+            if (newItem.consumeType == ConsumeType.Ammo)
+            {
+                if (item.ammoType != newItem.ammoType)
+                    break;
+            }
 
             item.stack += newItem.stack;
 
@@ -82,8 +88,11 @@ public class Inventory : MonoBehaviour
             if (item == null)
                 break;
 
-            if (item.ID != currentConsum.ID)
-                break;
+            if (currentConsum.consumeType == ConsumeType.Ammo)
+            {
+                if (item.ammoType != currentConsum.ammoType)
+                    break;
+            }
 
             if (item.stack - 1 <= 0)
                 items.Remove(item);
