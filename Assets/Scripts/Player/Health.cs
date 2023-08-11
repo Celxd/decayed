@@ -12,9 +12,11 @@ public class Health : MonoBehaviour
     [SerializeField] Slider healthSlider;
     [SerializeField] Slider hungerSlider;
     [SerializeField] float maxHealth = 100;
+    [HideInInspector] public float MaxHealth { get { return maxHealth; } }
     [SerializeField] float maxHunger = 100;
-    private float currentHealth;
-    private float currentHunger;
+    float currentHealth;
+    public float CurrentHealth { get { return currentHealth; } }
+    float currentHunger;
 
     public float hungerRate = 1f;
 
@@ -43,6 +45,13 @@ public class Health : MonoBehaviour
             currentHunger = 0f;
         }
     }
+    public void AddHunger(float food)
+    {
+        currentHunger += food;
+        currentHunger = Mathf.Clamp(currentHunger, 0f, maxHunger);
+
+        UpdateHealthUI();
+    }
 
     public void TakeDamage(float damage)
     {
@@ -51,6 +60,14 @@ public class Health : MonoBehaviour
 
         if (currentHealth <= 0)
             Die();
+
+        UpdateHealthUI();
+    }
+
+    public void Heal(float med)
+    {
+        currentHealth += med;
+        currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
 
         UpdateHealthUI();
     }
