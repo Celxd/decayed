@@ -9,6 +9,11 @@ public class LoadingScreen : MonoBehaviour
     public GameObject loadingPanel;
     public Slider loadingBar;
 
+    private void Awake()
+    {
+        Time.timeScale = 1;
+    }
+
     public void LoadLevel(string levelName)
     {
         StartCoroutine(LoadSceneAsync(levelName));

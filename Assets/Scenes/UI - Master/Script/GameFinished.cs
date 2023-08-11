@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameFinished : MonoBehaviour
 {
-    public float panelDelay = 2f;
+    public float panelDelay;
     public GameObject finishPanel; 
 
     private bool gameFinished = false;

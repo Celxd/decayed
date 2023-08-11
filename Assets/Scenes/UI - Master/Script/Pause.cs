@@ -16,7 +16,7 @@ public class PauseMenu : MonoBehaviour
     private bool isCameraPaused = false;
     private Rigidbody playerRigidbody;
 
-    private void Start()
+    private void Awake()
     {
         playerRigidbody = player.GetComponent<Rigidbody>();
     }

@@ -5977,7 +5977,47 @@ PrefabInstance:
     - target: {fileID: 205406021266263662, guid: bd194042cac06454c80ba292b9cde37b,
         type: 3}
       propertyPath: m_Size
-      value: 0.2
+      value: 13.129084
+      objectReference: {fileID: 0}
+    - target: {fileID: 205406021266263662, guid: bd194042cac06454c80ba292b9cde37b,
+        type: 3}
+      propertyPath: m_LocalReferencePoint.x
+      value: -0.30004883
+      objectReference: {fileID: 0}
+    - target: {fileID: 205406021266263662, guid: bd194042cac06454c80ba292b9cde37b,
+        type: 3}
+      propertyPath: m_LocalReferencePoint.y
+      value: 1.1762853
+      objectReference: {fileID: 0}
+    - target: {fileID: 205406021266263662, guid: bd194042cac06454c80ba292b9cde37b,
+        type: 3}
+      propertyPath: m_LocalReferencePoint.z
+      value: 1.4781976
+      objectReference: {fileID: 0}
+    - target: {fileID: 205406021266263662, guid: bd194042cac06454c80ba292b9cde37b,
+        type: 3}
+      propertyPath: m_LODs.Array.data[0].renderers.Array.data[0].renderer
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 205406021266263662, guid: bd194042cac06454c80ba292b9cde37b,
+        type: 3}
+      propertyPath: m_LODs.Array.data[1].renderers.Array.data[0].renderer
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 205406021266263662, guid: bd194042cac06454c80ba292b9cde37b,
+        type: 3}
+      propertyPath: m_LODs.Array.data[2].renderers.Array.data[0].renderer
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 205406021266263662, guid: bd194042cac06454c80ba292b9cde37b,
+        type: 3}
+      propertyPath: m_LODs.Array.data[3].renderers.Array.data[0].renderer
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 205406021266263662, guid: bd194042cac06454c80ba292b9cde37b,
+        type: 3}
+      propertyPath: m_LODs.Array.data[4].renderers.Array.data[0].renderer
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -22140,6 +22180,26 @@ PrefabInstance:
     - target: {fileID: 4061734983944238, guid: 3e9677df47c08d440acd40f8208e28cd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 86.270004
+      objectReference: {fileID: 0}
+    - target: {fileID: 205193118760274716, guid: 3e9677df47c08d440acd40f8208e28cd,
+        type: 3}
+      propertyPath: m_Size
+      value: 58.621506
+      objectReference: {fileID: 0}
+    - target: {fileID: 205193118760274716, guid: 3e9677df47c08d440acd40f8208e28cd,
+        type: 3}
+      propertyPath: m_LocalReferencePoint.x
+      value: -2.2478037
+      objectReference: {fileID: 0}
+    - target: {fileID: 205193118760274716, guid: 3e9677df47c08d440acd40f8208e28cd,
+        type: 3}
+      propertyPath: m_LocalReferencePoint.y
+      value: -1.216383
+      objectReference: {fileID: 0}
+    - target: {fileID: 205193118760274716, guid: 3e9677df47c08d440acd40f8208e28cd,
+        type: 3}
+      propertyPath: m_LocalReferencePoint.z
+      value: 7.001528
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 64143589079594420, guid: 3e9677df47c08d440acd40f8208e28cd, type: 3}
