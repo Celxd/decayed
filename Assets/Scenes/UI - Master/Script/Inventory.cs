@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class inventory : MonoBehaviour
+public class InventoryMenu : MonoBehaviour
 {
     public GameObject Inventorypanel;
     bool isPaused = false;
