@@ -25,7 +25,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: KB3D_MIL_ConcreteA_basecolor
   m_Shader: {fileID: 4800000, guid: 6e4ae4064600d784cac1e41a9e6f2e59, type: 3}
-  m_Parent: {fileID: 2100000, guid: d30b9d0ed5d95fb43a399840918b4ca5, type: 2}
+  m_Parent: {fileID: 2100000, guid: a0f4b6e9fc7e34d41898a2f9f439b04b, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _DISABLE_SSR_TRANSPARENT
