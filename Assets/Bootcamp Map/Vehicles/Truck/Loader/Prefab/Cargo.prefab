@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8383559502523742463}
   - component: {fileID: 4533909706440761157}
   - component: {fileID: 953321777689159960}
-  - component: {fileID: 2369877668696662078}
+  - component: {fileID: 6158172266472605637}
   m_Layer: 0
   m_Name: Cargo
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4533909706440761157
 MeshFilter:
@@ -85,8 +85,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2369877668696662078
-MeshCollider:
+--- !u!65 &6158172266472605637
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -103,7 +103,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8295922049011600888, guid: c44c1df00a3cb224c9df488444a9aff4, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 2.7551718, y: 1.7557644, z: 4.5528398}
+  m_Center: {x: 0.23278144, y: 0.98842126, z: 0.014435893}

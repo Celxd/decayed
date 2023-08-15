@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 2743910161242832952, guid: 9fbcf2e77b06b5d4388749e28b9906b0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2743910161242832952, guid: 9fbcf2e77b06b5d4388749e28b9906b0,
         type: 3}
@@ -68,7 +68,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Truck Variant 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 581320212149507868, guid: 9fbcf2e77b06b5d4388749e28b9906b0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2743910161242832952, guid: 9fbcf2e77b06b5d4388749e28b9906b0,
@@ -91,6 +92,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3054315142957662096}
     m_Modifications:
+    - target: {fileID: 2476682168660996305, guid: fac142c7ec0ce14419cdda30c2272ad6,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 13.515832
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476682168660996305, guid: fac142c7ec0ce14419cdda30c2272ad6,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 5.340232
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476682168660996305, guid: fac142c7ec0ce14419cdda30c2272ad6,
+        type: 3}
+      propertyPath: m_Center.x
+      value: 2.371292
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476682168660996305, guid: fac142c7ec0ce14419cdda30c2272ad6,
+        type: 3}
+      propertyPath: m_Center.y
+      value: -0.3511728
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476682168660996305, guid: fac142c7ec0ce14419cdda30c2272ad6,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.000000003377464
+      objectReference: {fileID: 0}
     - target: {fileID: 2798156276447204566, guid: fac142c7ec0ce14419cdda30c2272ad6,
         type: 3}
       propertyPath: m_RootOrder

@@ -17,27 +17,8 @@ public class HintProximity : MonoBehaviour
     private bool isTimeFrozen = false;
     private Cinemachine.CinemachineBrain cinemachineBrain;
 
-    private void Start()
-    {
-        panel.SetActive(false);
-        hidden.SetActive(false); // Hide the 'hidden' game object initially
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        cinemachineBrain = Camera.main.GetComponent<Cinemachine.CinemachineBrain>();
-        SceneManager.sceneUnloaded += OnSceneChange;
-    }
 
-    private void OnDestroy()
-    {
-        SceneManager.sceneUnloaded -= OnSceneChange;
-    }
 
-    private void OnSceneChange(Scene scene)
-    {
-        ResumeTime();
-        UnlockCursor();
-        ResumeCameraMovement();
-    }
 
     private void Update()
     {
@@ -54,41 +35,69 @@ public class HintProximity : MonoBehaviour
             panel.SetActive(false);
         }
 
+        //if (isPlayerInRange && Input.GetKeyDown(KeyCode.F))
+        //{
+        //    if (isPanelActive)
+        //    {
+        //        panel.SetActive(false);
+        //        hidden.SetActive(false);
+                
+        //        //FreezeTime();
+        //        UnlockCursor();
+        //        ResumeCameraMovement();
+        //        StopPlayable();
+        //        //StartCoroutine(ShowHiddenDelayed());
+        //        playableDirector.Play();
+        //        isPanelActive = false;
+        //        Debug.Log("true");
+        //    }
+        //    else
+        //    {
+        //        hidden.SetActive(false);
+        //        UnlockCursor();
+        //        ResumeTime();
+        //        ResumeCameraMovement();
+        //        isPanelActive = true;
+        //        Debug.Log("false");
+        //    }
+
+        //}
+
         if (isPlayerInRange && Input.GetKeyDown(KeyCode.F))
         {
             if (isPanelActive)
             {
-                panel.SetActive(false);
-                hidden.SetActive(true);
-                isPanelActive = true;
-                FreezeTime();
+                hidden.SetActive(false);
+                isPanelActive = false;
                 LockCursor(); // Lock the cursor when the hidden object is shown
-                PauseCameraMovement();
+                ResumeTime();
+                ResumeCameraMovement();
                 StopPlayable();
             }
             else
             {
-                UnlockCursor();
                 panel.SetActive(false);
-                hidden.SetActive(true);
+                //hidden.SetActive(true);
                 isPanelActive = true;
                 playableDirector.Play();
                 StartCoroutine(ShowHiddenDelayed());
+                ResumeTime();
+                ResumeCameraMovement();
             }
         }
 
-        if (isPanelActive && Input.GetKeyDown(KeyCode.F))
-        {
-            hidden.SetActive(false);
-            UnlockCursor(); // Unlock the cursor when hiding the hidden object
-            ResumeTime();
-            ResumeCameraMovement();
-        }
+        //if (isPanelActive && Input.GetKeyDown(KeyCode.F))
+        //{
+        //    hidden.SetActive(false);
+        //    UnlockCursor();
+        //    ResumeTime();
+        //    ResumeCameraMovement();
+        //}
     }
 
     private IEnumerator ShowHiddenDelayed()
     {
-        yield return new WaitForSeconds(2f); // Adjust the delay duration as needed
+        yield return new WaitForSeconds(2f); 
         hidden.SetActive(true);
     }
 
