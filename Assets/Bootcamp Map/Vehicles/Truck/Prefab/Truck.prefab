@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 2743910161242832952}
   - component: {fileID: 3977825979097772021}
   - component: {fileID: 4943659239734239139}
-  - component: {fileID: 581320212149507868}
+  - component: {fileID: 1313049600481643913}
   m_Layer: 0
   m_Name: Truck
   m_TagString: Untagged
@@ -208,7 +208,7 @@ Transform:
   - {fileID: 4860672759246892387}
   - {fileID: 414664948554513028}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3977825979097772021
 MeshFilter:
@@ -263,8 +263,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &581320212149507868
-MeshCollider:
+--- !u!65 &1313049600481643913
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -281,10 +281,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8295922049011600888, guid: e052307c598462d4995e909abcff94af, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 11.517218, y: 3.4696789, z: 3.5724788}
+  m_Center: {x: -2.3299303, y: 1.7348394, z: 0.030826747}
 --- !u!1 &4300214068269078775
 GameObject:
   m_ObjectHideFlags: 0
