@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9ec07430426d6c4b9650aabb8d902f1, type: 3}
   m_Name: Pistol Ammo
   m_EditorClassIdentifier: 
-  id: Assets/Scripts/Items/Consumeables/Ammo/Pistol Ammo.asset
   name: Pistol Ammo
   type: 1
   icon: {fileID: 21300000, guid: b74f3a256f8330a419dd3772eae2db1d, type: 3}
   stack: 1
+  model: {fileID: 376993111169973633, guid: 5d5bbfb20bbd1f946bfcc479bfa50f59, type: 3}
   consumeType: 0
   restorePoint: 10
   ammoType: 1

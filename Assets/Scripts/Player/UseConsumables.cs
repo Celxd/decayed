@@ -6,10 +6,12 @@ public class UseConsumables : MonoBehaviour
 {
     //Anggap aja class ini ada di player
     Health m_health;
+    Inventory _inventory;
 
     private void Awake()
     {
         m_health = GetComponent<Health>();
+        _inventory = GetComponent<Inventory>();
     }
 
     public void UseMedkit(Consumables med)
@@ -22,9 +24,7 @@ public class UseConsumables : MonoBehaviour
 
         m_health.Heal(med.restorePoint);
 
-        //remove object using inventory.RemoveItem(med)
-        //but since we dont actually know where we're gonna put this I wont write it
-        //Same with other functions
+        _inventory.RemoveItem(med);
     }
 
     public void UseFood(Consumables food)
@@ -33,7 +33,17 @@ public class UseConsumables : MonoBehaviour
             return;
 
         m_health.AddHunger(food.restorePoint);
+
+        _inventory.RemoveItem(food);
     }
 
-    //yaudahla yah thirst juga sama
+    public void UseDrink(Consumables food)
+    {
+        if (food.consumeType != ConsumeType.Beverage)
+            return;
+
+        m_health.AddThirst(food.restorePoint);
+
+        _inventory.RemoveItem(food);
+    }
 }

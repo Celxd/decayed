@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4357953090385290833}
   - component: {fileID: 1127761904988182753}
   - component: {fileID: -3151720803795165555}
+  - component: {fileID: -6791752671895033618}
   m_Layer: 3
   m_Name: Can Food
   m_TagString: Untagged
@@ -133,3 +134,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.021209488, y: 0.021207811, z: 0.019999998}
   m_Center: {x: 0, y: 0.0000016740521, z: 0.0000051818784}
+--- !u!114 &-6791752671895033618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7638700267890378652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e004416ba714a447aa49ad301cccf93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 29f8adf7bf6cd37479d41744d820588a, type: 2}

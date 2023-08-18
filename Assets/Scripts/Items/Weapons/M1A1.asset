@@ -18,7 +18,7 @@ MonoBehaviour:
   weaponType: 5
   weaponCategory: 0
   ammoType: 5
-  fireRate: 350
+  fireRate: 600
   range: 150
   magSize: 30
   reloadTime: 2.1

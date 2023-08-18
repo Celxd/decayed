@@ -42,6 +42,7 @@ public class PlayerPickup : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Collider[] collisions = Physics.OverlapSphere(transform.position, 1, _pickupLayer);
+        Debug.Log(collisions);
         foreach (Collider col in collisions)
         {
             Item newItem = col.gameObject.GetComponent<ItemObject>().item;
@@ -55,7 +56,7 @@ public class PlayerPickup : MonoBehaviour
                 return;
 
             _inventory.AddItem(newItem as Consumables);
-            Destroy(collision.gameObject);
+            Destroy(col.gameObject);
             _playerShooting.InitWeapon();
         }
     }

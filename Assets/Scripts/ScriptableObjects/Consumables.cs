@@ -7,6 +7,7 @@ public class Consumables : Item
 {
     [Header("Additional Info")]
     public float stack;
+    public GameObject model;
 
     [Header("Type and Restore Point")]
     public ConsumeType consumeType;
