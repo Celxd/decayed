@@ -1,11 +1,26 @@
+using Cinemachine;
+using System.Collections;
 using UnityEngine;
 
 public class InventoryMenu : MonoBehaviour
 {
     public GameObject Inventorypanel;
+
+    GameObject _player;
     bool isPaused = false;
     CursorLockMode previousLockState;
     bool previousCursorVisibility;
+    CinemachineBrain _cam;
+    CinemachinePOV _pov;
+    float _xAxis, _yAxis;
+    Quaternion _rot;
+
+    private void Awake()
+    {
+        _player = GameObject.Find("Player");
+        _cam = GameObject.Find("Player").GetComponentInChildren<CinemachineBrain>();
+        _pov = GameObject.Find("PlayerCam").GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachinePOV>();
+    }
 
     void Update()
     {
@@ -15,25 +30,50 @@ public class InventoryMenu : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if (isPaused)
+        {
+            _player.transform.rotation = _rot;
+        }
+    }
+
     public void TogglePause()
     {
         isPaused = !isPaused;
         Inventorypanel.SetActive(isPaused);
-        Time.timeScale = isPaused ? 0 : 1;
+        
 
-        if (isPaused)
+        if (isPaused) //Pausing
         {
             SaveCursorSettings();
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            _cam.enabled = false;
+            StartCoroutine(FreezeRot());
         }
-        else
+        else //Resume
         {
             Inventorypanel.SetActive(false);
             Time.timeScale = 1;
             RestoreCursorSettings();
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            _cam.enabled = true;
+            StopCoroutine(FreezeRot());
+            //_pov.m_HorizontalAxis.Value = _xAxis;
+            //_pov.m_VerticalAxis.Value = _yAxis;
+        }
+        Time.timeScale = isPaused ? 0 : 1;
+    }
+
+    IEnumerator FreezeRot()
+    {
+        while(true)
+        {
+            _player.transform.rotation = _rot;
+
+            yield return new WaitForSecondsRealtime(0.001f);
         }
     }
 
@@ -41,6 +81,7 @@ public class InventoryMenu : MonoBehaviour
     {
         previousLockState = Cursor.lockState;
         previousCursorVisibility = Cursor.visible;
+        _rot = _player.transform.rotation;
     }
 
     private void RestoreCursorSettings()

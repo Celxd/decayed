@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class WaterScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject Player;
+    public Collider WaterCollider;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.gameObject == Player)
+        {
+            Health healthScript = Player.GetComponent<Health>();
+            if (healthScript != null)
+            {
+                healthScript.TakeDamage(10f);
+            }
+        }
     }
 }
