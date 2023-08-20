@@ -101,6 +101,16 @@ public class Inventory : MonoBehaviour
 
             return;
         }
+
+        for (int i = 0; i < slotsUI.Length; i++)
+        {
+            InventorySlot slot = slotsUI[i];
+            InventoryItem slotItem = slot.GetComponentInChildren<InventoryItem>();
+
+            if (slotItem.currentItem == currentConsum)
+                Destroy(slot.transform.GetChild(0).gameObject);
+        }
+
     }
 
     public List<Consumables> GetAllItems()

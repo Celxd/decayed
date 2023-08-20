@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 10.176, y: -57.674, z: 0.017}
 --- !u!114 &3301313467658440587
 MonoBehaviour:
@@ -53,5 +53,5 @@ MonoBehaviour:
   m_spawnPoints:
   - {fileID: 0}
   m_spawnInterval: 10
-  m_checkRadius: 70
-  m_countLimit: 4
+  m_checkRadius: 15
+  m_countLimit: 3

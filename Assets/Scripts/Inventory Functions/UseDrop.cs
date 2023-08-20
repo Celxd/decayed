@@ -54,8 +54,7 @@ public class UseDrop : MonoBehaviour
     void Drop(Consumables item, GameObject itemSlot)
     {
         _inventory.RemoveItem(item);
-
-        GameObject spawn = Instantiate(item.model, _player.transform.position + (_player.transform.forward * 2), _player.transform.rotation);
         Destroy(itemSlot);
+        GameObject spawn = Instantiate(item.model, _player.transform.position + (_player.transform.forward * 2), _player.transform.rotation);
     }
 }

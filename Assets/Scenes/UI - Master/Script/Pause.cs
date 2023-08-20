@@ -2,134 +2,64 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cinemachine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class PauseMenu : MonoBehaviour
 {
-    public GameObject pausePanel;
-    public CinemachineVirtualCamera playerCamera;
-    public GameObject panelParent; // Input field for the parent GameObject
-    public GameObject player;
-    private bool isPaused = false;
-    private CursorLockMode previousLockState;
-    private bool previousCursorVisibility;
-    private float previousTimeScale;
-    private bool isCameraPaused = false;
-    private Rigidbody playerRigidbody;
+    [SerializeField] GameObject pausePanel;
+    [SerializeField] GameObject _player;
+    CinemachineBrain _cam;
+    bool isPaused = false;
+    Quaternion _rot;
 
     private void Awake()
     {
-        playerRigidbody = player.GetComponent<Rigidbody>();
+        _player = GameObject.Find("Player");
+        _cam = _player.GetComponentInChildren<CinemachineBrain>();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
             TogglePause();
-        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (isPaused)
+            _player.transform.rotation = _rot;
     }
 
     public void TogglePause()
     {
-        isPaused = !isPaused;
-
-        if (isPaused)
+        if (!isPaused)
         {
-            SaveCursorSettings();
-            previousTimeScale = Time.timeScale;
-            Time.timeScale = 0;
-
             if (pausePanel != null)
-            {
                 pausePanel.SetActive(true);
-            }
 
-            if (panelParent != null)
-            {
-                panelParent.SetActive(true);
-            }
-
+            _cam.enabled = false;
+            Time.timeScale = 0;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            _rot = _player.transform.rotation;
 
-            if (playerRigidbody != null)
-            {
-                playerRigidbody.isKinematic = true;
-            }
-
-            if (playerCamera != null)
-            {
-                PauseCameraMovement();
-            }
+            isPaused = true;
+            StartCoroutine(FreezeRot());
         }
         else
         {
-            Time.timeScale = previousTimeScale;
-
             if (pausePanel != null)
-            {
                 pausePanel.SetActive(false);
-            }
 
-            if (panelParent != null)
-            {
-             
-                panelParent.SetActive(false);
-            }
+            _cam.enabled = true;
+            Time.timeScale = 1f;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            
+            StopCoroutine(FreezeRot());
 
-            RestoreCursorSettings();
-
-            if (playerRigidbody != null)
-            {
-                playerRigidbody.isKinematic = false;
-            }
-
-            if (playerCamera != null)
-            {
-                ResumeCameraMovement();
-            }
+            isPaused = false;
         }
-    }
-
-
-    private void SaveCursorSettings()
-    {
-        previousLockState = Cursor.lockState;
-        previousCursorVisibility = Cursor.visible;
-    }
-
-    private void RestoreCursorSettings()
-    {
-        Cursor.lockState = previousLockState;
-        Cursor.visible = previousCursorVisibility;
-    }
-
-    private void PauseCameraMovement()
-    {
-        if (playerCamera != null)
-        {
-            playerCamera.enabled = false;
-            isCameraPaused = true;
-        }
-    }
-
-    private void ResumeCameraMovement()
-    {
-        if (playerCamera != null && isCameraPaused)
-        {
-            playerCamera.enabled = true;
-            isCameraPaused = false;
-        }
-    }
-
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -137,17 +67,18 @@ public class PauseMenu : MonoBehaviour
         if (!isPaused)
         {
             Time.timeScale = 1f;
-            RestoreCursorSettings();
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
 
-            if (playerRigidbody != null)
-            {
-                playerRigidbody.isKinematic = false;
-            }
+    IEnumerator FreezeRot()
+    {
+        while (true)
+        {
+            _player.transform.rotation = _rot;
 
-            if (playerCamera != null)
-            {
-                ResumeCameraMovement();
-            }
+            yield return new WaitForSecondsRealtime(0.001f);
         }
     }
 }

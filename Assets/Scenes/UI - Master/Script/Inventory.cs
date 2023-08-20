@@ -11,15 +11,12 @@ public class InventoryMenu : MonoBehaviour
     CursorLockMode previousLockState;
     bool previousCursorVisibility;
     CinemachineBrain _cam;
-    CinemachinePOV _pov;
-    float _xAxis, _yAxis;
     Quaternion _rot;
 
     private void Awake()
     {
         _player = GameObject.Find("Player");
         _cam = GameObject.Find("Player").GetComponentInChildren<CinemachineBrain>();
-        _pov = GameObject.Find("PlayerCam").GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachinePOV>();
     }
 
     void Update()
@@ -42,7 +39,6 @@ public class InventoryMenu : MonoBehaviour
     {
         isPaused = !isPaused;
         Inventorypanel.SetActive(isPaused);
-        
 
         if (isPaused) //Pausing
         {
@@ -61,8 +57,6 @@ public class InventoryMenu : MonoBehaviour
             Cursor.visible = false;
             _cam.enabled = true;
             StopCoroutine(FreezeRot());
-            //_pov.m_HorizontalAxis.Value = _xAxis;
-            //_pov.m_VerticalAxis.Value = _yAxis;
         }
         Time.timeScale = isPaused ? 0 : 1;
     }
