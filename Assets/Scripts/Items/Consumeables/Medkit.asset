@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9ec07430426d6c4b9650aabb8d902f1, type: 3}
   m_Name: Medkit
   m_EditorClassIdentifier: 
-  id: Assets/Scripts/Items/Consumeables/Medkit.asset
   name: Medkit
   type: 1
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: dc36a404c49556841a6e4de008468151, type: 3}
   stack: 1
+  model: {fileID: 2949849027851860091, guid: dbe7912038dde774ebd36e0691ba91dc, type: 3}
   consumeType: 3
   restorePoint: 50
   ammoType: 0

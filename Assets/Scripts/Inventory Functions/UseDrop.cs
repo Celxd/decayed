@@ -8,21 +8,23 @@ public class UseDrop : MonoBehaviour
     Consumables _item;
     UseConsumables _use;
     Inventory _inventory;
+    GameObject _itemUI;
 
     private void Awake()
     {
         _player = GameObject.Find("Player");
         _use = _player.GetComponent<UseConsumables>();
         _inventory = _player.GetComponent<Inventory>();
-        _item = transform.parent.GetComponentInParent<InventoryItem>().currentItem;
+        _itemUI = transform.parent.transform.parent.gameObject;
+        _item = _itemUI.GetComponent<InventoryItem>().currentItem;
     }
 
     public void OnUse()
     {
-        Use(_item);
+        Use(_item, _itemUI);
     }
 
-    void Use(Consumables item)
+    void Use(Consumables item, GameObject itemSlot)
     {
         if (item.consumeType == ConsumeType.Ammo)
             return;
@@ -41,19 +43,19 @@ public class UseDrop : MonoBehaviour
         }
 
         _inventory.RemoveItem(item);
+        Destroy(itemSlot);
     }
 
     public void OnDrop()
     {
-        Debug.Log("drop");
-        Drop(_item);
+        Drop(_item, _itemUI);
     }
 
-    void Drop(Consumables item)
+    void Drop(Consumables item, GameObject itemSlot)
     {
         _inventory.RemoveItem(item);
 
         GameObject spawn = Instantiate(item.model, _player.transform.position + (_player.transform.forward * 2), _player.transform.rotation);
-        Destroy(transform.parent.transform.parent.gameObject);
+        Destroy(itemSlot);
     }
 }

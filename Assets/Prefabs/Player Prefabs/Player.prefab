@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 4853277320135345670}
   - component: {fileID: 8071087906481893142}
   - component: {fileID: 7585207377107802010}
+  - component: {fileID: 3608524863196733814}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -108,7 +109,7 @@ Transform:
   - {fileID: 8053733233086193122}
   - {fileID: 6616798738985510624}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3839553971242850515
 MeshFilter:
@@ -137,10 +138,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.3581425
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0.0000000029114817, y: 0, z: -0.14185752}
 --- !u!143 &4024234091476289348
 CharacterController:
   m_ObjectHideFlags: 0
@@ -166,7 +167,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.001
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: -0.13}
 --- !u!114 &1990396671416628600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,8 +277,8 @@ MonoBehaviour:
     type: 3}
   adsPosition: {fileID: 5713806832951427868}
   weaponHolder: {fileID: 1110276659574277479}
-  recoilX: 25
-  recoilY: 60
+  recoilX: 15
+  recoilY: 30
   maxRecoilTime: 5.47
   zoomRatio: 2
   aimAnimationSpeed: 10
@@ -302,7 +303,31 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f00186eff19b72f4cab7cffcdc7daa30, type: 2}
   hand: {fileID: 11400000, guid: f00186eff19b72f4cab7cffcdc7daa30, type: 2}
   items: []
-  slotsUI: []
+  slotsUI:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   inventoryItemPrefab: {fileID: 4655182859783634851, guid: badc3434b71b8a74294ef1700844f973,
     type: 3}
 --- !u!114 &4556688817233760421
@@ -462,6 +487,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   footstepsSound: {fileID: 8071087906481893142}
   speedMultiplier: 1.5
+--- !u!114 &3608524863196733814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313189680460650187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb2ded4613bb5574ea8394bb385f074b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1362559151266600897
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,7 +590,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6033527708140867285}
-  m_LocalRotation: {x: -0, y: -0.8412633, z: 0, w: 0.5406257}
+  m_LocalRotation: {x: -0.0066317064, y: 0.012238443, z: 0.00008116942, w: 0.9999032}
   m_LocalPosition: {x: 0, y: 0.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

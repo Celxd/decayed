@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Chocolate Bar
   type: 1
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 325eb469d0e00724dbb50e6ff1e8ccdd, type: 3}
   stack: 1
   model: {fileID: 7649202562087859110, guid: cd550d056f39cd2449997933d12acdd4, type: 3}
   consumeType: 1

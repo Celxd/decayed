@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Canned Food
   type: 1
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 0750ac5af44d3814086d70136c0f8716, type: 3}
   stack: 1
   model: {fileID: 7638700267890378652, guid: f3499ea44d90c8b409dff3b51283b81b, type: 3}
   consumeType: 1

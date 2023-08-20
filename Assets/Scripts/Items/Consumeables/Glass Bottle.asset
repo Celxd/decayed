@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9ec07430426d6c4b9650aabb8d902f1, type: 3}
   m_Name: Glass Bottle
   m_EditorClassIdentifier: 
-  name: 
-  type: 0
-  icon: {fileID: 0}
-  stack: 0
-  model: {fileID: 0}
-  consumeType: 0
-  restorePoint: 0
+  name: Glass Bottle
+  type: 1
+  icon: {fileID: 21300000, guid: a8522b56395660446910848abd4c2203, type: 3}
+  stack: 1
+  model: {fileID: 8847174285031163443, guid: e97225d6af65a564e95040108d5ba210, type: 3}
+  consumeType: 2
+  restorePoint: 20
   ammoType: 0
