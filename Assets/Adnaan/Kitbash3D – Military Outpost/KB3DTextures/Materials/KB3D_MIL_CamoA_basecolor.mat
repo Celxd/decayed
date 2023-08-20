@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: KB3D_MIL_CamoA_basecolor
   m_Shader: {fileID: 4800000, guid: 6e4ae4064600d784cac1e41a9e6f2e59, type: 3}
-  m_Parent: {fileID: 2100000, guid: e31c5d5cbd1be9e4ea27998a30e64abf, type: 2}
+  m_Parent: {fileID: 2100000, guid: 6759a867a82f7f645b5b34783a7881a3, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _DISABLE_SSR_TRANSPARENT

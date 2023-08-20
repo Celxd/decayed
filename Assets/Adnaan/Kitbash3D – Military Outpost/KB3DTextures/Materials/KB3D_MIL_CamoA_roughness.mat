@@ -25,7 +25,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: KB3D_MIL_CamoA_roughness
   m_Shader: {fileID: 4800000, guid: 6e4ae4064600d784cac1e41a9e6f2e59, type: 3}
-  m_Parent: {fileID: 2100000, guid: 71c02729b758f1c4b82791bf53fef011, type: 2}
+  m_Parent: {fileID: 2100000, guid: 342500ce7e00bc44d9ef6dd9cf226cce, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _DISABLE_SSR_TRANSPARENT
