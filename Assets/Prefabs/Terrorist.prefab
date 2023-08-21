@@ -2616,7 +2616,7 @@ Transform:
   - {fileID: 7765370295307389145}
   - {fileID: 148626385840343344}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 3.898, z: 0}
 --- !u!95 &888629995586438945
 Animator:
@@ -2722,11 +2722,12 @@ MonoBehaviour:
   m_Player: {fileID: 0}
   m_AnimManager: {fileID: 0}
   m_KillCountManager: {fileID: 0}
+  m_audio: {fileID: 8498520060301285282}
   m_AttackRange: 40
   health: 100
   m_PlayerInAttack: 0
   m_FOV: {fileID: 0}
-  m_Inaccuracy: 0.04
+  m_Inaccuracy: 0.1
   m_WalkPoint: {x: 0, y: 0, z: 0}
   m_WalkPointSet: 0
   m_WalkPointRange: 0
@@ -2776,11 +2777,11 @@ AudioSource:
   m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9b21f5b93b74c504db927a2e8fec9afc, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 013ce81bd5ce40446b0f68e8f36e38c7, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2822,7 +2823,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

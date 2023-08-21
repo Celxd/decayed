@@ -7,6 +7,7 @@ public class EnemyAttackingState : EnemyBaseState
     float timer;
     Vector3 head;
     float diTimer = 0f;
+    float cdShoot;
     public override void StartState(Enemy enemy)
     {
         enemy.LookDir(enemy.m_Player);
@@ -16,6 +17,8 @@ public class EnemyAttackingState : EnemyBaseState
         enemy.m_AnimManager.Idle();
 
         head = enemy.transform.Find("Head").transform.position;
+
+        cdShoot = 0.5f;
     }
 
     public override void UpdateState(Enemy enemy)
@@ -27,23 +30,34 @@ public class EnemyAttackingState : EnemyBaseState
         target += Random.insideUnitSphere * enemy.m_Inaccuracy;
 
         Debug.DrawRay(head, target);
-        if (Physics.Raycast(head, target, out RaycastHit hit , enemy.m_AttackRange))
+
+        if(cdShoot == 0)
         {
-            if ((enemy.m_PlayerLayer.value & (1 << hit.transform.gameObject.layer)) != 0)
+            enemy.m_audio.Play();
+            if (Physics.Raycast(head, target, out RaycastHit hit, enemy.m_AttackRange))
             {
-                enemy.m_Player.gameObject.GetComponent<Health>().TakeDamage(2);
-                if (diTimer > 0)
+                if ((enemy.m_PlayerLayer.value & (1 << hit.transform.gameObject.layer)) != 0)
                 {
-                    diTimer -= 1;
-                } 
-                else
-                {
-                    DI_System.CreateIndicator(enemy.transform);
-                    diTimer = 3f;
+                    enemy.m_Player.gameObject.GetComponent<Health>().TakeDamage(2);
+                    if (diTimer > 0)
+                    {
+                        diTimer -= 1;
+                    }
+                    else
+                    {
+                        DI_System.CreateIndicator(enemy.transform);
+                        diTimer = 3f;
+                    }
+
                 }
-                
             }
+            cdShoot = 0.5f;
+        } 
+        else
+        {
+            cdShoot -= 1 * Time.deltaTime;
         }
+        
 
         enemy.m_PlayerInAttack = Physics.CheckSphere(enemy.transform.position, enemy.m_AttackRange, enemy.m_PlayerLayer);
 

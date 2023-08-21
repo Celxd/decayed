@@ -5,11 +5,10 @@ using UnityEngine;
 public class footsteps : MonoBehaviour
 {
     public AudioSource footstepsSound;
-    public float speedMultiplier = 1.5f; 
+    public float speedMultiplier = 1.5f;
 
     private void Start()
     {
-     
         footstepsSound.enabled = true;
     }
 

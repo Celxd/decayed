@@ -30,11 +30,11 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void CompleteCurrentLevel()
-    {
-        if (currentLevelIndex > 0)
-        {
-            LevelUnlockSystem.instance.UnlockNextLevel();
-        }
-    }
+    //public void CompleteCurrentLevel()
+    //{
+    //    if (currentLevelIndex > 0)
+    //    {
+    //        LevelUnlockSystem.instance.UnlockNextLevel();
+    //    }
+    //}
 }

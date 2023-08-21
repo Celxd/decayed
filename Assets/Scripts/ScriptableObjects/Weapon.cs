@@ -24,8 +24,8 @@ public class Weapon : Item
     public bool reloading;
     public float currentAmmo;
 
-    public AudioSource firing;
-    public AudioSource reload;
+    public AudioClip firing;
+    public AudioClip reload;
 
     protected override void OnValidate()
     {

@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &888473298437272790
 MonoBehaviour:
@@ -46,9 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 0}
-  playerCamera: {fileID: 0}
-  panelParent: {fileID: 0}
-  player: {fileID: 0}
+  _player: {fileID: 0}
 --- !u!114 &7375240363869131058
 MonoBehaviour:
   m_ObjectHideFlags: 0

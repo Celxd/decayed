@@ -69,7 +69,7 @@ public class HintProximity : MonoBehaviour
             {
                 hidden.SetActive(false);
                 isPanelActive = false;
-                LockCursor(); // Lock the cursor when the hidden object is shown
+                LockCursor();
                 ResumeTime();
                 ResumeCameraMovement();
                 StopPlayable();
@@ -79,6 +79,7 @@ public class HintProximity : MonoBehaviour
                 panel.SetActive(false);
                 //hidden.SetActive(true);
                 isPanelActive = true;
+                UnlockCursor();
                 playableDirector.Play();
                 StartCoroutine(ShowHiddenDelayed());
                 ResumeTime();

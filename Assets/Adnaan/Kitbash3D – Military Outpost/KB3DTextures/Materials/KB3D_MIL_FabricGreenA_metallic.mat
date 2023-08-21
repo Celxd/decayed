@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: KB3D_MIL_FabricGreenA_metallic
   m_Shader: {fileID: 4800000, guid: 6e4ae4064600d784cac1e41a9e6f2e59, type: 3}
-  m_Parent: {fileID: 2100000, guid: dffb54959435f474891b9e38bb5d1abb, type: 2}
+  m_Parent: {fileID: 2100000, guid: edadb4ee4c4aaeb4fb16c937c9599f84, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _DISABLE_SSR_TRANSPARENT

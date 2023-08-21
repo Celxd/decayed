@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     public Transform m_Player;
     public EnemyAnimManager m_AnimManager;
     public KillCountManager m_KillCountManager;
+    public AudioSource m_audio;
 
     //Stuff
     [Header("Settings")]
@@ -52,6 +53,8 @@ public class Enemy : MonoBehaviour
         m_PlayerInAttack = Physics.CheckSphere(transform.position, m_AttackRange, m_PlayerLayer);
 
         m_CurrentState = m_PatrolingState;
+
+        m_audio.Stop();
     }
 
     private void Start()

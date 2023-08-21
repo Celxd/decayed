@@ -25,7 +25,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: KB3D_MIL_Decal_glossiness
   m_Shader: {fileID: 4800000, guid: 6e4ae4064600d784cac1e41a9e6f2e59, type: 3}
-  m_Parent: {fileID: 2100000, guid: 78ef2ca10240288449f9483a13b0cd04, type: 2}
+  m_Parent: {fileID: 2100000, guid: 0014238c54380fb45a7aaf1a9228d611, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _DISABLE_SSR_TRANSPARENT

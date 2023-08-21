@@ -52,6 +52,6 @@ MonoBehaviour:
     m_Bits: 256
   m_spawnPoints:
   - {fileID: 0}
-  m_spawnInterval: 10
+  m_spawnInterval: 2
   m_checkRadius: 15
   m_countLimit: 3

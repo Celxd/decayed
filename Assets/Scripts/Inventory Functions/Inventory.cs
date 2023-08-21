@@ -10,10 +10,14 @@ public class Inventory : MonoBehaviour
     [SerializeField] InventorySlot[] slotsUI;
     [SerializeField] GameObject inventoryItemPrefab;
 
+    PlayerShooting shoot;
+
     private void Start()
     {
         //InitVariables();
         weapons[2] = hand;
+
+        shoot = GetComponent<PlayerShooting>();
     }
 
     public void AddWeapon(Weapon newWeapon)
@@ -45,20 +49,20 @@ public class Inventory : MonoBehaviour
         foreach (Consumables item in items)
         {
             if (item == null)
-                break;
+                continue;
 
             if (item.consumeType != newItem.consumeType)
-                break;
+                continue;
 
             if (newItem.consumeType == ConsumeType.Ammo)
             {
                 if (item.ammoType != newItem.ammoType)
-                    break;
+                    continue;
             }
 
             item.stack += newItem.stack;
 
-            return;
+            break;
         }
         Consumables newNewItem = Instantiate(newItem);
         items.Add(Instantiate(newNewItem));
@@ -69,9 +73,10 @@ public class Inventory : MonoBehaviour
             if (slotItem == null)
             {
                 SpawnUIItem(newNewItem, slot);
-                return;
+                break;
             }
         }
+        shoot.InitWeapon();
     }
 
     void SpawnUIItem(Consumables item, InventorySlot slot)
@@ -86,12 +91,12 @@ public class Inventory : MonoBehaviour
         foreach (Consumables item in items)
         {
             if (item == null)
-                break;
+                continue;
 
             if (currentConsum.consumeType == ConsumeType.Ammo)
             {
                 if (item.ammoType != currentConsum.ammoType)
-                    break;
+                    continue;
             }
 
             if (item.stack - 1 <= 0)
@@ -99,7 +104,7 @@ public class Inventory : MonoBehaviour
             else
                 item.stack -= 1;
 
-            return;
+            break;
         }
 
         for (int i = 0; i < slotsUI.Length; i++)
@@ -107,10 +112,28 @@ public class Inventory : MonoBehaviour
             InventorySlot slot = slotsUI[i];
             InventoryItem slotItem = slot.GetComponentInChildren<InventoryItem>();
 
-            if (slotItem.currentItem == currentConsum)
+            if (slotItem == null)
+                continue;
+
+
+            if (slotItem.currentItem.consumeType != currentConsum.consumeType)
+                continue;
+
+            if (slotItem.currentItem.consumeType == ConsumeType.Ammo)
+            {
+                if (slotItem.currentItem.ammoType == currentConsum.ammoType)
+                {
+                    Destroy(slot.transform.GetChild(0).gameObject);
+                    break;
+                }
+            }
+            else
                 Destroy(slot.transform.GetChild(0).gameObject);
+
+            break;
         }
 
+        shoot.InitWeapon();
     }
 
     public List<Consumables> GetAllItems()
@@ -123,7 +146,7 @@ public class Inventory : MonoBehaviour
         foreach (Consumables item in items)
         {
             if (item.consumeType != type)
-                break;
+                continue;
 
             return item;
         }
@@ -136,12 +159,12 @@ public class Inventory : MonoBehaviour
         foreach(Consumables item in items)
         {
             if (item.consumeType != ConsumeType.Ammo)
-                break;
+                continue;
 
             if (item.ammoType == type)
                 return item;
             else
-                break;
+                continue;
         }
         return null;
     }

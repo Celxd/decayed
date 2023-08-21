@@ -14,6 +14,11 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] GameObject holePrefab;
     [SerializeField] Transform adsPosition;
     [SerializeField] Transform weaponHolder;
+    [SerializeField] AudioSource _audio;
+
+    [Header("Audio Settings")]
+    [SerializeField] AudioClip shoot;
+    [SerializeField] AudioClip reload;
 
     [Header("Recoil Settings")]
     [SerializeField] float recoilX;
@@ -92,6 +97,8 @@ public class PlayerShooting : MonoBehaviour
             weaponHolder.localPosition = Vector3.Lerp(weaponHolder.localPosition, defaultPos, aimAnimationSpeed * Time.deltaTime);
             SetFieldOfView(Mathf.Lerp(vcam.m_Lens.FieldOfView, defaultFOV, aimAnimationSpeed * Time.deltaTime));
         }
+
+
     }
 
     void SetFieldOfView(float fov)
@@ -104,6 +111,8 @@ public class PlayerShooting : MonoBehaviour
         currentWeaponIndex = equipmentManager.currentWeaponIndex;
         currentWeapon = inventory.GetWeapon(currentWeaponIndex);
         currentAmmo = inventory.SearchAmmo(currentWeapon.ammoType);
+
+        Debug.Log(currentAmmo);
 
         if (currentWeapon == null)
             return;
@@ -158,12 +167,17 @@ public class PlayerShooting : MonoBehaviour
             return false;
     }
 
-    private bool CanShoot() => !currentWeapon.reloading && currentWeapon.currentAmmo > 0 && !IsClipped();
+    private bool CanShoot() => !currentWeapon.reloading && currentWeapon.currentAmmo > 0 && !IsClipped() && Cursor.lockState == CursorLockMode.Locked;
 
     public void Shoot()
     {
         if (CanShoot() || melee)
         {
+            if(melee == false)
+            {
+                _audio.Play();
+            }
+
             if (Physics.Raycast(Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0)), out RaycastHit hit, currentWeapon.range))
             {
                 if(currentWeapon.name != "Hand")
@@ -175,7 +189,6 @@ public class PlayerShooting : MonoBehaviour
                     Hitactive();
                     Invoke(nameof(Hitdisable), 0.2f);
                 }
-                    
             }
 
             if (!melee)
@@ -198,10 +211,7 @@ public class PlayerShooting : MonoBehaviour
             return currentAmmo.stack > 0 && currentWeapon.currentAmmo < currentWeapon.magSize && !currentWeapon.reloading;
         else
         {
-            if (currentWeapon.currentAmmo > 0 && !currentWeapon.reloading)
-                return true;
-            else
-                return false;
+            return false;
         }
     }
 
@@ -211,18 +221,23 @@ public class PlayerShooting : MonoBehaviour
         {
             currentWeapon.reloading = true;
 
+            _audio.clip = reload;
+            _audio.Play();
+
             if (ammo != null)
                 ammo.text = "Reloading";
 
             yield return new WaitForSeconds(currentWeapon.reloadTime);
 
             //TODO: Make a function in WaitForSeconds that checks if gun is swapped (If true: cancel reload)
+            
             currentWeapon.currentAmmo = currentAmmo.restorePoint;
             currentAmmo.stack -= 1;
             if(currentAmmo.stack <= 0)
                 inventory.RemoveItem(currentAmmo);
 
             UpdateUI();
+            InitWeapon();
             currentWeapon.reloading = false;
         }
     }
@@ -248,6 +263,8 @@ public class PlayerShooting : MonoBehaviour
 
     void StartFiring()
     {
+        _audio.clip = shoot;
+
         if (currentWeapon == null)
             return;
 

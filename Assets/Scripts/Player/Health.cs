@@ -23,6 +23,8 @@ public class Health : MonoBehaviour
 
     private void Start()
     {
+        _movement = GetComponent<PlayerMovement>();
+
         currentHealth = maxHealth;
         currentHunger = maxHunger;
         UpdateHealthUI();
@@ -91,6 +93,7 @@ public class Health : MonoBehaviour
         cam.transform.parent = null;
 
         Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
         StartCoroutine(DeathUI());
     }

@@ -34,7 +34,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (!isPaused)
         {
-            if (pausePanel != null)
+            //if (pausePanel != null)
                 pausePanel.SetActive(true);
 
             _cam.enabled = false;
@@ -48,7 +48,7 @@ public class PauseMenu : MonoBehaviour
         }
         else
         {
-            if (pausePanel != null)
+            //if (pausePanel != null)
                 pausePanel.SetActive(false);
 
             _cam.enabled = true;
