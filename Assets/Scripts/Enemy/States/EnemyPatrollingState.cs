@@ -16,7 +16,9 @@ public class EnemyPatrollingState : EnemyBaseState
 
     public override void UpdateState(Enemy enemy)
     {
-        
+        if (enemy.m_WalkPoints == null)
+            enemy.SwitchState(enemy.m_ChasingState);
+
         if (enemy.m_Agent.remainingDistance <= 1f)
         {
             enemy.m_CurrentWalkPointIndex = enemy.m_CurrentWalkPointIndex == enemy.m_WalkPoints.Count - 1 ? 0 : enemy.m_CurrentWalkPointIndex + 1;

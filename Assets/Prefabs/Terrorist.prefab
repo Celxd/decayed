@@ -2727,7 +2727,7 @@ MonoBehaviour:
   health: 100
   m_PlayerInAttack: 0
   m_FOV: {fileID: 0}
-  m_Inaccuracy: 0.1
+  m_Inaccuracy: 0.08
   m_WalkPoint: {x: 0, y: 0, z: 0}
   m_WalkPointSet: 0
   m_WalkPointRange: 0
@@ -2774,10 +2774,10 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8164664248511000376}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 013ce81bd5ce40446b0f68e8f36e38c7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6d1ef84233d368740b9298a0e014d6e4, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

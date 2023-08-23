@@ -42,7 +42,6 @@ public class PlayerPickup : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Collider[] collisions = Physics.OverlapSphere(transform.position, 2, _pickupLayer);
-        Debug.Log(collisions[0]);
         foreach (Collider col in collisions)
         {
             Item newItem = col.gameObject.GetComponent<ItemObject>().item;

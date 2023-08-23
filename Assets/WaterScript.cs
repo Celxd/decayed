@@ -14,7 +14,7 @@ public class WaterScript : MonoBehaviour
             Health healthScript = Player.GetComponent<Health>();
             if (healthScript != null)
             {
-                healthScript.TakeDamage(10f);
+                healthScript.TakeDamage(100f);
             }
         }
     }

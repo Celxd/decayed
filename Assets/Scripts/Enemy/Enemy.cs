@@ -55,11 +55,14 @@ public class Enemy : MonoBehaviour
         m_CurrentState = m_PatrolingState;
 
         m_audio.Stop();
+        m_audio.loop = true;
+        m_audio.enabled = false;
     }
 
     private void Start()
     {
         m_FOV.StartFOV(m_PlayerLayer);
+        
         m_CurrentState.StartState(this);
     }
 

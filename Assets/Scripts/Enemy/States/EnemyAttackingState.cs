@@ -18,7 +18,10 @@ public class EnemyAttackingState : EnemyBaseState
 
         head = enemy.transform.Find("Head").transform.position;
 
-        cdShoot = 0.5f;
+        cdShoot = 1 / 600 / 60;
+
+        enemy.m_audio.loop = true;
+        enemy.m_audio.enabled = true;
     }
 
     public override void UpdateState(Enemy enemy)
@@ -29,11 +32,9 @@ public class EnemyAttackingState : EnemyBaseState
         
         target += Random.insideUnitSphere * enemy.m_Inaccuracy;
 
-        Debug.DrawRay(head, target);
-
         if(cdShoot == 0)
         {
-            enemy.m_audio.Play();
+            //enemy.m_audio.PlayOneShot(enemy.m_audio.clip, 1f);
             if (Physics.Raycast(head, target, out RaycastHit hit, enemy.m_AttackRange))
             {
                 if ((enemy.m_PlayerLayer.value & (1 << hit.transform.gameObject.layer)) != 0)
@@ -51,11 +52,11 @@ public class EnemyAttackingState : EnemyBaseState
 
                 }
             }
-            cdShoot = 0.5f;
+            cdShoot = 1 / 600 / 60;
         } 
         else
         {
-            cdShoot -= 1 * Time.deltaTime;
+            cdShoot -= Time.deltaTime;
         }
         
 

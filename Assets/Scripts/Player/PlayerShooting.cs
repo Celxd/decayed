@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerShooting : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] CinemachineVirtualCamera vcam;
+    [SerializeField] public CinemachineVirtualCamera vcam;
     [SerializeField] GameObject point;
     [SerializeField] TMP_Text ammo;
     [SerializeField] TMP_Text gun;
@@ -97,8 +97,6 @@ public class PlayerShooting : MonoBehaviour
             weaponHolder.localPosition = Vector3.Lerp(weaponHolder.localPosition, defaultPos, aimAnimationSpeed * Time.deltaTime);
             SetFieldOfView(Mathf.Lerp(vcam.m_Lens.FieldOfView, defaultFOV, aimAnimationSpeed * Time.deltaTime));
         }
-
-
     }
 
     void SetFieldOfView(float fov)
@@ -111,8 +109,6 @@ public class PlayerShooting : MonoBehaviour
         currentWeaponIndex = equipmentManager.currentWeaponIndex;
         currentWeapon = inventory.GetWeapon(currentWeaponIndex);
         currentAmmo = inventory.SearchAmmo(currentWeapon.ammoType);
-
-        Debug.Log(currentAmmo);
 
         if (currentWeapon == null)
             return;

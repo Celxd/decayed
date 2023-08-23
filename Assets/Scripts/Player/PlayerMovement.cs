@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     bool isRunning;
     bool isCrouching = false;
 
+    PlayerShooting _shootingComponent;
+
     [Header("Settings")]
     [SerializeField] float playerSpeed = 2.0f;
     [SerializeField] float jumpHeight = 1.0f;
@@ -54,6 +56,9 @@ public class PlayerMovement : MonoBehaviour
 
     bool isDepletingStamina = false;
     bool isMoving;
+    float originalFOV;
+    [SerializeField] float fovIncreaseAmount = 10f;
+    [SerializeField] float fovLerpSpeed = 5f;
 
     private void Awake()
     {
@@ -62,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
         controller = gameObject.GetComponent<CharacterController>();
         playerInput = GetComponent<PlayerInput>();
         camTransform = Camera.main.transform;
+        _shootingComponent = GetComponent<PlayerShooting>();
 
         action_move = playerInput.actions["Move"];
         action_jump = playerInput.actions["Jump"];
@@ -80,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
         height = currentHeight = controller.height;
 
         stamina = maxStamina;
+        originalFOV = _shootingComponent.vcam.m_Lens.FieldOfView;
     }
 
     private void Start()
@@ -107,13 +114,22 @@ public class PlayerMovement : MonoBehaviour
             if (stamina > 0f)
             {
                 currentSpeed *= 2;
-                if(isMoving)
+                if (isMoving)
                     stamina = Mathf.Clamp(stamina - (StaminaDecreasePerFrame * Time.deltaTime), 0.0f, maxStamina);
+
+                // Print the field of view for debugging
+                Debug.Log("Current FOV: " + Camera.main.fieldOfView);
+
+                // Increase FOV when running
+                _shootingComponent.vcam.m_Lens.FieldOfView = Mathf.Lerp(_shootingComponent.vcam.m_Lens.FieldOfView, originalFOV + fovIncreaseAmount, Time.deltaTime * fovLerpSpeed);
+                Debug.Log("New FOV: " + Camera.main.fieldOfView);
             }
         }
         else if (stamina < maxStamina && !isRunning)
         {
             stamina = Mathf.Clamp(stamina + (StaminaIncreasePerFrame * Time.deltaTime), 0.0f, maxStamina);
+            // Reset FOV to the original value when not running
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, originalFOV, Time.deltaTime * fovLerpSpeed);
         }
 
         UpdateStaminaUI();

@@ -42,15 +42,21 @@ public class InventoryMenu : MonoBehaviour
 
         if (isPaused) //Pausing
         {
+            AudioListener.pause = true;
+
             SaveCursorSettings();
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             _cam.enabled = false;
             StartCoroutine(FreezeRot());
+
         }
         else //Resume
         {
             Inventorypanel.SetActive(false);
+
+            AudioListener.pause = false;
+
             Time.timeScale = 1;
             RestoreCursorSettings();
             Cursor.lockState = CursorLockMode.Locked;

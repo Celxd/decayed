@@ -32,10 +32,11 @@ public class PauseMenu : MonoBehaviour
 
     public void TogglePause()
     {
-        if (!isPaused)
+        if (!isPaused) //Pause
         {
             //if (pausePanel != null)
                 pausePanel.SetActive(true);
+            AudioListener.pause = true;
 
             _cam.enabled = false;
             Time.timeScale = 0;
@@ -46,10 +47,12 @@ public class PauseMenu : MonoBehaviour
             isPaused = true;
             StartCoroutine(FreezeRot());
         }
-        else
+        else //Resume
         {
             //if (pausePanel != null)
                 pausePanel.SetActive(false);
+
+            AudioListener.pause = false;
 
             _cam.enabled = true;
             Time.timeScale = 1f;
