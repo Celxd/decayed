@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 3608524863196733814}
   - component: {fileID: 6149643191979994728}
   - component: {fileID: 467498438257237873}
+  - component: {fileID: 2683072386081168203}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -228,6 +229,8 @@ MonoBehaviour:
   thirstDepletionRate: 1
   thirstThresholdForRunning: 5
   thirstSlider: {fileID: 0}
+  fovIncreaseAmount: 10
+  fovLerpSpeed: 5
 --- !u!114 &6435650643652842631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -627,6 +630,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2683072386081168203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1313189680460650187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cec933d29ac19464d9faec2146367d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallHeightThreshold: 5
+  maxFallDamage: 50
+  fallDamageMultiplier: 5
 --- !u!1 &1362559151266600897
 GameObject:
   m_ObjectHideFlags: 0

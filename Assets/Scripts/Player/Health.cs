@@ -110,8 +110,8 @@ public class Health : MonoBehaviour
 
     private void UpdateHealthUI()
     {
- 
-        healthSlider.value = currentHealth;
+        if(currentHealth != 0)
+            healthSlider.value = currentHealth;
     }
 
     private void UpdateHungerUI()

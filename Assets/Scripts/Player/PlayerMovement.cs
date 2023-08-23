@@ -86,7 +86,8 @@ public class PlayerMovement : MonoBehaviour
         height = currentHeight = controller.height;
 
         stamina = maxStamina;
-        originalFOV = _shootingComponent.vcam.m_Lens.FieldOfView;
+        if (_shootingComponent.vcam != null)
+            originalFOV = _shootingComponent.vcam.m_Lens.FieldOfView;
     }
 
     private void Start()
@@ -117,12 +118,8 @@ public class PlayerMovement : MonoBehaviour
                 if (isMoving)
                     stamina = Mathf.Clamp(stamina - (StaminaDecreasePerFrame * Time.deltaTime), 0.0f, maxStamina);
 
-                // Print the field of view for debugging
-                Debug.Log("Current FOV: " + Camera.main.fieldOfView);
-
                 // Increase FOV when running
                 _shootingComponent.vcam.m_Lens.FieldOfView = Mathf.Lerp(_shootingComponent.vcam.m_Lens.FieldOfView, originalFOV + fovIncreaseAmount, Time.deltaTime * fovLerpSpeed);
-                Debug.Log("New FOV: " + Camera.main.fieldOfView);
             }
         }
         else if (stamina < maxStamina && !isRunning)

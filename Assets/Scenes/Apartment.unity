@@ -15616,7 +15616,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 776136443}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d67cc624a37c6b41a736869a0e3480d, type: 3}
   m_Name: 
@@ -21645,6 +21645,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2683072386081168203, guid: 709bf9574817a794dbbbecc32c3af55e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4853277320135345670, guid: 709bf9574817a794dbbbecc32c3af55e,
         type: 3}
       propertyPath: m_Enabled
@@ -21660,6 +21665,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7472102945417308327, guid: 709bf9574817a794dbbbecc32c3af55e,
+        type: 3}
+      propertyPath: vcam
+      value: 
+      objectReference: {fileID: 568734449}
     - target: {fileID: 7472102945417308327, guid: 709bf9574817a794dbbbecc32c3af55e,
         type: 3}
       propertyPath: m_Enabled
