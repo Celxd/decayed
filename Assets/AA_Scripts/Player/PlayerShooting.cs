@@ -163,7 +163,7 @@ public class PlayerShooting : MonoBehaviour
             return false;
     }
 
-    private bool CanShoot() => !currentWeapon.reloading && currentWeapon.currentAmmo > 0 && !IsClipped() && Cursor.lockState == CursorLockMode.Locked;
+    private bool CanShoot() => !currentWeapon.reloading && currentWeapon.currentAmmo > 0 && !IsClipped() && Cursor.lockState == CursorLockMode.Locked && Time.timeScale == 1;
 
     public void Shoot()
     {

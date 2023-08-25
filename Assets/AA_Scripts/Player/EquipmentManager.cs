@@ -6,16 +6,20 @@ using UnityEngine.InputSystem;
 
 public class EquipmentManager : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] public Transform weaponHolder;
-    private Inventory inventory;
-    private PlayerInput playerInput;
-    private InputAction action_primary;
-    private InputAction action_secondary;
-    private InputAction action_melee;
-    private InputAction action_drop;
+    [SerializeField] GameObject handRifle;
+    [SerializeField] GameObject handPistol;
+
+    Inventory inventory;
+    PlayerInput playerInput;
+    InputAction action_primary;
+    InputAction action_secondary;
+    InputAction action_melee;
+    InputAction action_drop;
 
     public int currentWeaponIndex = 2;
-    private GameObject currentWeaponObject = null;
+    GameObject currentWeaponObject = null;
 
 
     void Start()
@@ -41,12 +45,15 @@ public class EquipmentManager : MonoBehaviour
         currentWeaponIndex = (int)weapon.weaponCategory;
         currentWeaponObject = Instantiate(weapon.gunModel, weaponHolder);
         currentWeaponObject.GetComponent<ItemObject>().item = weapon;
+
+        EquipHand(currentWeaponIndex);
     }
     
     private void UnequipWeapon()
     {
         Destroy(currentWeaponObject);
         currentWeaponIndex = 2;
+        DisableHand();
     }
 
     public void DropWeapon()
@@ -62,6 +69,8 @@ public class EquipmentManager : MonoBehaviour
         rb.useGravity = true;
         rb.AddForce(transform.forward * 5, ForceMode.Impulse);
         currentWeaponObject = null;
+
+        DisableHand();
     }
     
     public void HandleWeaponSelection(Weapon weapon)
@@ -78,5 +87,28 @@ public class EquipmentManager : MonoBehaviour
         {
             UnequipWeapon();
         }
+    }
+
+    void EquipHand(int category)
+    {
+        if (category != 0 || category != 1)
+            DisableHand();
+
+        if (category == 0)  //If rifle
+        {
+            handRifle.SetActive(true);
+            handPistol.SetActive(false);
+        } 
+        else if (category == 1) //If pistol
+        {
+            handRifle.SetActive(false);
+            handPistol.SetActive(true);
+        }
+    }
+
+    void DisableHand()
+    {
+        handRifle.SetActive(false);
+        handPistol.SetActive(false);
     }
 }
