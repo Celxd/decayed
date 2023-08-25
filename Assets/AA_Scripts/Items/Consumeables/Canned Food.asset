@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9ec07430426d6c4b9650aabb8d902f1, type: 3}
+  m_Name: Canned Food
+  m_EditorClassIdentifier: 
+  name: Canned Food
+  type: 1
+  icon: {fileID: 21300000, guid: 0750ac5af44d3814086d70136c0f8716, type: 3}
+  stack: 1
+  model: {fileID: 7638700267890378652, guid: f3499ea44d90c8b409dff3b51283b81b, type: 3}
+  consumeType: 1
+  restorePoint: 30
+  ammoType: 0

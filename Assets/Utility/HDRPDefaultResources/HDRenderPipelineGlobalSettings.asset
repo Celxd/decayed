@@ -122,7 +122,7 @@ MonoBehaviour:
         m_Extent: {x: 162, y: 40.5, z: 121.5}
     - sceneGUID: ea0ae229dcdd6e3498ae0a28840ec656
       bounds:
-        m_Center: {x: -243, y: 121.5, z: -202.5}
+        m_Center: {x: -3969, y: 121.5, z: 1174.5}
         m_Extent: {x: 162, y: 40.5, z: 121.5}
     - sceneGUID: f6368fce6132f2541897124ed284f94a
       bounds:

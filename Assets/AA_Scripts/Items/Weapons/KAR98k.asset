@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4976d7f07ad70304d9890f2fb2cfb519, type: 3}
+  m_Name: KAR98k
+  m_EditorClassIdentifier: 
+  id: Assets/Scripts/Items/Weapons/KAR98k.asset
+  name: Kar98k
+  type: 0
+  icon: {fileID: 0}
+  weaponType: 3
+  weaponCategory: 0
+  ammoType: 3
+  fireRate: 60
+  range: 0
+  magSize: 5
+  reloadTime: 5
+  gunModel: {fileID: 488355852508461116, guid: 3786a08b95a8d7e4cb16d815a3c22bbb, type: 3}
+  reloading: 0
+  currentAmmo: 5
+  firing: {fileID: 0}
+  reload: {fileID: 0}
