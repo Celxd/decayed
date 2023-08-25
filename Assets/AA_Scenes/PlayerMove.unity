@@ -1991,12 +1991,12 @@ PrefabInstance:
     - target: {fileID: 6387339052395298912, guid: ab8fbab0018c55545ab029d20716ac0b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -0.76
       objectReference: {fileID: 0}
     - target: {fileID: 6387339052395298912, guid: ab8fbab0018c55545ab029d20716ac0b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.39
+      value: -7.01
       objectReference: {fileID: 0}
     - target: {fileID: 6387339052395298912, guid: ab8fbab0018c55545ab029d20716ac0b,
         type: 3}
@@ -2087,9 +2087,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2683072386081168203, guid: 709bf9574817a794dbbbecc32c3af55e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4372733282837809091, guid: 709bf9574817a794dbbbecc32c3af55e,
         type: 3}
       propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4853277320135345670, guid: 709bf9574817a794dbbbecc32c3af55e,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6435650643652842631, guid: 709bf9574817a794dbbbecc32c3af55e,
@@ -2102,6 +2112,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7472102945417308327, guid: 709bf9574817a794dbbbecc32c3af55e,
+        type: 3}
+      propertyPath: gun
+      value: 
+      objectReference: {fileID: 2050919326}
     - target: {fileID: 7472102945417308327, guid: 709bf9574817a794dbbbecc32c3af55e,
         type: 3}
       propertyPath: ammo
@@ -2124,8 +2139,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8053733233086193122, guid: 709bf9574817a794dbbbecc32c3af55e,
         type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8053733233086193122, guid: 709bf9574817a794dbbbecc32c3af55e,
+        type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8053733233086193122, guid: 709bf9574817a794dbbbecc32c3af55e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8053733233086193122, guid: 709bf9574817a794dbbbecc32c3af55e,
         type: 3}

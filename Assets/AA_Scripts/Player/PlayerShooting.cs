@@ -77,7 +77,7 @@ public class PlayerShooting : MonoBehaviour
         
         defaultFOV = vcam.m_Lens.FieldOfView;
         defaultPos = weaponHolder.localPosition;
-        hitmarker.SetActive(false);
+        //hitmarker.SetActive(false);
 
         InitWeapon();
     }
@@ -155,6 +155,22 @@ public class PlayerShooting : MonoBehaviour
         pov.m_HorizontalAxis.Value -= smoothedRecoilX;
     }
 
+    IEnumerator GunRecoil()
+    {
+        Vector3 initPos = weaponHolder.transform.localPosition;
+        Vector3 targetPos = new Vector3(
+            initPos.x,
+            initPos.y,
+            initPos.z - 0.05f
+            );
+
+        float lerpPos = Mathf.Lerp(weaponHolder.transform.localPosition.z, targetPos.z, 1);
+
+        weaponHolder.transform.localPosition = new Vector3(weaponHolder.transform.position.x, weaponHolder.transform.localPosition.y, lerpPos);
+
+        yield return null;
+    }
+
     bool IsClipped()
     {
         if (Physics.Raycast(point.transform.position, point.transform.forward, 1f))
@@ -182,15 +198,17 @@ public class PlayerShooting : MonoBehaviour
                 if (hit.transform.gameObject.GetComponent<Enemy>() != null)
                 {
                     hit.transform.gameObject.GetComponent<Enemy>().TakeDamage(28, hit.point);
-                    Hitactive();
-                    Invoke(nameof(Hitdisable), 0.2f);
+                    //Hitactive();
+                    //Invoke(nameof(Hitdisable), 0.2f);
                 }
             }
 
             if (!melee)
             {
                 RecoilMath();
-                if (!melee) currentWeapon.currentAmmo--;
+                StopCoroutine(GunRecoil());
+                StartCoroutine(GunRecoil());
+                currentWeapon.currentAmmo--;
                 if (ammo != null)
                     UpdateUI();
             }
@@ -289,12 +307,12 @@ public class PlayerShooting : MonoBehaviour
         //float smoothedVerticalValue = Mathf.SmoothDamp(currentVerticalValue, targetVerticalValue, ref smoothReturnVelY, smoothReturnTime);
         //pov.m_VerticalAxis.Value -= smoothedVerticalValue;
     }
-    private void Hitactive()
-    {
-        hitmarker.SetActive(true);
-    }
-    private void Hitdisable()
-    {
-        hitmarker.SetActive(false);
-    }
+    //private void Hitactive()
+    //{
+    //    hitmarker.SetActive(true);
+    //}
+    //private void Hitdisable()
+    //{
+    //    hitmarker.SetActive(false);
+    //}
 }
