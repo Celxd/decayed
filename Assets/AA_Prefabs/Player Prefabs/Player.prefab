@@ -264,6 +264,7 @@ MonoBehaviour:
   handRifle: {fileID: 6972856452712150807}
   handPistol: {fileID: 4027556637981220217}
   currentWeaponIndex: 2
+  currentWeaponObject: {fileID: 0}
 --- !u!114 &7472102945417308327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,6 +294,11 @@ MonoBehaviour:
   zoomRatio: 2
   aimAnimationSpeed: 10
   ads: 0
+  bulletPrefab: {fileID: 1866657824718261864, guid: 37e0cd058a46d6940950a438016263c4,
+    type: 3}
+  smokeTrailPrefab: {fileID: 7329845158802601835, guid: 9f2ab1a40215f76428f6c9d996986a3f,
+    type: 3}
+  tracerSpeed: 5
   soundhit: {fileID: 0}
   hitmarker: {fileID: 0}
 --- !u!114 &5583627292817516100

@@ -42,6 +42,7 @@ public class Helicopter : MonoBehaviour
                 hidden.SetActive(false);
                 isPanelActive = false;
                 LockCursor();
+                ResumeTime();
             }
             else
             {
@@ -49,8 +50,8 @@ public class Helicopter : MonoBehaviour
                 isPanelActive = true;
                 UnlockCursor();
                 StartCoroutine(ShowHiddenDelayed());
-                ResumeTime();
-  
+                FreezeTime();
+
             }
         }
 

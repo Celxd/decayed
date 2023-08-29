@@ -71,7 +71,7 @@ public class EnemySpawner : MonoBehaviour
             return;
 
         //Check is player not too close
-        if (Vector3.Distance(spawnPoint.transform.position, player[0].transform.position) >= m_checkRadius / 2)
+        if (Vector3.Distance(spawnPoint.transform.position, player[0].transform.position) >= m_checkRadius / 4)
         {
             GameObject enemyObject = Instantiate(m_enemy, spawnPoint.transform.position, spawnPoint.rotation, m_enemyParent);
             Enemy enemy = enemyObject.GetComponent<Enemy>();

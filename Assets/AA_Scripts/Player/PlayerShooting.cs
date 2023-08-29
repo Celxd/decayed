@@ -1,3 +1,4 @@
+using Andtech.ProTracer;
 using Cinemachine;
 using System.Collections;
 using TMPro;
@@ -40,6 +41,12 @@ public class PlayerShooting : MonoBehaviour
     float defaultFOV;
     Vector3 defaultPos;
 
+    [Header("VFX Settings")]
+    [SerializeField] Bullet bulletPrefab = default;
+    [SerializeField] SmokeTrail smokeTrailPrefab = default;
+    [Range(1, 10)]
+    [SerializeField] int tracerSpeed = 3;
+
     CinemachinePOV pov;
     Inventory inventory;
     EquipmentManager equipmentManager;
@@ -77,7 +84,7 @@ public class PlayerShooting : MonoBehaviour
         
         defaultFOV = vcam.m_Lens.FieldOfView;
         defaultPos = weaponHolder.localPosition;
-        //hitmarker.SetActive(false);
+        hitmarker.SetActive(false);
 
         InitWeapon();
     }
@@ -87,6 +94,7 @@ public class PlayerShooting : MonoBehaviour
         if (currentWeaponIndex != equipmentManager.currentWeaponIndex)
             InitWeapon();
 
+        //Aim Down Sight
         if (ads)
         {
             weaponHolder.localPosition = Vector3.Lerp(weaponHolder.localPosition, adsPosition.localPosition, aimAnimationSpeed * Time.deltaTime);
@@ -164,9 +172,9 @@ public class PlayerShooting : MonoBehaviour
             initPos.z - 0.05f
             );
 
-        float lerpPos = Mathf.Lerp(weaponHolder.transform.localPosition.z, targetPos.z, 1);
+        float lerpPos = Mathf.Lerp(weaponHolder.transform.localPosition.z, targetPos.z, 0.95f);
 
-        weaponHolder.transform.localPosition = new Vector3(weaponHolder.transform.position.x, weaponHolder.transform.localPosition.y, lerpPos);
+        weaponHolder.transform.localPosition = new Vector3(weaponHolder.transform.localPosition.x, weaponHolder.transform.localPosition.y, lerpPos);
 
         yield return null;
     }
@@ -188,6 +196,8 @@ public class PlayerShooting : MonoBehaviour
             if(melee == false)
             {
                 _audio.Play();
+
+                VFX();
             }
 
             if (Physics.Raycast(Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0)), out RaycastHit hit, currentWeapon.range))
@@ -198,8 +208,8 @@ public class PlayerShooting : MonoBehaviour
                 if (hit.transform.gameObject.GetComponent<Enemy>() != null)
                 {
                     hit.transform.gameObject.GetComponent<Enemy>().TakeDamage(28, hit.point);
-                    //Hitactive();
-                    //Invoke(nameof(Hitdisable), 0.2f);
+                    Hitactive();
+                    Invoke(nameof(Hitdisable), 0.2f);
                 }
             }
 
@@ -215,6 +225,40 @@ public class PlayerShooting : MonoBehaviour
             
         }
 
+    }
+
+    public void VFX()
+    {
+        // Instantiate the tracer graphics
+        Bullet bullet = Instantiate(bulletPrefab);
+        SmokeTrail smokeTrail = Instantiate(smokeTrailPrefab);
+
+        // Setup callbacks
+        bullet.Completed += OnCompleted;
+        smokeTrail.Completed += OnCompleted;
+
+        // Use different tracer drawing methods depending on the raycast
+        if (Physics.Raycast(equipmentManager.currentWeaponObject.transform.position, Camera.main.transform.forward, out RaycastHit hitInfo, currentWeapon.range))
+        {
+            // Since start and end point are known, use DrawLine
+            bullet.DrawLine(equipmentManager.currentWeaponObject.transform.position, hitInfo.point, tracerSpeed * 100);
+            smokeTrail.DrawLine(equipmentManager.currentWeaponObject.transform.position, hitInfo.point, tracerSpeed * 100);
+        }
+        else
+        {
+            // Since we have no end point, use DrawRay
+            bullet.DrawRay(equipmentManager.currentWeaponObject.transform.position, Camera.main.transform.forward, tracerSpeed * 100, currentWeapon.range);
+            smokeTrail.DrawRay(equipmentManager.currentWeaponObject.transform.position, Camera.main.transform.forward, tracerSpeed * 100, 25.0F);
+        }
+    }
+
+    private void OnCompleted(object sender, System.EventArgs e)
+    {
+        // Handle complete event here
+        if (sender is TracerObject tracerObject)
+        {
+            Destroy(tracerObject.gameObject);
+        }
     }
 
     //private bool CanReload() => currentAmmo.stack > 0 && currentWeapon.currentAmmo < currentWeapon.magSize && !currentWeapon.reloading;
@@ -307,12 +351,12 @@ public class PlayerShooting : MonoBehaviour
         //float smoothedVerticalValue = Mathf.SmoothDamp(currentVerticalValue, targetVerticalValue, ref smoothReturnVelY, smoothReturnTime);
         //pov.m_VerticalAxis.Value -= smoothedVerticalValue;
     }
-    //private void Hitactive()
-    //{
-    //    hitmarker.SetActive(true);
-    //}
-    //private void Hitdisable()
-    //{
-    //    hitmarker.SetActive(false);
-    //}
+    private void Hitactive()
+    {
+        hitmarker.SetActive(true);
+    }
+    private void Hitdisable()
+    {
+        hitmarker.SetActive(false);
+    }
 }

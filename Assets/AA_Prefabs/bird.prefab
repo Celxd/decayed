@@ -652,6 +652,7 @@ GameObject:
   - component: {fileID: 4480175084789586947}
   - component: {fileID: 241115671173360460}
   - component: {fileID: -3247275623668116330}
+  - component: {fileID: -1198809124889492830}
   m_Layer: 0
   m_Name: bird
   m_TagString: Untagged
@@ -691,7 +692,7 @@ MonoBehaviour:
   moveSpeed: 5
   turnSpeed: 1
   changeDirectionTime: 10
-  flightAltitude: 153
+  flightAltitude: 158
 --- !u!54 &-3247275623668116330
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -719,3 +720,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-1198809124889492830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9104086232718440985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f539e81cc6316a41a79a1c45cfc6d7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyDelay: 20

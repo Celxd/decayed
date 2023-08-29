@@ -19,7 +19,7 @@ public class EquipmentManager : MonoBehaviour
     InputAction action_drop;
 
     public int currentWeaponIndex = 2;
-    GameObject currentWeaponObject = null;
+    [HideInInspector] public GameObject currentWeaponObject = null;
 
 
     void Start()

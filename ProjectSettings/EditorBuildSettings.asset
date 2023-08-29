@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/AA_Scenes/UI - Master/NC.unity
     guid: 9893325a91b567145aec40281d9593b3
   - enabled: 0
-    path: Assets/Scenes/Ground.unity
+    path: 
     guid: 933bf7755fef84f4a8f025d60e616580
   - enabled: 1
     path: Assets/AA_Scenes/Forest.unity
@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/AA_Scenes/Decayed.unity
     guid: ea0ae229dcdd6e3498ae0a28840ec656
+  - enabled: 1
+    path: Assets/AA_Scenes/Battle.unity
+    guid: 46defba035fef634584a037aa128d9b8
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 9852fa5cc6f92554b99564c57cacfaa7,
       type: 2}
