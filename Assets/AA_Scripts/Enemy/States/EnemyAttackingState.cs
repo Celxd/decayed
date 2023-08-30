@@ -20,7 +20,6 @@ public class EnemyAttackingState : EnemyBaseState
 
         cdShoot = 1 / 600 / 60;
 
-        enemy.m_audio.loop = true;
         enemy.m_audio.enabled = true;
     }
 
@@ -67,7 +66,12 @@ public class EnemyAttackingState : EnemyBaseState
             if (timer > 0)
                 timer -= Time.deltaTime;
             else if (timer <= 0)
+            {
                 enemy.SwitchState(enemy.m_ChasingState);
+
+                enemy.m_audio.enabled = false;
+            }
+                
 
         }
         else
