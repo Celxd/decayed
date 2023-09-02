@@ -10,6 +10,7 @@ public class EnemyDeadState : EnemyBaseState
     public override void StartState(Enemy enemy)
     {
         enemy.m_Agent.SetDestination(enemy.transform.position);
+        enemy.m_audio.enabled = false;
         
     }
 
@@ -18,7 +19,7 @@ public class EnemyDeadState : EnemyBaseState
     {
         //if (timer <= 0)
         //{
-        //    enemy.m_Ragdoll.RagdollBehavior();
+        //    enemy.gameObject.Destroy(enemy.gameObject);
         //}
         //else
         //    timer -= Time.deltaTime;

@@ -33,6 +33,8 @@ public class EnemyAttackingState : EnemyBaseState
 
         if(cdShoot == 0)
         {
+            enemy.VFX(head);
+
             //enemy.m_audio.PlayOneShot(enemy.m_audio.clip, 1f);
             if (Physics.Raycast(head, target, out RaycastHit hit, enemy.m_AttackRange))
             {

@@ -2736,6 +2736,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_CurrentWalkPointIndex: 0
+  bulletPrefab: {fileID: 1866657824718261864, guid: 37e0cd058a46d6940950a438016263c4,
+    type: 3}
+  smokeTrailPrefab: {fileID: 7329845158802601835, guid: 9f2ab1a40215f76428f6c9d996986a3f,
+    type: 3}
+  tracerSpeed: 5
   delay: 100
 --- !u!114 &5224291467024690619
 MonoBehaviour:
@@ -2788,7 +2793,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 80
+  MaxDistance: 600
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

@@ -1,3 +1,4 @@
+using Andtech.ProTracer;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -31,6 +32,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] public float m_WalkPointRange;
     [SerializeField] public List<Transform> m_WalkPoints;
     [SerializeField] public int m_CurrentWalkPointIndex = 0;
+
+    //VFX
+    [Header("VFX Settings")]
+    [SerializeField] Bullet bulletPrefab = default;
+    [SerializeField] SmokeTrail smokeTrailPrefab = default;
+    [Range(1, 10)]
+    [SerializeField] int tracerSpeed = 3;
 
     //State managing
     EnemyBaseState m_CurrentState;
@@ -109,5 +117,39 @@ public class Enemy : MonoBehaviour
         m_KillCountManager.IncreaseKillCount();
         SwitchState(m_DeadState);
         Destroy(gameObject, delay);
+    }
+
+    public void VFX(Vector3 head)
+    {
+        // Instantiate the tracer graphics
+        Bullet bullet = Instantiate(bulletPrefab);
+        SmokeTrail smokeTrail = Instantiate(smokeTrailPrefab);
+
+        // Setup callbacks
+        bullet.Completed += OnCompleted;
+        smokeTrail.Completed += OnCompleted;
+
+        // Use different tracer drawing methods depending on the raycast
+        if (Physics.Raycast(head, transform.forward, out RaycastHit hitInfo, 350))
+        {
+            // Since start and end point are known, use DrawLine
+            bullet.DrawLine(head, hitInfo.point, tracerSpeed * 100);
+            smokeTrail.DrawLine(head, hitInfo.point, tracerSpeed * 100);
+        }
+        else
+        {
+            // Since we have no end point, use DrawRay
+            bullet.DrawRay(head, transform.forward, tracerSpeed * 100, 350);
+            smokeTrail.DrawRay(head, transform.forward, tracerSpeed * 100, 25.0F);
+        }
+    }
+
+    private void OnCompleted(object sender, System.EventArgs e)
+    {
+        // Handle complete event here
+        if (sender is TracerObject tracerObject)
+        {
+            Destroy(tracerObject.gameObject);
+        }
     }
 }
