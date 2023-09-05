@@ -36,16 +36,16 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 1
   indirectDiffuseLightingLayers:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 255
   reflectionLightingMultiplier:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 1
   reflectionLightingLayers:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 255
   reflectionProbeIntensityMultiplier:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 1
 --- !u!114 &-5552944468195847952
 MonoBehaviour:
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9008a067f4d626c4d8bc4bc48f04bb89, type: 3}
   m_Name: AmbientOcclusion
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   quality:
     m_OverrideState: 1
     m_Value: 3
@@ -436,7 +436,7 @@ MonoBehaviour:
     m_Value: 2
   acesPreset:
     m_OverrideState: 0
-    m_Value: 5
+    m_Value: 3
   fallbackMode:
     m_OverrideState: 0
     m_Value: 1
@@ -1056,10 +1056,10 @@ MonoBehaviour:
   active: 1
   quality:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 3
   enable:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   tracing:
     m_OverrideState: 1
     m_Value: 1
@@ -1083,10 +1083,10 @@ MonoBehaviour:
     m_Value: 1
   m_DenoiserRadiusSS:
     m_OverrideState: 1
-    m_Value: 0.75
+    m_Value: 0.05
   m_SecondDenoiserPassSS:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   lastBounceFallbackHierarchy:
     m_OverrideState: 0
     m_Value: 3
@@ -1152,15 +1152,15 @@ MonoBehaviour:
   active: 1
   quality:
     m_OverrideState: 1
-    m_Value: 2
+    m_Value: 0
   enabled:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   enabledTransparent:
     m_OverrideState: 0
     m_Value: 1
   tracing:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   m_MinSmoothness:
     m_OverrideState: 1
@@ -1206,7 +1206,7 @@ MonoBehaviour:
     m_Value: 1
   m_RayMaxIterations:
     m_OverrideState: 1
-    m_Value: 64
+    m_Value: 16
   rayMiss:
     m_OverrideState: 1
     m_Value: 3
@@ -1294,7 +1294,7 @@ MonoBehaviour:
   active: 1
   mode:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 4
   meteringMode:
     m_OverrideState: 1
     m_Value: 2
@@ -1303,7 +1303,7 @@ MonoBehaviour:
     m_Value: 1
   fixedExposure:
     m_OverrideState: 1
-    m_Value: 13.224447
+    m_Value: 12
   compensation:
     m_OverrideState: 0
     m_Value: 0
@@ -1328,15 +1328,6 @@ MonoBehaviour:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 6.375
-        value: 5.8907356
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
         time: 13.367883
         value: 13.367883
         inSlope: 0.9999999
@@ -1345,6 +1336,15 @@ MonoBehaviour:
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 20
+        value: 20
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4

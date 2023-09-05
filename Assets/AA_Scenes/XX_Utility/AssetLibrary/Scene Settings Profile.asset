@@ -1,21 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-582547752381385212
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a7ff42a8c5be6646ad3975f3a54c1eb, type: 3}
-  m_Name: DiffusionProfileList
-  m_EditorClassIdentifier: 
-  active: 1
-  diffusionProfiles:
-    m_OverrideState: 1
-    m_Value: []
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34,7 +18,6 @@ MonoBehaviour:
   - {fileID: 114809940861631676}
   - {fileID: 114765873214422586}
   - {fileID: 114829131821557296}
-  - {fileID: -582547752381385212}
 --- !u!114 &114004556169894454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,8 +158,8 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0.15
   m_SampleCount:
-    m_OverrideState: 0
-    m_Value: 10
+    m_OverrideState: 1
+    m_Value: 8
 --- !u!114 &114809940861631676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,10 +275,10 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 2
   upperHemisphereLuxValue:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 1
   upperHemisphereLuxColor:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: {x: 0, y: 0, z: 0}
   desiredLuxValue:
     m_OverrideState: 0
