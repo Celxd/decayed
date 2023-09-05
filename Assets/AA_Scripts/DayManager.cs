@@ -17,7 +17,7 @@ public class DayManager : MonoBehaviour
         while (true)
         {
             UpdateDayUI();
-            yield return new WaitForSeconds(120f);
+            yield return new WaitForSeconds(360f);
             NextDay();
         }
     }
