@@ -52,6 +52,7 @@ public class Helicopter : MonoBehaviour
                 StartCoroutine(ShowHiddenDelayed());
                 FreezeTime();
 
+
             }
         }
 

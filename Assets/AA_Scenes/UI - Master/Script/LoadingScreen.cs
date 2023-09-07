@@ -8,11 +8,11 @@ public class LoadingScreen : MonoBehaviour
 {
     public GameObject loadingPanel;
     public Slider loadingBar;
-    public TMP_Text loadingText; // Reference to the TMP Text element
+    public TMP_Text loadingText; 
 
     private void Awake()
     {
-        Time.timeScale = 1f; // Reset the timescale to its default value
+        Time.timeScale = 1f;
     }
 
     public void LoadLevel(string levelName)
@@ -22,22 +22,22 @@ public class LoadingScreen : MonoBehaviour
 
     private IEnumerator LoadSceneAsync(string levelName)
     {
-        loadingPanel.SetActive(true); // Show the loading panel
+        loadingPanel.SetActive(true); 
 
         AsyncOperation op = SceneManager.LoadSceneAsync(levelName);
 
         while (!op.isDone)
         {
             float progress = Mathf.Clamp01(op.progress / 0.9f);
-            loadingBar.value = progress * 100f; // Convert progress to a scale of 0 to 100
+            loadingBar.value = progress * 100f; 
 
-            // Update the TMP Text with loading progress
+     
             loadingText.text = $"Loading: {Mathf.Round(progress * 100f)}%";
 
-            yield return null; // Wait for the next frame
+            yield return null; 
         }
 
-        loadingPanel.SetActive(false); // Hide the loading panel after loading
-        loadingText.text = "Loading Complete"; // Optionally update the text after loading
+        loadingPanel.SetActive(false);
+        loadingText.text = "Loading Complete";
     }
 }

@@ -27,11 +27,12 @@ public class destination : MonoBehaviour
 
 
             Player.transform.position = destinationPosition;
-
+            resumetime();
             isTeleporting = false;
             panel.SetActive(false);
             LockCursor();
             Cutscenes();
+        
         }
     }
     private void LockCursor()
@@ -46,6 +47,10 @@ public class destination : MonoBehaviour
     private void Off()
     {
         cutsscenepanel.SetActive(false);
+    }
+    private void resumetime()
+    {
+        Time.timeScale = 1;
     }
 
 }

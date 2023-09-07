@@ -119,7 +119,7 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject, delay);
     }
 
-    public void VFX(Vector3 head)
+    public void VFX(Vector3 head, Ray raycast)
     {
         // Instantiate the tracer graphics
         Bullet bullet = Instantiate(bulletPrefab);
@@ -130,7 +130,7 @@ public class Enemy : MonoBehaviour
         smokeTrail.Completed += OnCompleted;
 
         // Use different tracer drawing methods depending on the raycast
-        if (Physics.Raycast(head, transform.forward, out RaycastHit hitInfo, 350))
+        if (Physics.Raycast(raycast, out RaycastHit hitInfo, 350))
         {
             // Since start and end point are known, use DrawLine
             bullet.DrawLine(head, hitInfo.point, tracerSpeed * 100);
@@ -139,8 +139,8 @@ public class Enemy : MonoBehaviour
         else
         {
             // Since we have no end point, use DrawRay
-            bullet.DrawRay(head, transform.forward, tracerSpeed * 100, 350);
-            smokeTrail.DrawRay(head, transform.forward, tracerSpeed * 100, 25.0F);
+            bullet.DrawRay(raycast.origin, raycast.direction, tracerSpeed * 100, 350);
+            smokeTrail.DrawRay(raycast.origin, raycast.direction, tracerSpeed * 100, 25.0F);
         }
     }
 

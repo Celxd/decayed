@@ -33,10 +33,12 @@ public class EnemyAttackingState : EnemyBaseState
 
         if(cdShoot == 0)
         {
-            enemy.VFX(head);
+            Ray raycast = new Ray(head, target);
+
+            enemy.VFX(head, raycast);
 
             //enemy.m_audio.PlayOneShot(enemy.m_audio.clip, 1f);
-            if (Physics.Raycast(head, target, out RaycastHit hit, enemy.m_AttackRange))
+            if (Physics.Raycast(raycast, out RaycastHit hit, enemy.m_AttackRange))
             {
                 if ((enemy.m_PlayerLayer.value & (1 << hit.transform.gameObject.layer)) != 0)
                 {

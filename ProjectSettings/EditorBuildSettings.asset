@@ -14,12 +14,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/AA_Scenes/Apartment.unity
     guid: 9b5aa6428ba7a6246bd201ba8d95cebe
-  - enabled: 1
+  - enabled: 0
     path: Assets/AA_Scenes/UI - Master/NC.unity
     guid: 9893325a91b567145aec40281d9593b3
   - enabled: 0
-    path: Assets/Scenes/Ground.unity
-    guid: 933bf7755fef84f4a8f025d60e616580
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/AA_Scenes/Forest.unity
     guid: 02511ab31af1c6e4a9cfb2eb9a62f668
